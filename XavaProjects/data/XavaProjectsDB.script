@@ -1,0 +1,112 @@
+SET DATABASE UNIQUE NAME HSQLDB6D26B5FA1B
+SET DATABASE GC 0
+SET DATABASE DEFAULT RESULT MEMORY ROWS 0
+SET DATABASE EVENT LOG LEVEL 0
+SET DATABASE TRANSACTION CONTROL LOCKS
+SET DATABASE DEFAULT ISOLATION LEVEL READ COMMITTED
+SET DATABASE TRANSACTION ROLLBACK ON CONFLICT TRUE
+SET DATABASE TEXT TABLE DEFAULTS ''
+SET DATABASE SQL NAMES FALSE
+SET DATABASE SQL REFERENCES FALSE
+SET DATABASE SQL SIZE TRUE
+SET DATABASE SQL TYPES FALSE
+SET DATABASE SQL TDC DELETE TRUE
+SET DATABASE SQL TDC UPDATE TRUE
+SET DATABASE SQL TRANSLATE TTI TYPES TRUE
+SET DATABASE SQL CONCAT NULLS TRUE
+SET DATABASE SQL UNIQUE NULLS TRUE
+SET DATABASE SQL CONVERT TRUNCATE TRUE
+SET DATABASE SQL AVG SCALE 0
+SET DATABASE SQL DOUBLE NAN TRUE
+SET FILES WRITE DELAY 500 MILLIS
+SET FILES BACKUP INCREMENT TRUE
+SET FILES CACHE SIZE 10000
+SET FILES CACHE ROWS 50000
+SET FILES SCALE 32
+SET FILES LOB SCALE 32
+SET FILES DEFRAG 0
+SET FILES NIO TRUE
+SET FILES NIO SIZE 256
+SET FILES LOG TRUE
+SET FILES LOG SIZE 50
+CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
+ALTER USER SA SET LOCAL TRUE
+CREATE SCHEMA PUBLIC AUTHORIZATION DBA
+CREATE SCHEMA XAVAPROJECTS AUTHORIZATION SA
+SET SCHEMA XAVAPROJECTS
+CREATE MEMORY TABLE XAVAPROJECTS.IMAGES(ID VARCHAR(255) NOT NULL PRIMARY KEY,GALLERY VARCHAR(255),IMAGE VARBINARY(16777216))
+CREATE MEMORY TABLE XAVAPROJECTS.ISSUETYPE(ID VARCHAR(32) NOT NULL PRIMARY KEY,NAME VARCHAR(10))
+CREATE MEMORY TABLE XAVAPROJECTS.OXCONFIGURATION(ID INTEGER NOT NULL PRIMARY KEY,FORCECHANGEPASSWORDDAYS INTEGER NOT NULL,FORCELETTERANDNUMBERSINPASSWD CHARACTER(255),GUESTCANCREATEACCOUNT VARCHAR(1) DEFAULT 'Y' NOT NULL,GUESTCANCREATEACCOUNTINORGS VARCHAR(1) DEFAULT 'Y' NOT NULL,INACTIVEDAYSBEFOREDISUSER INTEGER,LOCKSESSIONMINUTES INTEGER NOT NULL,LOGINATTEMPTSBEFORELOCKING INTEGER NOT NULL,PASSWORDMINLENGTH INTEGER NOT NULL,PRIVACYPOLICYONSIGNUP VARCHAR(1) DEFAULT 'N' NOT NULL,RECENTPASSWORDSNOTALLOWED CHARACTER(255) NOT NULL,SHAREDUSERSBETWEENORGS VARCHAR(1) DEFAULT 'N' NOT NULL,USEEMAILASUSERNAME VARCHAR(1) DEFAULT 'N' NOT NULL,CHECK(XAVAPROJECTS.OXCONFIGURATION.FORCECHANGEPASSWORDDAYS<=999),CHECK(XAVAPROJECTS.OXCONFIGURATION.INACTIVEDAYSBEFOREDISUSER<=999),CHECK(XAVAPROJECTS.OXCONFIGURATION.LOCKSESSIONMINUTES<=999),CHECK(XAVAPROJECTS.OXCONFIGURATION.LOGINATTEMPTSBEFORELOCKING<=999),CHECK(XAVAPROJECTS.OXCONFIGURATION.PASSWORDMINLENGTH<=30))
+CREATE MEMORY TABLE XAVAPROJECTS.OXDISCUSSIONCOMMENTS(ID VARCHAR(32) NOT NULL PRIMARY KEY,COMMENT CLOB(16M),DISCUSSIONID VARCHAR(32),TIME TIMESTAMP,USERNAME VARCHAR(30))
+CREATE INDEX IDXBHLX4VUNN24YM1TBRLGQ8G30M ON XAVAPROJECTS.OXDISCUSSIONCOMMENTS(DISCUSSIONID)
+CREATE MEMORY TABLE XAVAPROJECTS.OXFOLDERS(ID VARCHAR(32) NOT NULL PRIMARY KEY,ICON VARCHAR(40),NAME VARCHAR(25),ORDERINFOLDER INTEGER,PARENT_ID VARCHAR(32),CONSTRAINT FKLP3V9VJ6D112RK1WSUNKWL2RF FOREIGN KEY(PARENT_ID) REFERENCES XAVAPROJECTS.OXFOLDERS(ID))
+CREATE INDEX IDXLGJIWADCOND97X6O36C8IFJFA ON XAVAPROJECTS.OXFOLDERS(NAME)
+CREATE MEMORY TABLE XAVAPROJECTS.OXHISTORY(ID VARCHAR(32) NOT NULL PRIMARY KEY,ACTION VARCHAR(255),CHANGES VARCHAR(255),DATETIME TIMESTAMP,ENTITY VARCHAR(100),IP VARCHAR(15),ENTITYKEY VARCHAR(100),USERNAME VARCHAR(30))
+CREATE MEMORY TABLE XAVAPROJECTS.OXMODULES(NAME VARCHAR(80) NOT NULL,APPLICATION VARCHAR(50) NOT NULL,HIDDEN CHARACTER(255) NOT NULL,ORDERINFOLDER INTEGER,UNRESTRICTED CHARACTER(255) NOT NULL,FOLDER_ID VARCHAR(32),PRIMARY KEY(NAME,APPLICATION),CONSTRAINT FK5BX1GX2D8YIWPBK82E2NNC0SH FOREIGN KEY(FOLDER_ID) REFERENCES XAVAPROJECTS.OXFOLDERS(ID))
+CREATE MEMORY TABLE XAVAPROJECTS.OXORGANIZATIONS(ID VARCHAR(50) NOT NULL PRIMARY KEY,ACTIVE VARCHAR(1) DEFAULT 'Y' NOT NULL,NAME VARCHAR(50))
+CREATE MEMORY TABLE XAVAPROJECTS.OXROLES(NAME VARCHAR(30) NOT NULL PRIMARY KEY,DESCRIPTION VARCHAR(80))
+CREATE MEMORY TABLE XAVAPROJECTS.OXROLES_OXMODULES(EXCLUDEDACTIONS VARCHAR(1000),EXCLUDEDMEMBERS VARCHAR(1000),READONLYMEMBERS VARCHAR(1000),ROLES_NAME VARCHAR(30) NOT NULL,MODULES_NAME VARCHAR(80) NOT NULL,MODULES_APPLICATION VARCHAR(50) NOT NULL,PRIMARY KEY(ROLES_NAME,MODULES_NAME,MODULES_APPLICATION),CONSTRAINT FKS58JXDQAL45A7QVM0D4XT7ID3 FOREIGN KEY(ROLES_NAME) REFERENCES XAVAPROJECTS.OXROLES(NAME),CONSTRAINT FKTGAXPDNQNRE5FQNRE6VPTQQPK FOREIGN KEY(MODULES_NAME,MODULES_APPLICATION) REFERENCES XAVAPROJECTS.OXMODULES(NAME,APPLICATION))
+CREATE MEMORY TABLE XAVAPROJECTS.OXSESSIONSRECORD(ID VARCHAR(32) NOT NULL PRIMARY KEY,SINGINTIME TIMESTAMP,USER_NAME VARCHAR(30))
+CREATE MEMORY TABLE XAVAPROJECTS.OXUSERS(NAME VARCHAR(30) NOT NULL PRIMARY KEY,ACTIVE CHARACTER(255) NOT NULL,AUTHENTICATEWITHLDAP CHARACTER(255) NOT NULL,BIRTHDATE TIMESTAMP,CREATIONDATE TIMESTAMP,EMAIL VARCHAR(60),FAILEDLOGINATTEMPTS INTEGER NOT NULL,FAMILYNAME VARCHAR(30),FORCECHANGEPASSWORD CHARACTER(255) NOT NULL,GIVENNAME VARCHAR(30),JOBTITLE VARCHAR(30),LASTLOGINDATE TIMESTAMP,LASTPASSWORDCHANGEDATE TIMESTAMP,MIDDLENAME VARCHAR(30),NICKNAME VARCHAR(30),PASSWORD VARCHAR(41),PASSWORDRECOVERINGCODE VARCHAR(32),PASSWORDRECOVERINGDATE TIMESTAMP,PRIVACYPOLICYACCEPTANCEDATE TIMESTAMP,RECENTPASSWORD1 VARCHAR(41),RECENTPASSWORD2 VARCHAR(41),RECENTPASSWORD3 VARCHAR(41),RECENTPASSWORD4 VARCHAR(41))
+CREATE INDEX IDX1KR6BNX5W22VLYOB1Y4P8QQFT ON XAVAPROJECTS.OXUSERS(EMAIL)
+CREATE INDEX IDX4SCPSYERABCDJQU5HJ2YQ3EL7 ON XAVAPROJECTS.OXUSERS(PASSWORDRECOVERINGCODE)
+CREATE MEMORY TABLE XAVAPROJECTS.OXUSERS_OXORGANIZATIONS(OXUSERS_NAME VARCHAR(30) NOT NULL,ORGANIZATIONS_ID VARCHAR(50) NOT NULL,CONSTRAINT FKEUNBLSB6QMNC6FCW8FDHBYQN2 FOREIGN KEY(ORGANIZATIONS_ID) REFERENCES XAVAPROJECTS.OXORGANIZATIONS(ID),CONSTRAINT FK69M3XI014UYTY428SXVB4GN5R FOREIGN KEY(OXUSERS_NAME) REFERENCES XAVAPROJECTS.OXUSERS(NAME))
+CREATE MEMORY TABLE XAVAPROJECTS.OXUSERS_OXROLES(OXUSERS_NAME VARCHAR(30) NOT NULL,ROLES_NAME VARCHAR(30) NOT NULL,CONSTRAINT FK4MQ23R96BFD132CP2QBR6YR8Y FOREIGN KEY(ROLES_NAME) REFERENCES XAVAPROJECTS.OXROLES(NAME),CONSTRAINT FKF6V8SLNPKRSWB38WCG5LIHS4D FOREIGN KEY(OXUSERS_NAME) REFERENCES XAVAPROJECTS.OXUSERS(NAME))
+CREATE MEMORY TABLE XAVAPROJECTS.VERSION(ID VARCHAR(32) NOT NULL PRIMARY KEY,NAME VARCHAR(20))
+CREATE MEMORY TABLE XAVAPROJECTS.ISSUE(ID VARCHAR(32) NOT NULL PRIMARY KEY,ATTACHMENTS VARCHAR(32),CLOSED BOOLEAN NOT NULL,CREATEDBY VARCHAR(30),CREATEDON DATE,DESCRIPTION CLOB(1G),DISCUSSION VARCHAR(32),SCREENSHOTS VARCHAR(32),TITLE VARCHAR(100),TYPE_ID VARCHAR(32) NOT NULL,CONSTRAINT FKFYGVKETQL5TVBOICUYSTMINCF FOREIGN KEY(TYPE_ID) REFERENCES XAVAPROJECTS.ISSUETYPE(ID))
+ALTER TABLE XAVAPROJECTS.OXSESSIONSRECORD ADD CONSTRAINT FKDWTW9VGWIVINPFFH0P00WSPHR FOREIGN KEY(USER_NAME) REFERENCES XAVAPROJECTS.OXUSERS(NAME)
+ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
+SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.SQL_IDENTIFIER TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.TIME_STAMP TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.CARDINAL_NUMBER TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.CHARACTER_DATA TO PUBLIC
+GRANT DBA TO SA
+SET SCHEMA SYSTEM_LOBS
+INSERT INTO BLOCKS VALUES(0,2147483647,0)
+SET SCHEMA XAVAPROJECTS
+INSERT INTO ISSUETYPE VALUES('402880406d26bc62016d26c001890003','Feature')
+INSERT INTO ISSUETYPE VALUES('402880406d26bc62016d26c00e7c0004','Bug')
+INSERT INTO OXFOLDERS VALUES('402880406d26b67a016d26b68ce50000','account-multiple','Admin',9999,NULL)
+INSERT INTO OXMODULES VALUES('ChangePassword','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('Configuration','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('ConfigurationRecord','XavaProjects','Y                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('Folder','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('History','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('Issue','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ',NULL)
+INSERT INTO OXMODULES VALUES('IssueType','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ',NULL)
+INSERT INTO OXMODULES VALUES('Module','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('ModuleRights','XavaProjects','Y                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('MyPersonalData','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('Organization','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('Role','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('SessionRecord','XavaProjects','Y                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('User','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ','402880406d26b67a016d26b68ce50000')
+INSERT INTO OXMODULES VALUES('Version','XavaProjects','N                                                                                                                                                                                                                                                              ',9999,'N                                                                                                                                                                                                                                                              ',NULL)
+INSERT INTO OXROLES VALUES('admin','Manages users, roles, folder, modules, organizations, etc.')
+INSERT INTO OXROLES VALUES('self sign up','Add to this role the modules available for the self sign up users')
+INSERT INTO OXROLES VALUES('user','With access to all modules except administration ones')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','Configuration','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','ConfigurationRecord','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','Folder','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','History','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','Module','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','ModuleRights','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','Organization','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','Role','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','SessionRecord','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'admin','User','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'self sign up','ChangePassword','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'self sign up','MyPersonalData','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'user','ChangePassword','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'user','Issue','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'user','IssueType','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'user','MyPersonalData','XavaProjects')
+INSERT INTO OXROLES_OXMODULES VALUES(NULL,NULL,NULL,'user','Version','XavaProjects')
+INSERT INTO OXSESSIONSRECORD VALUES('402880406d26bc62016d26bf56580000','2019-09-12 20:32:16.712000','admin')
+INSERT INTO OXUSERS VALUES('admin','Y                                                                                                                                                                                                                                                              ','N                                                                                                                                                                                                                                                              ',NULL,'2019-09-12 20:22:40.857000',NULL,0,NULL,'N                                                                                                                                                                                                                                                              ',NULL,NULL,'2019-09-12 20:32:16.712000','2019-09-12 20:22:40.855000',NULL,NULL,'-2fcc1dd51cb7514a99f03debf513ca7af3b25669',NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+INSERT INTO OXUSERS_OXROLES VALUES('admin','admin')
+INSERT INTO OXUSERS_OXROLES VALUES('admin','user')
+INSERT INTO VERSION VALUES('402880406d26bc62016d26bfc8480001','1.0')
+INSERT INTO VERSION VALUES('402880406d26bc62016d26bfddd40002','2.0')
