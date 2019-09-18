@@ -14,12 +14,11 @@ import org.openxava.tests.*;
 public class IssueTest extends ModuleTestBase {
 
 	public IssueTest(String nameTest) {
-		super(nameTest, "Issue");
+		super(nameTest, "XavaProjects", "Issue");
 	}
 	
 	public void testCreateNewIssue() throws Exception {
-		
-		login("admin", "admin"); // tmp Mover a clase base
+		login("admin", "admin"); 
 		setValue("title", "JUnit Incident");
 		String [][] types = {
 			{ "", "" },	
@@ -33,8 +32,8 @@ public class IssueTest extends ModuleTestBase {
 		assertNoEditable("createdBy");
 		setValue("closed", "true");
 		assertValue("createdOn", getCurrentDate());
-		// tmp Falta attachments
-		// tmp changeImage("screenshots", "test-files/issue-screenshot.png");
+		uploadFile("attachments", "test-files/notes.txt");
+		uploadFile("screenshots", "test-files/issue-screenshot.png");
 		postDiscussionComment("discussion", "I agree");
 		
 		execute("CRUD.save");
@@ -49,13 +48,12 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("createdBy", "admin");
 		assertValue("closed", "true");
 		assertValue("createdOn", getCurrentDate());
-		// tmp Falta attachments
-		// tmp assertGalleryImagesCount("screenshots", 1);
-		
+		assertFile("attachments", 0, "text/plain");
+		assertFile("screenshots", 0, "image");
 		assertDiscussionCommentsCount("discussion", 1);
 		assertDiscussionCommentContentText("discussion", 0, "I agree");
 		
-		removeGalleryImage("screenshots", 0);
+		removeFile("screenshots", 0);
 		execute("CRUD.delete");
 		assertNoErrors();
 	}

@@ -317,3 +317,7 @@ input[type="text"] + a {
 	color: white;
 	font-weight: bold;
 }
+
+.ox-image, .ox-file, .ox-files, .filepond--item, .ox-file .filepond--item, .ox-files .filepond--item {
+	width: inherit;
+}
