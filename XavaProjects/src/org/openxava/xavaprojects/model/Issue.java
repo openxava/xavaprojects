@@ -24,7 +24,7 @@ public class Issue extends Identifiable {
 	@ManyToOne(fetch=FetchType.LAZY, optional=false)
 	private IssueType type;
 	
-	@Stereotype("SIMPLE_HTML_TEXT") @Column(columnDefinition = "CLOB")
+	@Stereotype("SIMPLE_HTML_TEXT") @Column(columnDefinition="MEDIUMTEXT")
 	private String description;
 	
 	@Column(length=30) @ReadOnly

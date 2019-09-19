@@ -22,11 +22,11 @@ public class IssueTest extends ModuleTestBase {
 		setValue("title", "JUnit Incident");
 		String [][] types = {
 			{ "", "" },	
-			{ "402880406d26bc62016d26c00e7c0004", "Bug" },
-			{ "402880406d26bc62016d26c001890003", "Feature" }
+			{ "402880426d4a81cc016d4aa2b8100002", "Bug" },
+			{ "402880426d4a81cc016d4aa2c78b0003", "Feature" }
 		};
 		assertValidValues("type.id", types);
-		setValue("type.id", "402880406d26bc62016d26c00e7c0004");
+		setValue("type.id", "402880426d4a81cc016d4aa2b8100002");
 		setValue("description", "This is a JUnit Incident");
 		assertValue("createdBy", "admin");
 		assertNoEditable("createdBy");
@@ -43,7 +43,7 @@ public class IssueTest extends ModuleTestBase {
 		execute("List.viewDetail", "row=0");
 		
 		assertValue("title", "JUnit Incident");
-		assertValue("type.id", "402880406d26bc62016d26c00e7c0004");
+		assertValue("type.id", "402880426d4a81cc016d4aa2b8100002");
 		assertValue("description", "This is a JUnit Incident");
 		assertValue("createdBy", "admin");
 		assertValue("closed", "true");

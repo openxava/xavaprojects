@@ -14,7 +14,7 @@
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="update"/>
             <property name="javax.persistence.create-database-schemas" value="true"/> 
-            <property name="hibernate.default_schema" value="XavaProjects"/>
+            <property name="hibernate.default_catalog" value="XavaProjects"/>
             <property name="hibernate.jdbc.use_streams_for_binary" value="true"/>
         </properties>
     </persistence-unit>
@@ -34,7 +34,7 @@
     </persistence-unit>     
     -->   
                 
-    <!-- JUnit Hypersonic -->
+    <!-- JUnit Hypersonic 
     <persistence-unit name="junit">
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	<class>org.openxava.web.editors.DiscussionComment</class>
@@ -43,6 +43,18 @@
 			<property name="hibernate.default_schema" value="XavaProjects"/>
 			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost:1666"/>
         </properties>
-    </persistence-unit>    
+    </persistence-unit>
+    -->
+    
+    <!-- JUnit MySQL -->
+    <persistence-unit name="junit">
+    	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    	<class>org.openxava.web.editors.DiscussionComment</class>
+        <properties>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+			<property name="hibernate.default_catalog" value="XavaProjects"/>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306?serverTimezone=GMT%2B2"/>
+        </properties>
+    </persistence-unit>
     
 </persistence>
