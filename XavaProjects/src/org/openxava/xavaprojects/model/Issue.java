@@ -31,6 +31,10 @@ public class Issue extends Identifiable {
 	@DefaultValueCalculator(CurrentUserCalculator.class)
 	private String createdBy;
 	
+	@DescriptionsList
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)
+	private Version version;
+	
 	private boolean closed;
 	
 	@ReadOnly 
@@ -122,6 +126,15 @@ public class Issue extends Identifiable {
 
 	public void setDiscussion(String discussion) {
 		this.discussion = discussion;
+	}
+
+	public Version getVersion() {
+		return version;
+	}
+
+	public void setVersion(Version version) {
+		this.version = version;
+		if (this.version != null) this.version.addIssue(this);
 	}
 
 }
