@@ -22,21 +22,21 @@ public class IssueTest extends ModuleTestBase {
 		setValue("title", "JUnit Incident");
 		String [][] types = {
 			{ "", "" },	
-			{ "402880426d4a81cc016d4aa2b8100002", "Bug" },
-			{ "402880426d4a81cc016d4aa2c78b0003", "Feature" }
+			{ "402880426d5f6588016d5f70e3920001", "Bug" },
+			{ "402880426d5f6588016d5f7100650002", "Feature" }
 		};
 		assertValidValues("type.id", types);
-		setValue("type.id", "402880426d4a81cc016d4aa2b8100002");
+		setValue("type.id", "402880426d5f6588016d5f70e3920001");
 		setValue("description", "This is a JUnit Incident");
 		assertValue("createdBy", "admin");
 		assertNoEditable("createdBy");
 		String [][] versions = {
 			{ "", "" },	
-			{ "402880426d4b0d08016d4b0fdbc00001", "1.0" },
-			{ "402880426d4b0d08016d4b0fecee0002", "2.0" }
+			{ "402880426d5f6588016d5f7129ce0003", "1.0" },
+			{ "402880426d5f6588016d5f7135ee0004", "2.0" }
 		};
 		assertValidValues("version.id", versions);
-		setValue("version.id", "402880426d4b0d08016d4b0fdbc00001");		
+		setValue("version.id", "402880426d5f6588016d5f7129ce0003");		
 		setValue("closed", "true");
 		assertValue("createdOn", getCurrentDate());
 		uploadFile("attachments", "test-files/notes.txt");
@@ -59,10 +59,10 @@ public class IssueTest extends ModuleTestBase {
 		execute("List.viewDetail", "row=0");
 		
 		assertValue("title", "JUnit Incident");
-		assertValue("type.id", "402880426d4a81cc016d4aa2b8100002");
+		assertValue("type.id", "402880426d5f6588016d5f70e3920001");
 		assertValue("description", "This is a JUnit Incident");
 		assertValue("createdBy", "admin");
-		assertValue("version.id", "402880426d4b0d08016d4b0fdbc00001"); 
+		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
 		assertValue("closed", "true");
 		assertValue("createdOn", getCurrentDate());
 		assertFile("attachments", 0, "text/plain");

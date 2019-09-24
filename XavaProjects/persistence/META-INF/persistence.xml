@@ -11,11 +11,13 @@
     	<non-jta-data-source>java://comp/env/jdbc/XavaProjectsDS</non-jta-data-source>
     	<class>org.openxava.session.GalleryImage</class>
     	<class>org.openxava.web.editors.DiscussionComment</class>
+		<class>org.openxava.util.impl.EmailSubscription</class>    	
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="update"/>
             <property name="javax.persistence.create-database-schemas" value="true"/> 
             <property name="hibernate.default_catalog" value="XavaProjects"/>
             <property name="hibernate.jdbc.use_streams_for_binary" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL55Dialect"/>
         </properties>
     </persistence-unit>
     

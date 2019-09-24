@@ -33,7 +33,9 @@
 	Leaves the war in the workspace.dist/YourApplication.dist folder.
 	 -->	
 	<target name="createWar">
-		<ant antfile="${openxava.base.dir}/OpenXava/build.xml" target="createWar"/>
+		<ant antfile="${openxava.base.dir}/OpenXava/build.xml" target="prepareWar"/>
+		<jar jarfile="web/WEB-INF/lib/email-conf.jar" basedir="${openxava.base.dir}/EmailConf"/>
+		<jar jarfile="${dist.base.dir}/${project}.dist/${project}.war" basedir="web"/>
 	</target>				
 
 	
