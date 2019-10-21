@@ -8,6 +8,7 @@ import org.openxava.annotations.*;
 import org.openxava.calculators.*;
 import org.openxava.model.*;
 import org.openxava.web.editors.*;
+import org.openxava.xavaprojects.calculators.*;
 
 /**
  * 
@@ -31,7 +32,13 @@ public class Issue extends Identifiable {
 	@DefaultValueCalculator(CurrentUserCalculator.class)
 	private String createdBy;
 	
+
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList
+	@DefaultValueCalculator(DefaultProjectCalculator.class)
+	private Project project; // tmp 
+	
+	@DescriptionsList(condition="project.id = ?", depends = "this.project")
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	private Version version;
 	
@@ -135,6 +142,14 @@ public class Issue extends Identifiable {
 	public void setVersion(Version version) {
 		this.version = version;
 		if (this.version != null) this.version.addIssue(this);
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 }

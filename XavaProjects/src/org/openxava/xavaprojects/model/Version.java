@@ -2,6 +2,8 @@ package org.openxava.xavaprojects.model;
 
 import java.util.*;
 import javax.persistence.*;
+
+import org.openxava.annotations.*;
 import org.openxava.model.Identifiable;
 
 /**
@@ -11,6 +13,10 @@ import org.openxava.model.Identifiable;
 
 @Entity
 public class Version extends Identifiable {
+	
+	@DescriptionsList
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Project project; // tmp
 	
 	@Column(length=20)
 	private String name;
@@ -38,6 +44,14 @@ public class Version extends Identifiable {
 
 	public void setIssues(List<Issue> issues) {
 		this.issues = issues;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 }
