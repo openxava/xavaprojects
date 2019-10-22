@@ -4,7 +4,6 @@ import org.openxava.calculators.*;
 import org.openxava.xavaprojects.model.*;
 
 /**
- * tmp
  * 
  * @author Javier Paniza
  */

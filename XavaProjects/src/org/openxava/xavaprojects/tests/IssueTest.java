@@ -30,6 +30,8 @@ public class IssueTest extends ModuleTestBase {
 		setValue("description", "This is a JUnit Incident");
 		assertValue("createdBy", "admin");
 		assertNoEditable("createdBy");
+		assertValidValuesCount("project.id", 2);
+		assertDescriptionValue("project.id", "OpenXava"); 
 		String [][] versions = {
 			{ "", "" },	
 			{ "402880426d5f6588016d5f7129ce0003", "1.0" },
@@ -47,8 +49,10 @@ public class IssueTest extends ModuleTestBase {
 		execute("Mode.list");
 		
 		changeModule("Version");
-		assertValueInList(0, 0, "1.0");
+		assertValueInList(0, 0, "OpenXava");
+		assertValueInList(0, 1, "1.0");
 		execute("List.viewDetail", "row=0");
+		assertDescriptionValue("project.id", "OpenXava");  
 		assertValue("name", "1.0");
 		assertCollectionRowCount("issues", 1);
 		assertValueInCollection("issues", 0, 0, "JUnit Incident");

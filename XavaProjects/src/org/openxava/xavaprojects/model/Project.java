@@ -22,6 +22,14 @@ public class Project extends Identifiable {
 		return null;
 	}
 	
+	public static Project findByName(String name) { 
+		return (Project) XPersistence.getManager()
+			.createQuery("from Project p where p.name = :name")
+			.setParameter("name", name)
+			.getSingleResult();
+	}
+	
+	
 	@Column(length=40) @Required
 	private String name;
 	

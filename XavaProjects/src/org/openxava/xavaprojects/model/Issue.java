@@ -36,7 +36,7 @@ public class Issue extends Identifiable {
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList
 	@DefaultValueCalculator(DefaultProjectCalculator.class)
-	private Project project; // tmp 
+	private Project project; 
 	
 	@DescriptionsList(condition="project.id = ?", depends = "this.project")
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
