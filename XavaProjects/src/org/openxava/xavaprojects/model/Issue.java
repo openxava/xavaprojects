@@ -48,6 +48,10 @@ public class Issue extends Identifiable {
 	@DefaultValueCalculator(CurrentLocalDateCalculator.class) 
 	private LocalDate createdOn;
 	
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)
+	@DescriptionsList(descriptionProperties="worker.name, period.name")
+	private Plan assignedTo; // tmp
+	
 	@Stereotype("FILES") @Column(length=32)
 	private String attachments;
 	
@@ -150,6 +154,15 @@ public class Issue extends Identifiable {
 
 	public void setProject(Project project) {
 		this.project = project;
+	}
+
+	public Plan getAssignedTo() {
+		return assignedTo;
+	}
+
+	public void setAssignedTo(Plan assignedTo) {
+		this.assignedTo = assignedTo;
+		if (this.assignedTo != null) this.assignedTo.addIssue(this);
 	}
 
 }
