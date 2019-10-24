@@ -8,7 +8,6 @@ import org.openxava.annotations.*;
 import org.openxava.model.*;
 
 /**
- * tmp
  * 
  * @author Javier Paniza
  */
@@ -46,7 +45,7 @@ public class Plan extends Identifiable {
 	
 	public void addIssue(Issue issue) {
 		if (issues == null) issues = new ArrayList<>();
-		issues.add(issue);
+		if (!issues.contains(issue)) issues.add(issue);
 	}
 
 	public List<Issue> getIssues() {

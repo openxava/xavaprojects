@@ -50,7 +50,7 @@ public class Issue extends Identifiable {
 	
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList(descriptionProperties="worker.name, period.name")
-	private Plan assignedTo; // tmp
+	private Plan assignedTo; 
 	
 	@Stereotype("FILES") @Column(length=32)
 	private String attachments;

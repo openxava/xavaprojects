@@ -41,6 +41,13 @@ public class IssueTest extends ModuleTestBase {
 		setValue("version.id", "402880426d5f6588016d5f7129ce0003");		
 		setValue("closed", "true");
 		assertValue("createdOn", getCurrentDate());
+		String [][] plans = {
+			{ "", "" },	
+			{ "402880406dfa06e9016dfa0925830003", "Javi 2019.10" },
+			{ "402880406dfa06e9016dfa16f9160006", "Javi 2019.11" }
+		};
+		assertValidValues("assignedTo.id", plans);
+		setValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");		
 		uploadFile("attachments", "test-files/notes.txt");
 		uploadFile("screenshots", "test-files/issue-screenshot.png");
 		postDiscussionComment("discussion", "I agree");
@@ -69,6 +76,7 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
 		assertValue("closed", "true");
 		assertValue("createdOn", getCurrentDate());
+		assertValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006"); 
 		assertFile("attachments", 0, "text/plain");
 		assertFile("screenshots", 0, "image");
 		assertDiscussionCommentsCount("discussion", 1);

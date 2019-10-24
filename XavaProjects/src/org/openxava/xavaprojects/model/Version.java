@@ -44,7 +44,12 @@ public class Version extends Identifiable {
 
 	public void addIssue(Issue issue) {
 		if (issues == null) issues = new ArrayList<>();
-		issues.add(issue);
+		if (!issues.contains(issue)) issues.add(issue);
+	}
+	
+	public void removeIssue(Issue issue) { 
+		if (issues == null) return;
+		issues.remove(issue);
 	}
 	
 	public List<Issue> getIssues() {
