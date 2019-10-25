@@ -13,6 +13,7 @@ import org.openxava.model.Identifiable;
  */
 
 @Entity
+@Tab(defaultOrder="${name} desc") 
 public class Version extends Identifiable {
 	
 	public static List<Version> findByName(String name) { 

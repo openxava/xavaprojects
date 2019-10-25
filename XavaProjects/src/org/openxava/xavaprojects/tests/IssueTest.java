@@ -28,19 +28,30 @@ public class IssueTest extends ModuleTestBase {
 		assertValidValues("type.id", types);
 		setValue("type.id", "402880426d5f6588016d5f70e3920001");
 		setValue("description", "This is a JUnit Incident");
+		assertValidValuesCount("project.id", 2);
+		assertDescriptionValue("project.id", "OpenXava"); 		
 		assertValue("createdBy", "admin");
 		assertNoEditable("createdBy");
-		assertValidValuesCount("project.id", 2);
-		assertDescriptionValue("project.id", "OpenXava"); 
+		assertValue("createdOn", getCurrentDate());
+
+		String [][] priorities = {
+			{ "", "" },
+			{ "7", "7 High" },
+			{ "5", "5 Normal" },
+			{ "3", "3 Low" }
+		};
+		assertValidValues("priority.level", priorities);
+		assertValue("priority.level", "5");
+		setValue("priority.level", "7");
+
 		String [][] versions = {
-			{ "", "" },	
-			{ "402880426d5f6588016d5f7129ce0003", "1.0" },
-			{ "402880426d5f6588016d5f7135ee0004", "2.0" }
+			{ "", "" },
+			{ "402880426d5f6588016d5f7135ee0004", "2.0" },
+			{ "402880426d5f6588016d5f7129ce0003", "1.0" }
 		};
 		assertValidValues("version.id", versions);
 		setValue("version.id", "402880426d5f6588016d5f7129ce0003");		
-		setValue("closed", "true");
-		assertValue("createdOn", getCurrentDate());
+			
 		String [][] plans = {
 			{ "", "" },	
 			{ "402880406dfa06e9016dfa0925830003", "Javi 2019.10" },
@@ -48,6 +59,8 @@ public class IssueTest extends ModuleTestBase {
 		};
 		assertValidValues("assignedTo.id", plans);
 		setValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");		
+		
+		setValue("closed", "true");
 		uploadFile("attachments", "test-files/notes.txt");
 		uploadFile("screenshots", "test-files/issue-screenshot.png");
 		postDiscussionComment("discussion", "I agree");
@@ -56,9 +69,9 @@ public class IssueTest extends ModuleTestBase {
 		execute("Mode.list");
 		
 		changeModule("Version");
-		assertValueInList(0, 0, "OpenXava");
-		assertValueInList(0, 1, "1.0");
-		execute("List.viewDetail", "row=0");
+		assertValueInList(1, 0, "OpenXava");
+		assertValueInList(1, 1, "1.0");
+		execute("List.viewDetail", "row=1");
 		assertDescriptionValue("project.id", "OpenXava");  
 		assertValue("name", "1.0");
 		assertCollectionRowCount("issues", 1);
@@ -72,11 +85,14 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("title", "JUnit Incident");
 		assertValue("type.id", "402880426d5f6588016d5f70e3920001");
 		assertValue("description", "This is a JUnit Incident");
+		assertDescriptionValue("project.id", "OpenXava"); 
 		assertValue("createdBy", "admin");
-		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
-		assertValue("closed", "true");
 		assertValue("createdOn", getCurrentDate());
-		assertValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006"); 
+		assertValue("priority.level", "7"); 
+		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
+		assertValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");
+		assertValue("closed", "true");
+		
 		assertFile("attachments", 0, "text/plain");
 		assertFile("screenshots", 0, "image");
 		assertDiscussionCommentsCount("discussion", 1);

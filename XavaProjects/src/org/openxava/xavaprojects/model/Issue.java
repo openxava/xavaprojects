@@ -28,29 +28,34 @@ public class Issue extends Identifiable {
 	@Stereotype("SIMPLE_HTML_TEXT") @Column(columnDefinition="MEDIUMTEXT")
 	private String description;
 	
-	@Column(length=30) @ReadOnly
-	@DefaultValueCalculator(CurrentUserCalculator.class)
-	private String createdBy;
-	
-
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList
 	@DefaultValueCalculator(DefaultProjectCalculator.class)
 	private Project project; 
 	
-	@DescriptionsList(condition="project.id = ?", depends = "this.project")
-	@ManyToOne(fetch=FetchType.LAZY, optional=true)
-	private Version version;
-	
-	private boolean closed;
+	@Column(length=30) @ReadOnly
+	@DefaultValueCalculator(CurrentUserCalculator.class)
+	private String createdBy;
 	
 	@ReadOnly 
 	@DefaultValueCalculator(CurrentLocalDateCalculator.class) 
 	private LocalDate createdOn;
 	
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
+	@DescriptionsList(order="${level} desc")
+	@DefaultValueCalculator(value=IntegerCalculator.class, 
+		properties = @PropertyValue(name="value", value="5") )
+	private Priority priority; 
+		
+	@DescriptionsList(condition="project.id = ?", depends="this.project", order="${name} desc") 
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)
+	private Version version;
+	
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList(descriptionProperties="worker.name, period.name")
 	private Plan assignedTo; 
+	
+	private boolean closed;	
 	
 	@Stereotype("FILES") @Column(length=32)
 	private String attachments;
@@ -163,6 +168,14 @@ public class Issue extends Identifiable {
 	public void setAssignedTo(Plan assignedTo) {
 		this.assignedTo = assignedTo;
 		if (this.assignedTo != null) this.assignedTo.addIssue(this);
+	}
+
+	public Priority getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
 	}
 
 }

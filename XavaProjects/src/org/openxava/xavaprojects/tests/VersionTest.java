@@ -53,17 +53,18 @@ public class VersionTest extends ModuleTestBase {
 		
 		setValue("project.id", oldProject.getId());
 		String [][] oldProjectVersions = {
-			{ "", "" },	
-			{ "402880426d5f6588016d5f7129ce0003", "1.0" },
-			{ "402880426d5f6588016d5f7135ee0004", "2.0" }
+			{ "", "" },
+			{ "402880426d5f6588016d5f7135ee0004", "2.0" },
+			{ "402880426d5f6588016d5f7129ce0003", "1.0" }
 		};
 		assertValidValues("version.id", oldProjectVersions);
 		
 		setValue("project.id", newProject.getId());
 		String [][] newProjectVersions = {
-			{ "", "" },	
-			{ newVersion1.getId(), newVersion1.getName() },
-			{ newVersion2.getId(), newVersion2.getName() }
+			{ "", "" },
+			{ newVersion2.getId(), newVersion2.getName() },
+			{ newVersion1.getId(), newVersion1.getName() }
+			
 		};
 		assertValidValues("version.id", newProjectVersions);
 		
