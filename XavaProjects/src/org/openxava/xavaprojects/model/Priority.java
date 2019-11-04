@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.openxava.annotations.*;
-import org.openxava.model.*;
 
 /**
  * 

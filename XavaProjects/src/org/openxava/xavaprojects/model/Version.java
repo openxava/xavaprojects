@@ -23,7 +23,6 @@ public class Version extends Identifiable {
 			.getResultList();
 	}
 
-	
 	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Project project;
@@ -31,6 +30,7 @@ public class Version extends Identifiable {
 	@Column(length=20)
 	private String name; 
 	
+	@ListProperties("title, description, createdBy, closed")
 	@OneToMany(mappedBy="version")
 	@OrderColumn
 	private List<Issue> issues;

@@ -12,7 +12,7 @@ import org.openxava.model.*;
 @Entity
 public class IssueType extends Identifiable {
 	
-	@Column(length=10)
+	@Column(length=40)
 	private String name;
 
 	public String getName() {
