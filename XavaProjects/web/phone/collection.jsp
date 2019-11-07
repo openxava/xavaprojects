@@ -37,17 +37,8 @@ else {
 
 <%
 context.put(request, viewName, subview);
-String tabObject = org.openxava.web.Collections.tabObject(idCollection); 
-org.openxava.tab.Tab tab = subview.getCollectionTab();
-
-String tabPrefix = tabObject + "_";
-tab.clearStyle();
-int selectedRow = subview.getCollectionEditingRow();
-if (selectedRow >= 0) {
-	String cssClass=selectedRow%2==0?style.getListPairSelected():style.getListOddSelected();
-	tab.setStyle(selectedRow, cssClass);
-}
-context.put(request, tabObject, tab);
+String tabObject = ""; 
+int selectedRow = subview.getCollectionEditingRow(); 
 %>
 
 <div class="phone-frame-title"><%=collection.getLabel()%></div>
@@ -100,7 +91,18 @@ if (collectionEditable && (!Is.emptyString(newAction) || !Is.emptyString(removeS
 </div>	
 <% } %>
 
-<% if (!subview.isCollectionFromModel()) { %>
+<% 
+if (!subview.isCollectionFromModel()) { 
+	tabObject = org.openxava.web.Collections.tabObject(idCollection); 
+	org.openxava.tab.Tab tab = subview.getCollectionTab();
+	String tabPrefix = tabObject + "_";
+	tab.clearStyle();
+	if (selectedRow >= 0) {
+		String cssClass=selectedRow%2==0?style.getListPairSelected():style.getListOddSelected();
+		tab.setStyle(selectedRow, cssClass);
+	}
+	context.put(request, tabObject, tab);	
+%>
 
 <jsp:include page="list.jsp">
 	<jsp:param name="collection" value="<%=idCollection%>"/>
