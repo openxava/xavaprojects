@@ -11,8 +11,9 @@ import org.openxava.model.*;
  */
 
 @Entity
-public class Worker extends Identifiable {
+public class Worker extends /* tmp Identifiable*/ Nameable {
 
+	/* tmp
 	@Column(length=40) @Required
 	private String name;
 
@@ -23,5 +24,6 @@ public class Worker extends Identifiable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	*/
 	
 }

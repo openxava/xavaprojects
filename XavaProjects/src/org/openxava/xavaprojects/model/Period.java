@@ -10,8 +10,9 @@ import org.openxava.model.*;
  * @author Javier Paniza
  */
 @Entity
-public class Period extends Identifiable {
+public class Period extends /* tmp Identifiable */ Nameable {
 
+	/* tmp
 	@Column(length=40) @Required
 	private String name;
 
@@ -22,5 +23,6 @@ public class Period extends Identifiable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	*/
 	
 }

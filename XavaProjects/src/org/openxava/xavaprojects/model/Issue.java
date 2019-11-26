@@ -1,8 +1,10 @@
 package org.openxava.xavaprojects.model;
 
+import java.math.*;
 import java.time.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
@@ -55,7 +57,17 @@ public class Issue extends Identifiable {
 	@DescriptionsList(descriptionProperties="worker.name, period.name")
 	private Plan assignedTo; 
 	
-	private boolean closed;	
+	private boolean closed;
+	
+	// tmp ini
+	// tmp ME QUEDÉ POR AQUÍ: FALTA AÑADIR REFERENCIA A Customer Y PROBAR
+	@Max(99999)
+	private int minutes;
+	
+	@Calculation("minutes / 60")
+	@Column(length=6, scale=2)
+	private BigDecimal hours;
+	// tmp fin
 	
 	@Stereotype("FILES") @Column(length=32)
 	private String attachments;

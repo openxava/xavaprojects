@@ -2,18 +2,19 @@ package org.openxava.xavaprojects.model;
 
 import javax.persistence.*;
 
+import org.openxava.annotations.*;
 import org.openxava.model.*;
 
 /**
+ * tmp
  * 
  * @author Javier Paniza
  */
 
-@Entity
-public class IssueType extends /* tmp Identifiable */ Nameable {
-	
-	/* tmp
-	@Column(length=40)
+@MappedSuperclass
+public class Nameable extends Identifiable {
+
+	@Column(length=40) @Required
 	private String name;
 
 	public String getName() {
@@ -23,6 +24,5 @@ public class IssueType extends /* tmp Identifiable */ Nameable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	*/
-
+	
 }
