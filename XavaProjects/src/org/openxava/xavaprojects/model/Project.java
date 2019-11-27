@@ -14,7 +14,7 @@ import org.openxava.model.*;
  */
 
 @Entity
-public class Project extends /* tmp Identifiable */ Nameable {
+public class Project extends Nameable {
 	
 	public static Project findUnique() {
 		List<Project> projects = XPersistence.getManager().createQuery("from Project").getResultList();
@@ -29,17 +29,4 @@ public class Project extends /* tmp Identifiable */ Nameable {
 			.getSingleResult();
 	}
 	
-	/* tmp
-	@Column(length=40) @Required
-	private String name;
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	*/
-
 }

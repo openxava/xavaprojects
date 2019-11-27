@@ -55,19 +55,23 @@ public class Issue extends Identifiable {
 	
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList(descriptionProperties="worker.name, period.name")
-	private Plan assignedTo; 
+	private Plan assignedTo;
 	
-	private boolean closed;
-	
-	// tmp ini
-	// tmp ME QUEDÉ POR AQUÍ: FALTA AÑADIR REFERENCIA A Customer Y PROBAR
+	@DescriptionsList
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Customer customer; 
+
 	@Max(99999)
-	private int minutes;
+	private int minutes; 
 	
+	@ReadOnly
 	@Calculation("minutes / 60")
 	@Column(length=6, scale=2)
-	private BigDecimal hours;
-	// tmp fin
+	private BigDecimal hours; 
+
+	private boolean closed;
+	
+	
 	
 	@Stereotype("FILES") @Column(length=32)
 	private String attachments;
@@ -188,6 +192,30 @@ public class Issue extends Identifiable {
 
 	public void setPriority(Priority priority) {
 		this.priority = priority;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public int getMinutes() {
+		return minutes;
+	}
+
+	public void setMinutes(int minutes) {
+		this.minutes = minutes;
+	}
+
+	public BigDecimal getHours() {
+		return hours;
+	}
+
+	public void setHours(BigDecimal hours) {
+		this.hours = hours;
 	}
 
 }

@@ -60,6 +60,20 @@ public class IssueTest extends ModuleTestBase {
 		assertValidValues("assignedTo.id", plans);
 		setValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");		
 		
+		String [][] customers = {
+			{ "", "" },	
+			{ "402880466eae0e5b016eae13f9f70002", "Banco Santander" },
+			{ "402880466eae0e5b016eae13e29b0001", "Oracle Corporation" }
+		};
+		
+		assertValidValues("customer.id", customers);
+		setValue("customer.id", "402880466eae0e5b016eae13f9f70002");		
+
+		assertValue("hours", "");
+		setValue("minutes", "90");
+		assertValue("hours", "1.50");
+		assertNoEditable("hours");
+		
 		setValue("closed", "true");
 		uploadFile("attachments", "test-files/notes.txt");
 		uploadFile("screenshots", "test-files/issue-screenshot.png");
@@ -91,6 +105,9 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("priority.level", "7"); 
 		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
 		assertValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");
+		assertValue("customer.id", "402880466eae0e5b016eae13f9f70002");		
+		assertValue("minutes", "90");
+		assertValue("hours", "1.50");		
 		assertValue("closed", "true");
 		
 		assertFile("attachments", 0, "text/plain");
