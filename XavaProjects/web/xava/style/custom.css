@@ -37,3 +37,26 @@ Put here your own style
 #logo span {
 	color: white;
 }
+
+.group {   
+	text-align: left;
+	padding: 0px;
+	margin-bottom: 80px;
+	font-size: 90%;
+	font-weight: lighter;
+}
+
+
+.block {
+	max-width: 950px;
+	margin: 30px auto 60px auto;
+}
+
+.block h4 {
+	color: #033649;
+	margin-bottom: -10px;
+}
+
+.mobile .block {
+	margin: 30px 0px 30px 0px;
+}

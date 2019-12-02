@@ -5,16 +5,7 @@
 <%@page import="org.openxava.util.Locales"%>
 <%@page import="org.openxava.web.style.XavaStyle"%>
 <%@page import="org.openxava.util.XavaPreferences"%>
-
-
-<%-- To put your own text add entries in the i18n messages files of your project 
-In MyApplication-labels_en.properties:
-MyApplication=My application
-MyApplication[description]=My application does this and that
-
-In MyApplication-messages_en.properties:
-welcome_point1=This is a additional explanatory line
---%>
+<%@page import="org.openxava.util.XavaResources"%>
 
 <%
 String applicationName = request.getContextPath().substring(1);
@@ -55,6 +46,26 @@ String language = "es".equals(Locales.getCurrent().getLanguage()) || "ca".equals
 
 <div id="home_screenshot">
 <img src="images/home-screenshot_<%=language%>.png"/>
+</div>
+
+<div class="group">
+
+	<% for (int i=1; i<=5; i++) { %>
+		<div class='block'>
+			<%
+			String featureHeader = XavaResources.getString(request, "feature_header" + i);
+			String featureDescription = XavaResources.getString(request, "feature_description" + i);
+			%>
+			<h4><%=featureHeader%></h4>
+			<p><%=featureDescription%></p>			
+		</div>
+	<% } %>
+
+</div>
+
+<div class="ox-bottom-buttons">
+	<input type="hidden">
+	<input type="button" tabindex="1" onclick="window.location='https://github.com/openxava/xavaprojects'" value="<xava:message key='download_from_github'/>">
 </div>
 
 </body>
