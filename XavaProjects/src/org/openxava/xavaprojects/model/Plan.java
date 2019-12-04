@@ -13,7 +13,7 @@ import org.openxava.model.*;
  */
 
 @Entity
-@Tab(defaultOrder="${period.name} desc") 
+@Tab(defaultOrder="${period.name} desc, ${worker.name} asc") 
 public class Plan extends Identifiable {
 	
 	@DescriptionsList

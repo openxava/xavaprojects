@@ -43,10 +43,10 @@ public class PlanTest extends ModuleTestBase {
 		
 		execute("Mode.list");
 		assertListRowCount(3);
-		assertValueInList(2, 0, "Pedro");
-		assertValueInList(2, 1, "2019.11");
+		assertValueInList(1, 0, "Pedro");
+		assertValueInList(1, 1, "2019.11");
 		
-		execute("List.viewDetail", "row=2");
+		execute("List.viewDetail", "row=1"); 
 		assertValue("worker.id", "402880406dfea11b016dfef3623f0004"); // Pedro
 		assertValue("period.id", "402880406dfa06e9016dfa16c4ff0005"); // 2019.11
 		assertCollectionRowCount("issues", 1);

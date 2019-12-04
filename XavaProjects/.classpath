@@ -8,6 +8,6 @@
 	<classpathentry kind="src" path="xava"/>
 	<classpathentry kind="src" path="i18n"/>
 	<classpathentry kind="lib" path="/OpenXava/lib/hsqldb.jar"/>
-	<classpathentry kind="var" path="MYSQL_DRIVER"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.17.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

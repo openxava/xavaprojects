@@ -38,6 +38,10 @@ Put here your own style
 	color: white;
 }
 
+.mobile #logo div {
+	font-size: 150%;
+}
+
 .group {   
 	text-align: left;
 	padding: 0px;
