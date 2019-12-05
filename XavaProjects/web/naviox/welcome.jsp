@@ -12,9 +12,14 @@ String applicationName = request.getContextPath().substring(1);
 MetaApplication metaApplication = MetaApplications.getMetaApplication(applicationName);
 Locales.setCurrent(request);
 String oxVersion = org.openxava.controller.ModuleManager.getVersion();
-String title = (String) request.getAttribute("naviox.pageTitle");
-if (title == null) title = metaApplication.getLabel();
 String language = "es".equals(Locales.getCurrent().getLanguage()) || "ca".equals(Locales.getCurrent().getLanguage())?"es":"en";
+String welcomePoint1 = (String) request.getAttribute("description1");
+if (welcomePoint1 == null) welcomePoint1 = XavaResources.getString(request, "welcome_point1");
+String welcomePoint2 = (String) request.getAttribute("description2");
+if (welcomePoint2 == null) welcomePoint2 = XavaResources.getString(request, "welcome_point2");
+String title = (String) request.getAttribute("pageTitle");
+if (title == null) title =  "XavaProjects: " + XavaResources.getString(request, "page_title");
+else title = title + " - XavaProjects";
 %>
 
 <!DOCTYPE html>
@@ -33,9 +38,8 @@ String language = "es".equals(Locales.getCurrent().getLanguage()) || "ca".equals
 <div>xava<span>projects</span></div>
 </div>
 
-<p><%=metaApplication.getDescription()%></p>
-<p><xava:message key="welcome_point1"/></p> 
-<p><xava:message key="welcome_point2"/></p> 
+<p><%=welcomePoint1%></p> 
+<p><%=welcomePoint2%></p> 
 
 <div class="ox-bottom-buttons">
 	<input type="hidden">
@@ -45,7 +49,7 @@ String language = "es".equals(Locales.getCurrent().getLanguage()) || "ca".equals
 </div>
 
 <div id="home_screenshot">
-<img src="images/home-screenshot_<%=language%>.png"/>
+<img src="/XavaProjects/images/home-screenshot_<%=language%>.png"/>
 </div>
 
 <div class="group">
