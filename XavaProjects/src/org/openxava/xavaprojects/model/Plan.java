@@ -45,10 +45,12 @@ public class Plan extends Identifiable {
 		this.period = period;
 	}
 	
+	/* tmp
 	public void addIssue(Issue issue) {
 		if (issues == null) issues = new ArrayList<>();
 		if (!issues.contains(issue)) issues.add(issue);
 	}
+	*/
 
 	public List<Issue> getIssues() {
 		return issues;

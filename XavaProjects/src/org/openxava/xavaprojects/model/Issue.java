@@ -183,7 +183,7 @@ public class Issue extends Identifiable {
 
 	public void setAssignedTo(Plan assignedTo) {
 		this.assignedTo = assignedTo;
-		if (this.assignedTo != null) this.assignedTo.addIssue(this);
+		// tmp if (this.assignedTo != null) this.assignedTo.addIssue(this);
 	}
 
 	public Priority getPriority() {
