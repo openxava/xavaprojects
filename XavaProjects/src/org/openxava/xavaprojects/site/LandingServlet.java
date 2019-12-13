@@ -7,10 +7,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import org.apache.commons.logging.*;
-import org.openxava.util.*;
-
-
 /**
  * @author Javier Paniza
  */

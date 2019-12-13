@@ -11,12 +11,11 @@ package org.apache.jsp.phone;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import org.openxava.controller.meta.MetaAction;
-import org.openxava.util.XavaPreferences;
-import org.openxava.util.Is;
-import com.openxava.phone.controller.PhoneManager;
+import org.openxava.util.Labels;
+import org.openxava.model.meta.MetaProperty;
+import org.openxava.tab.Tab;
 
-public final class buttonBar_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class listOrder_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
                  org.apache.jasper.runtime.JspSourceImports {
 
@@ -26,9 +25,8 @@ public final class buttonBar_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.Map<java.lang.String,java.lang.Long> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.HashMap<java.lang.String,java.lang.Long>(6);
+    _jspx_dependants = new java.util.HashMap<java.lang.String,java.lang.Long>(5);
     _jspx_dependants.put("/WEB-INF/lib/standard-jstlel.jar", Long.valueOf(1575487390796L));
-    _jspx_dependants.put("/phone/imports.jsp", Long.valueOf(1575487392694L));
     _jspx_dependants.put("/phone/../xava/imports.jsp", Long.valueOf(1575487378129L));
     _jspx_dependants.put("jar:file:/C:/Users/javie/git/xavaprojects/XavaProjects/web/WEB-INF/lib/standard-jstlel.jar!/META-INF/fmt-1_0.tld", Long.valueOf(1425975068000L));
     _jspx_dependants.put("jar:file:/C:/Users/javie/git/xavaprojects/XavaProjects/web/WEB-INF/lib/standard-jstlel.jar!/META-INF/c-1_0.tld", Long.valueOf(1425975068000L));
@@ -45,13 +43,12 @@ public final class buttonBar_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_imports_packages.add("javax.servlet.http");
     _jspx_imports_packages.add("javax.servlet.jsp");
     _jspx_imports_classes = new java.util.HashSet<>();
-    _jspx_imports_classes.add("org.openxava.controller.meta.MetaAction");
-    _jspx_imports_classes.add("com.openxava.phone.controller.PhoneManager");
-    _jspx_imports_classes.add("org.openxava.util.XavaPreferences");
-    _jspx_imports_classes.add("org.openxava.util.Is");
+    _jspx_imports_classes.add("org.openxava.model.meta.MetaProperty");
+    _jspx_imports_classes.add("org.openxava.util.Labels");
+    _jspx_imports_classes.add("org.openxava.tab.Tab");
   }
 
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fxava_005flink_0026_005faction;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fxava_005flink_0026_005fargv_005faction;
 
   private volatile javax.el.ExpressionFactory _el_expressionfactory;
   private volatile org.apache.tomcat.InstanceManager _jsp_instancemanager;
@@ -91,11 +88,11 @@ public final class buttonBar_jsp extends org.apache.jasper.runtime.HttpJspBase
   }
 
   public void _jspInit() {
-    _005fjspx_005ftagPool_005fxava_005flink_0026_005faction = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005fxava_005flink_0026_005fargv_005faction = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
-    _005fjspx_005ftagPool_005fxava_005flink_0026_005faction.release();
+    _005fjspx_005ftagPool_005fxava_005flink_0026_005fargv_005faction.release();
   }
 
   public void _jspService(final javax.servlet.http.HttpServletRequest request, final javax.servlet.http.HttpServletResponse response)
@@ -138,14 +135,12 @@ public final class buttonBar_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\n');
       out.write('\n');
       out.write('\n');
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       org.openxava.controller.ModuleContext context = null;
       synchronized (session) {
         context = (org.openxava.controller.ModuleContext) _jspx_page_context.getAttribute("context", javax.servlet.jsp.PageContext.SESSION_SCOPE);
@@ -154,70 +149,48 @@ public final class buttonBar_jsp extends org.apache.jasper.runtime.HttpJspBase
           _jspx_page_context.setAttribute("context", context, javax.servlet.jsp.PageContext.SESSION_SCOPE);
         }
       }
-      out.write('\n');
-      org.openxava.web.style.Style style = null;
-      style = (org.openxava.web.style.Style) _jspx_page_context.getAttribute("style", javax.servlet.jsp.PageContext.REQUEST_SCOPE);
-      if (style == null){
-        style = new org.openxava.web.style.Style();
-        _jspx_page_context.setAttribute("style", style, javax.servlet.jsp.PageContext.REQUEST_SCOPE);
-      }
-      out.write('\n');
-      out.write('\n');
-      com.openxava.naviox.Modules modules = null;
-      synchronized (session) {
-        modules = (com.openxava.naviox.Modules) _jspx_page_context.getAttribute("modules", javax.servlet.jsp.PageContext.SESSION_SCOPE);
-        if (modules == null){
-          modules = new com.openxava.naviox.Modules();
-          _jspx_page_context.setAttribute("modules", modules, javax.servlet.jsp.PageContext.SESSION_SCOPE);
-        }
-      }
-      out.write('\n');
-      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
 
-org.openxava.controller.ModuleManager manager = (org.openxava.controller.ModuleManager) context.get(request, "manager", "org.openxava.controller.ModuleManager");
-manager.setSession(session);
-boolean onBottom = false;
-String mode = request.getParameter("xava_mode"); 
-if (mode == null) mode = manager.isSplitMode()?"detail":manager.getModeName();
-boolean headerButtonBar = !manager.isSplitMode() || mode.equals("list");  
-PhoneManager phoneManager = new PhoneManager(manager);
+Tab tab = (Tab) context.get(request, "xava_tab");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("<div class=\"");
-      out.print(style.getButtonBar());
-      out.write("\">\n");
-      out.write("\n");
-      out.write("\t");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<div id=\"phone_dropdown_button\" onclick=\"phone.showDropdown()\">\r\n");
+      out.write("\t<i class=\"mdi mdi-sort\"></i>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div id=\"phone_dropdown\" class=\"ox-button-bar\">\r\n");
+      out.write("\t\r\n");
+ 
+String ascending = Labels.get("ascending").toLowerCase();
+String descending = Labels.get("descending").toLowerCase();
+for (MetaProperty property: tab.getMetaPropertiesNotCalculated()) {
 
-	java.util.Stack previousViews = (java.util.Stack) context.get(request, "xava_previousViews"); 
-	if (headerButtonBar && previousViews.isEmpty()) { 
-		String positionClass = null;		
-		java.util.Collection actions = manager.getMetaActionsMode();
-		java.util.Iterator itActions = actions.iterator();
-		boolean backButtonShown = false;
-		while (itActions.hasNext()) {
-			MetaAction action = (MetaAction) itActions.next();
-			String modeNameAction = action.getName().startsWith("detail")?"detail":action.getName();
-			if (!manager.isListMode() && !modeNameAction.equals(manager.getModeName())) {
-			
-      out.write('	');
-      out.write('\n');
-      out.write('	');
+      out.write("\r\n");
+      out.write("\t<div onclick=\"phone.markDropdownOption(this)\">\t\t\r\n");
+      out.write("\t\t");
       //  xava:link
-      org.openxava.web.taglib.LinkTag _jspx_th_xava_005flink_005f0 = (org.openxava.web.taglib.LinkTag) _005fjspx_005ftagPool_005fxava_005flink_0026_005faction.get(org.openxava.web.taglib.LinkTag.class);
+      org.openxava.web.taglib.LinkTag _jspx_th_xava_005flink_005f0 = (org.openxava.web.taglib.LinkTag) _005fjspx_005ftagPool_005fxava_005flink_0026_005fargv_005faction.get(org.openxava.web.taglib.LinkTag.class);
       boolean _jspx_th_xava_005flink_005f0_reused = false;
       try {
         _jspx_th_xava_005flink_005f0.setPageContext(_jspx_page_context);
         _jspx_th_xava_005flink_005f0.setParent(null);
-        // /phone/buttonBar.jsp(38,1) name = action type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
-        _jspx_th_xava_005flink_005f0.setAction(action.getQualifiedName());
+        // /phone/listOrder.jsp(25,2) name = action type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        _jspx_th_xava_005flink_005f0.setAction("PhoneList.orderByAscending");
+        // /phone/listOrder.jsp(25,2) name = argv type = null reqTime = true required = false fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        _jspx_th_xava_005flink_005f0.setArgv("property="+property.getQualifiedName());
         int _jspx_eval_xava_005flink_005f0 = _jspx_th_xava_005flink_005f0.doStartTag();
         if (_jspx_eval_xava_005flink_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
           do {
-            out.write("\t\t\n");
-            out.write("\t\t<i class=\"mdi mdi-arrow-left\"></i>\n");
-            out.write("\t");
+            out.write("\r\n");
+            out.write("\t\t\t<i class=\"mdi mdi-check\" style=\"display: none;\"></i>\r\n");
+            out.write("\t\t\t");
+            out.print(property.getQualifiedLabel(request));
+            out.write(' ');
+            out.print(ascending);
+            out.write("\r\n");
+            out.write("\t\t");
             int evalDoAfterBody = _jspx_th_xava_005flink_005f0.doAfterBody();
             if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
               break;
@@ -226,57 +199,36 @@ PhoneManager phoneManager = new PhoneManager(manager);
         if (_jspx_th_xava_005flink_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
           return;
         }
-        _005fjspx_005ftagPool_005fxava_005flink_0026_005faction.reuse(_jspx_th_xava_005flink_005f0);
+        _005fjspx_005ftagPool_005fxava_005flink_0026_005fargv_005faction.reuse(_jspx_th_xava_005flink_005f0);
         _jspx_th_xava_005flink_005f0_reused = true;
       } finally {
         org.apache.jasper.runtime.JspRuntimeLibrary.releaseTag(_jspx_th_xava_005flink_005f0, _jsp_getInstanceManager(), _jspx_th_xava_005flink_005f0_reused);
       }
-      out.write("\n");
-      out.write("\t\t\t");
-	
-				backButtonShown = true;
-				break;
-			}
-		}		
-		if (!backButtonShown && !manager.getModelName().equals("SignIn")) {
-			boolean showModulesMenuButton = modules.showsIndexLink() || modules.getAll().size() > 1;
-			if (!modules.getCurrent(request).equals("Index") && showModulesMenuButton) {
-		
-      out.write("\n");
-      out.write("\t<a href=\"../phone\"><i class=\"mdi mdi-arrow-left\"></i></a>\n");
+      out.write("\r\n");
+      out.write("\t</div> \t\t \t\r\n");
+      out.write("\t<div onclick=\"phone.markDropdownOption(this)\">\t\r\n");
       out.write("\t\t");
-  } else { 
-      out.write("\n");
-      out.write("\t<a href=\"");
-      out.print(request.getContextPath());
-      out.write("/naviox/signOut.jsp?organization=\"><i class=\"mdi mdi-arrow-left\"></i></a>\n");
-      out.write("\t\t");
-	}
-		}		
-	}	
-	else if (!previousViews.isEmpty()) {
-		for (java.util.Iterator it = manager.getMetaActions().iterator(); it.hasNext(); ) {
-			MetaAction action = (MetaAction) it.next();
-			if ("cancel".equals(action.getName()) || "return".equals(action.getName()) || 
-				"cancelar".equals(action.getName()) || "volver".equals(action.getName()) ||
-				"hideDetail".equals(action.getName())) { 
-			
-      out.write('\n');
-      out.write('	');
       //  xava:link
-      org.openxava.web.taglib.LinkTag _jspx_th_xava_005flink_005f1 = (org.openxava.web.taglib.LinkTag) _005fjspx_005ftagPool_005fxava_005flink_0026_005faction.get(org.openxava.web.taglib.LinkTag.class);
+      org.openxava.web.taglib.LinkTag _jspx_th_xava_005flink_005f1 = (org.openxava.web.taglib.LinkTag) _005fjspx_005ftagPool_005fxava_005flink_0026_005fargv_005faction.get(org.openxava.web.taglib.LinkTag.class);
       boolean _jspx_th_xava_005flink_005f1_reused = false;
       try {
         _jspx_th_xava_005flink_005f1.setPageContext(_jspx_page_context);
         _jspx_th_xava_005flink_005f1.setParent(null);
-        // /phone/buttonBar.jsp(63,1) name = action type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
-        _jspx_th_xava_005flink_005f1.setAction(action.getQualifiedName());
+        // /phone/listOrder.jsp(31,2) name = action type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        _jspx_th_xava_005flink_005f1.setAction("PhoneList.orderByDescending");
+        // /phone/listOrder.jsp(31,2) name = argv type = null reqTime = true required = false fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        _jspx_th_xava_005flink_005f1.setArgv("property="+property.getQualifiedName());
         int _jspx_eval_xava_005flink_005f1 = _jspx_th_xava_005flink_005f1.doStartTag();
         if (_jspx_eval_xava_005flink_005f1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
           do {
-            out.write("\n");
-            out.write("\t\t<i class=\"mdi mdi-arrow-left\"></i>\n");
-            out.write("\t");
+            out.write("\r\n");
+            out.write("\t\t\t<i class=\"mdi mdi-check\" style=\"display: none;\"></i>\r\n");
+            out.write("\t\t\t");
+            out.print(property.getQualifiedLabel(request));
+            out.write(' ');
+            out.print(descending);
+            out.write("\r\n");
+            out.write("\t\t");
             int evalDoAfterBody = _jspx_th_xava_005flink_005f1.doAfterBody();
             if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
               break;
@@ -285,39 +237,19 @@ PhoneManager phoneManager = new PhoneManager(manager);
         if (_jspx_th_xava_005flink_005f1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
           return;
         }
-        _005fjspx_005ftagPool_005fxava_005flink_0026_005faction.reuse(_jspx_th_xava_005flink_005f1);
+        _005fjspx_005ftagPool_005fxava_005flink_0026_005fargv_005faction.reuse(_jspx_th_xava_005flink_005f1);
         _jspx_th_xava_005flink_005f1_reused = true;
       } finally {
         org.apache.jasper.runtime.JspRuntimeLibrary.releaseTag(_jspx_th_xava_005flink_005f1, _jsp_getInstanceManager(), _jspx_th_xava_005flink_005f1_reused);
       }
-      out.write("\t\t\t\n");
-      out.write("\t\t\t");
+      out.write("\r\n");
+      out.write("\t</div>\r\n");
 
-				break;
-			}
-		}
-	}
-	
-      out.write("\n");
-      out.write("\t\n");
-      out.write("\t<span class=\"phone-title\"> \n");
-      out.write("\t\t");
-      out.print(phoneManager.getTitle(request));
-      out.write("\n");
-      out.write("\t</span>\n");
-      out.write("\t\n");
-      out.write("\t");
- if (manager.isListMode()) { 
-      out.write('\n');
-      out.write('	');
-      out.write('	');
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "listOrder.jsp", out, false);
-      out.write('\n');
-      out.write('	');
- } 
-      out.write("\n");
-      out.write("\t\n");
-      out.write("</div>\n");
+}
+
+      out.write("\r\n");
+      out.write("\t\t\r\n");
+      out.write("</div>\r\n");
     } catch (java.lang.Throwable t) {
       if (!(t instanceof javax.servlet.jsp.SkipPageException)){
         out = _jspx_out;

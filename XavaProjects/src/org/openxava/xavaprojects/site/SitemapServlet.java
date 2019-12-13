@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * tmp
  * Redirect sitemap.xml to sitemap.jsp.
  * 
  * @author Javier Paniza
