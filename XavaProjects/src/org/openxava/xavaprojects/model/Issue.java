@@ -166,7 +166,7 @@ public class Issue extends Identifiable {
 
 	public void setVersion(Version version) {
 		this.version = version;
-		if (this.version != null) this.version.addIssue(this);
+		if (this.version != null) this.version.addIssue(this); // Until we close https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff8080816ef62a87016f10058c7a001c
 	}
 
 	public Project getProject() {
@@ -183,7 +183,7 @@ public class Issue extends Identifiable {
 
 	public void setAssignedTo(Plan assignedTo) {
 		this.assignedTo = assignedTo;
-		// tmp if (this.assignedTo != null) this.assignedTo.addIssue(this);
+		if (this.assignedTo != null) this.assignedTo.addIssue(this); // Until we close https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff8080816ef62a87016f10058c7a001c
 	}
 
 	public Priority getPriority() {

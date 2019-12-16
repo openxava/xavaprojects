@@ -86,7 +86,7 @@ public class IssueTest extends ModuleTestBase {
 		assertValueInList(1, 0, "OpenXava");
 		assertValueInList(1, 1, "1.0");
 		execute("List.viewDetail", "row=1");
-		assertDescriptionValue("project.id", "OpenXava");  // TMP FALLA: ME QUEDÉ POR AQUÍ
+		assertDescriptionValue("project.id", "OpenXava");  
 		assertValue("name", "1.0");
 		assertCollectionRowCount("issues", 1);
 		assertValueInCollection("issues", 0, 0, "JUnit Incident");
