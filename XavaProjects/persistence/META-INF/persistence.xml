@@ -17,7 +17,6 @@
             <property name="javax.persistence.create-database-schemas" value="true"/> 
             <property name="hibernate.default_catalog" value="XavaProjects"/>
             <property name="hibernate.jdbc.use_streams_for_binary" value="true"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL55Dialect"/>
         </properties>
     </persistence-unit>
     

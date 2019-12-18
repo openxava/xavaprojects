@@ -26,7 +26,7 @@ From Eclipse:
 Now, you should have the *XavaProjects* project in your workspace.
 
 ### Update XavaProjects with OpenXava
-In *XavaProjects* project inside Eclipse look for the file *build.xml*, with the right mouse button select *Run As > Ant Build...* . This will open a dialog, where you have to uncheck *desployWar* and check *updateOX*. Then click on *Finish*. After the ant task completes, select the *XavaProjects* project and click F5 to refresh it. Finally, press Ctrl-B to build the project.
+In *XavaProjects* project inside Eclipse look for the file *build.xml*, with the right mouse button select *Run As > Ant Build...* . This will open a dialog, where you have to uncheck *desployWar* and check *updateOX*. Then click on *Run*. After the ant task completes, select the *XavaProjects* project and click F5 to refresh it. Finally, press Ctrl-B to build the project.
 
 ## Configure database
 You need to have installed and running a MySQL database. If not, go to [MySQL site](https://www.mysql.com/) and download and install it.
@@ -41,7 +41,7 @@ Edit the *XavaProjects/web/META-INF/context.xml* file to put the correct user na
 Fill the *username* and *password* attributes.
 
 ## Run XavaProjects
-From Eclipse open *XavaProjects > src > _run*. There you have a class called *_Run_XavaProjects*, just click on *Run As > Java Application* on it. Wait a few seconds, until see a message in console saying "Application started". Then, open your browser on http://localhost:8080/XavaProjects
+From Eclipse open *XavaProjects > src > _run*. There you have a class called *_Run_XavaProjects*, just click on *Run As > Java Application* on it. Wait a few seconds, until see a message in console saying "Application started". Then, open your browser on http://localhost:8080/XavaProjects, click on the *Sign in* link and use *admin/admin* to sign in.
 
  ## Any problem?
  Put a question in the [OpenXava public forum](https://sourceforge.net/p/openxava/discussion/419690/).
