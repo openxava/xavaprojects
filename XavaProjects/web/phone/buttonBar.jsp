@@ -44,7 +44,7 @@ PhoneManager phoneManager = new PhoneManager(manager);
 			}
 		}		
 		if (!backButtonShown && !manager.getModelName().equals("SignIn")) {
-			boolean showModulesMenuButton = modules.showsIndexLink() || modules.getAll().size() > 1;
+			boolean showModulesMenuButton = modules.showsIndexLink() || modules.getAll(request).size() > 1; 
 			if (!modules.getCurrent(request).equals("Index") && showModulesMenuButton) {
 		%>
 	<a href="../phone"><i class="mdi mdi-arrow-left"></i></a>
@@ -74,8 +74,12 @@ PhoneManager phoneManager = new PhoneManager(manager);
 		<%=phoneManager.getTitle(request)%>
 	</span>
 	
+	<% if (phoneManager.showsActionsOnDropDownMenu()) { %>
+		<jsp:include page="actionsMenu.jsp"/>
+	<% } %>	
+	
 	<% if (manager.isListMode()) { %>
 		<jsp:include page="listOrder.jsp"/>
 	<% } %>
-	
+		
 </div>

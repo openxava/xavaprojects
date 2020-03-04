@@ -3,11 +3,11 @@
 <%@include file="../xava/imports.jsp"%>
 
 <%@page import="org.openxava.web.servlets.Servlets"%>
-<%@page import="org.openxava.web.Browsers"%> 
+<%@page import="org.openxava.web.Browsers"%>
+<%@page import="org.openxava.web.style.Themes"%>  
 <%@page import="org.openxava.util.Locales"%>
 <%@page import="com.openxava.naviox.util.Organizations"%>
 <%@page import="com.openxava.phone.web.Users"%>
-<%@page import="org.openxava.util.XavaPreferences"%>
 <%@page import="org.openxava.util.SessionData"%>
 
 <% org.openxava.util.Users.setCurrent(request); %>
@@ -33,7 +33,7 @@ folders.setIncludeFixedAndBoookmarkModules(true);
 	<title><%=folders.getApplicationLabel()%></title>	
 	<meta name='apple-mobile-web-app-capable' content='yes'/>
 	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
-	<link href="<%=request.getContextPath()%>/xava/style/<%=XavaPreferences.getInstance().getStyleCSS()%>?ox=<%=version%>" rel="stylesheet" type="text/css">
+	<link href="<%=request.getContextPath()%>/xava/style/<%=Themes.getCSS(request)%>?ox=<%=version%>" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/phone/style/phone.css?ox=<%=version%>" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/xava/style/materialdesignicons.css?ox=<%=version%>">
 	<script type='text/javascript' src='<%=request.getContextPath()%>/xava/js/dwr-engine.js?ox=<%=version%>'></script>

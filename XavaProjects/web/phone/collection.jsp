@@ -47,7 +47,7 @@ int selectedRow = subview.getCollectionEditingRow();
 String newAction = subview.isRepresentsEntityReference()?subview.getAddCollectionElementAction():subview.getNewCollectionElementAction();
 String removeSelectedAction = subview.getRemoveSelectedCollectionElementsAction();
 Collection<String> listSubcontrollers = subview.getSubcontrollersNamesList();
-if (collectionEditable && (!Is.emptyString(newAction) || !Is.emptyString(removeSelectedAction)) || !listSubcontrollers.isEmpty()) {
+if (collectionEditable && !subview.isRepresentsElementCollection() && (!Is.emptyString(newAction) || !Is.emptyString(removeSelectedAction)) || !listSubcontrollers.isEmpty()) {
 %> 
 <div class="phone-frame-header"> 
 	<%
@@ -113,6 +113,14 @@ if (!subview.isCollectionFromModel()) {
 
 <%
 } 	
+else if (subview.isRepresentsElementCollection()) {
+%>
+<jsp:include page="../xava/editors/elementCollectionEditor.jsp">
+	<jsp:param name="labelOnEachCell" value="true"/>
+	<jsp:param name="hideTotals" value="true"/>
+</jsp:include>
+<%
+}
 else { // of: if (!subview.isCollectionFromModel()) {	
 %>	
 <%@include file="collectionFromModel.jsp" %>

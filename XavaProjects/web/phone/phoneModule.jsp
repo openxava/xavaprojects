@@ -3,7 +3,7 @@
 <%@include file="../xava/imports.jsp"%>
 
 <%@page import="org.openxava.web.Browsers"%>
-<%@page import="org.openxava.util.XavaPreferences"%>
+<%@page import="org.openxava.web.style.Themes"%> 
 <%@page import="org.openxava.web.servlets.Servlets"%>
 <%@page import="org.openxava.util.Locales"%>
 <%@page import="com.openxava.phone.web.Users"%>
@@ -36,7 +36,7 @@ session.setAttribute("xava.initListRowCount", true);
 	<meta name='apple-mobile-web-app-capable' content='yes'/>
 	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>				
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/xava/style/materialdesignicons.css?ox=<%=oxVersion%>">
-	<link href="<%=request.getContextPath()%>/xava/style/<%=XavaPreferences.getInstance().getStyleCSS()%>?ox=<%=oxVersion%>" rel="stylesheet" type="text/css">
+	<link href="<%=request.getContextPath()%>/xava/style/<%=Themes.getCSS(request)%>?ox=<%=oxVersion%>" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/phone/style/phone.css?ox=<%=oxVersion%>" rel="stylesheet" type="text/css">
 	<script type="text/javascript">
 		if (openxava == null) var openxava = {};

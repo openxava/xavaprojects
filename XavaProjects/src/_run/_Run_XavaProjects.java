@@ -11,8 +11,8 @@ import org.openxava.util.*;
 public class _Run_XavaProjects {
 
 	public static void main(String[] args) throws Exception {
-		// DBServer.start("XavaProjectsDB"); // We use MySQL
-		AppServer.run("XavaProjects");
+		DBServer.start("XavaProjectsDB"); // To use your own database comment this line and configure web/META-INF/context.xml
+		AppServer.run("XavaProjects"); // Use AppServer.run("") to run in root context
 	}
 
 }

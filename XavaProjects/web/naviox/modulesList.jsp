@@ -8,7 +8,7 @@
 <% 
 folders.setModules(modules); 
 
-for (Iterator it= folders.getSubfolders().iterator(); it.hasNext();) {
+for (Iterator it= folders.getSubfolders(request).iterator(); it.hasNext();) { 
 	Folder folder = (Folder) it.next();
 %>	
 	<a  href="javascript:naviox.goFolder('<%=folder.getId()%>')">

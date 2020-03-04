@@ -13,7 +13,8 @@
 <%@page import="org.openxava.web.dwr.Module"%>
 <%@page import="org.openxava.web.servlets.Servlets"%>
 <%@page import="org.openxava.web.Ids"%>
-<%@page import="org.openxava.web.Requests"%> 
+<%@page import="org.openxava.web.Requests"%>
+<%@page import="org.openxava.web.style.Themes"%>  
 <%@page import="org.apache.commons.logging.LogFactory" %>
 <%@page import="org.apache.commons.logging.Log" %>
 <%@page import="org.openxava.web.Browsers"%> 
@@ -60,7 +61,7 @@
 	String module = context.getCurrentModule(request);
 	String contextPath = (String) request.getAttribute("xava.contextPath");
 	if (contextPath == null) contextPath = request.getContextPath();
-
+	
 	org.openxava.controller.ModuleManager managerHome = (org.openxava.controller.ModuleManager) context
 			.get(request, "manager",
 					"org.openxava.controller.ModuleManager");
@@ -157,11 +158,14 @@
 	<% if (Browsers.isIE(request)) { %>
 	<script type='text/javascript' src="<%=request.getContextPath()%>/xava/js/babel-polyfill.js?ox=<%=version%>"></script>
 	<script type='text/javascript' src="<%=request.getContextPath()%>/xava/js/filepond-polyfill.js?ox=<%=version%>"></script>
+	<script type='text/javascript' src="<%=request.getContextPath()%>/xava/js/css-vars-ponyfill.js?ox=<%=version%>"></script>
+	<script type='text/javascript'>cssVars({ }); </script>
 	<% } %>
 	<script type='text/javascript'>
 		openxava.lastApplication='<%=app%>'; 		
 		openxava.lastModule='<%=module%>'; 	
 		openxava.language='<%=request.getLocale().getLanguage()%>';
+		openxava.contextPath = '<%=contextPath%>';
 	</script>	
 	<%
 		if (style.isNeededToIncludeCalendar()) {
@@ -269,6 +273,9 @@ if (manager.isResetFormPostNeeded()) {
 	<%=style.getCoreEndDecoration()%>
 	
 <% } %>			
+	<% if (Themes.isChooserEnabled()) { %>
+	<jsp:include page="themeChooser.jsp"/>
+	<% } %>
 	<div id="xava_console" >
 	</div>
 	<div id="xava_loading">				
@@ -315,12 +322,14 @@ if (manager.isResetFormPostNeeded()) {
 		openxava.browser.ff = <%=Browsers.isFF(request)%>;
 		openxava.showFiltersMessage = '<xava:message key="show_filters"/>';
 		openxava.hideFiltersMessage = '<xava:message key="hide_filters"/>';
+		openxava.confirmLoseChangesMessage = '<xava:message key="confirm_lose_changes"/>';  
 		openxava.selectedRowClass = '<%=style.getSelectedRow()%>';
 		openxava.currentRowClass = '<%=style.getCurrentRow()%>';
 		openxava.currentRowCellClass = '<%=style.getCurrentRowCell()%>';
 		openxava.selectedListFormatClass = '<%=style.getSelectedListFormat()%>'; 
 		openxava.customizeControlsClass = '<%=style.getCustomizeControls()%>';
 		openxava.errorEditorClass = '<%=style.getErrorEditor()%>';
+		openxava.editorClass = '<%=style.getEditor()%>'; 
 		openxava.listAdjustment = <%=style.getListAdjustment()%>;
 		openxava.collectionAdjustment = <%=style.getCollectionAdjustment()%>;
 		openxava.closeDialogOnEscape = <%=browser != null && browser.indexOf("Firefox") >= 0 ? "false":"true"%>;		  

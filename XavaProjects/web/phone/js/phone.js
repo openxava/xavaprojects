@@ -2,12 +2,10 @@ if (phone == null) var phone = {};
 
 openxava.addEditorInitFunction(function() {
 	phone.watch();
-	$(document).on("click", function(event) {
-		var b = $('#phone_dropdown_button');
-		if(b !== event.target && !b.has(event.target).length){
-			$('#phone_dropdown').hide();
-		} 
-		           
+	$(document).on("click", function(event) { 
+		if ($(event.target).parent().hasClass("phone-dropdown-button") || $(event.target).hasClass("phone-dropdown-button")) return;
+		$('.phone-dropdown:not(:hidden)').hide();
+		$('.phone-dropdown-button').removeClass('selected');
 	});
 });
 
@@ -52,19 +50,27 @@ phone.hideSearching = function() {
 }
 
 phone.showDropdown = function() {
-	var d = $('#phone_dropdown');
+	var button = $(event.currentTarget);
+	var d = button.next();
 	if (d.is(":visible")) {
-		$("#phone_dropdown_button").removeClass("selected");
+		button.removeClass("selected");
 		d.fadeOut();
 	}
 	else {
-		$("#phone_dropdown_button").addClass("selected");
+		button.addClass("selected");
 		d.fadeIn(200);
 	}
 }
 
+phone.hideDropdown = function() {
+	var d = $(event.currentTarget).parent();
+	var button = d.prev();
+	button.removeClass("selected");
+	d.fadeOut();
+}
+
 phone.markDropdownOption = function(element) {
-	$('#phone_dropdown i').hide()
+	$(element).parent().find('i').hide()
 	$(element).find('i').show();
-	$("#phone_dropdown_button").removeClass("selected");
+	$(element).parent().prev().removeClass("selected");
 }

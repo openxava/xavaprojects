@@ -10,11 +10,11 @@
 Tab tab = (Tab) context.get(request, "xava_tab");
 %>
 
-<div id="phone_dropdown_button" onclick="phone.showDropdown()">
+<div class="phone-dropdown-button" onclick="phone.showDropdown()">
 	<i class="mdi mdi-sort"></i>
 </div>
 
-<div id="phone_dropdown" class="ox-button-bar">
+<div class="phone-dropdown phone-list-order ox-button-bar"> 
 	
 <% 
 String ascending = Labels.get("ascending").toLowerCase();

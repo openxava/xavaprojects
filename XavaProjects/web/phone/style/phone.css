@@ -25,8 +25,7 @@ input[type="text"], input[type="password"] {
 
 .ox-bottom-buttons {
 	padding: 10px 0px 0px 0px;
-	margin: 7px 12px 0px 12px;
-	
+	margin: 7px 12px 0px 21px; 
 }
 
 .phone-detail-element {
@@ -62,6 +61,13 @@ input[type="text"], input[type="password"], input[type="file"], select, textarea
 	text-align: left;
 	font-size: 20px;
 	font-weight: normal;
+	position: fixed;
+	width: calc(100% - 31px);
+	top: 0;
+}
+
+.ox-view {
+	margin-top: 55px;
 }
 
 .ox-button-bar i, #modules_list_header i {
@@ -76,6 +82,10 @@ input[type="text"], input[type="password"], input[type="file"], select, textarea
 #search_modules, #filter_list {  
 	margin: 0px 0px 12px 0px; 
 	padding: 5px;
+}
+
+#search_modules {  
+	margin-top: 57px; 
 }
 
 #search_modules_text, #filter_list_text {
@@ -277,47 +287,90 @@ input[type="text"] + a {
 	padding-right: 5px;
 }
 
-#phone_dropdown_button {
+.phone-dropdown-button {
 	float: right;
 }
 
-#phone_dropdown_button i {
+.phone-dropdown-button i {
 	margin-right: 0px;
+	margin-left: 5px;
 }
 
-#phone_dropdown_button.selected i {
+.phone-dropdown-button.selected i {
 	color: white;
 }
 
-#phone_dropdown {
+.phone-dropdown {
  	padding: 5px;
   	position: absolute;
   	right: 10px;
   	top: 50px;
     display: none;
     box-shadow: 0px 0px 7px black;
+    width: initial; 
 }
 
-#phone_dropdown a {
+.phone-dropdown a {
 	color: inherit;
+	text-decoration: none;
 }
 
-#phone_dropdown div {	
+.phone-dropdown div {	
 	padding: 7px;
+	display: grid; 
 }
 
-#phone_dropdown div {	
-	padding: 7px 7px 7px 30px;
+.phone-list-order div {	
+	padding-left: 30px;
 }
 
-#phone_dropdown div i {
+.phone-dropdown div i {
 	position: relative;
 	left: -13px;
 	margin: -15px;
-	color: white;
+	color: white !important;
+	background: transparent !important;
 	font-weight: bold;
+}
+
+.ox-list-mode .ox-button-bar a[id*="new"] {
+	color: inherit;
+	background: inherit; 
+	border: inherit;
 }
 
 .ox-image, .ox-file, .ox-files, .filepond--item, .ox-file .filepond--item, .ox-files .filepond--item {
 	width: inherit;
+}
+
+.ox-element-collection table {
+	padding-top: -20px;
+	width: calc(100% - 12px);
+}
+
+.ox-element-collection tr{
+    display: inline;
+}
+
+.ox-element-collection td{
+   display: block;
+   text-align: left !important;
+   height: 60px;
+}
+
+.ox-element-collection .ox-list-header {
+   display: none;
+}
+
+.ox-element-collection td:first-of-type {
+	float: right;
+	height: 25px;
+}
+
+.ox-element-collection td:last-of-type {
+	margin-bottom: 25px;
+}
+
+.ox-element-collection .ox-label {
+	font-size: small;
 }
