@@ -279,8 +279,8 @@ span[class="phone-list-element-check"] > input[name*="_Index__xava_selected"] {
 /* To adjust calendar position for dates */
 input[type="text"] + a {
 	float: right;
-	top: -34px;
-	left: -12px;
+	top: -31px;
+	left: 0px;	
 }
 
 .ox-date-calendar input {
