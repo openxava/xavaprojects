@@ -26,7 +26,7 @@ public class Issue extends Identifiable {
 	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY, optional=false)
 	private IssueType type;
-	
+		
 	@Stereotype("SIMPLE_HTML_TEXT") @Column(columnDefinition="MEDIUMTEXT")
 	private String description;
 	
@@ -58,6 +58,11 @@ public class Issue extends Identifiable {
 	private Plan assignedTo;
 	
 	@DescriptionsList
+	@ManyToOne(fetch=FetchType.LAZY, optional=false)
+	@DefaultValueCalculator(DefaultIssueStatusCalculator.class) // TMP ME QUEDÉ POR AQUÍ: NO FUNCIONA
+	private IssueStatus status; // tmp	
+	
+	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Customer customer; 
 
@@ -69,8 +74,9 @@ public class Issue extends Identifiable {
 	@Column(length=6, scale=2)
 	private BigDecimal hours; 
 
-	private boolean closed;
-	
+	// tmp private boolean closed;
+
+
 	
 	
 	@Stereotype("FILES") @Column(length=32)
@@ -120,6 +126,7 @@ public class Issue extends Identifiable {
 		this.createdBy = createdBy;
 	}
 
+	/* tmp
 	public boolean isClosed() {
 		return closed;
 	}
@@ -127,6 +134,7 @@ public class Issue extends Identifiable {
 	public void setClosed(boolean closed) {
 		this.closed = closed;
 	}
+	*/
 
 	public LocalDate getCreatedOn() {
 		return createdOn;
@@ -216,6 +224,14 @@ public class Issue extends Identifiable {
 
 	public void setHours(BigDecimal hours) {
 		this.hours = hours;
+	}
+
+	public IssueStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(IssueStatus status) {
+		this.status = status;
 	}
 
 }

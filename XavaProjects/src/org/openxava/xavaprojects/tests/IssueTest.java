@@ -60,6 +60,19 @@ public class IssueTest extends ModuleTestBase {
 		assertValidValues("assignedTo.id", plans);
 		setValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");		
 		
+		// tmp ini
+		String [][] status = {
+			{ "", "" },	
+			{ "4028b881715acc4301715adab58c0003", "Done" },
+			{ "4028b881715acc4301715aecad7e0004", "Not reproducible" },
+			{ "4028b881715acc4301715ad9ab010002", "Pending" },
+			{ "4028b881715acc4301715af05d8b0005", "Rejected" }
+		};
+		
+		assertValidValues("status.id", status);
+		assertValue("status.id", "4028b881715acc4301715ad9ab010002");		
+		// tmp fin
+		
 		String [][] customers = {
 			{ "", "" },	
 			{ "402880466eae0e5b016eae13f9f70002", "Banco Santander" },
@@ -74,7 +87,7 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("hours", "1.50");
 		assertNoEditable("hours");
 		
-		setValue("closed", "true");
+		// tmp setValue("closed", "true");
 		uploadFile("attachments", "test-files/notes.txt");
 		uploadFile("screenshots", "test-files/issue-screenshot.png");
 		postDiscussionComment("discussion", "I agree");
@@ -105,10 +118,11 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("priority.level", "7"); 
 		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
 		assertValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");
+		assertValue("status.id", "4028b881715acc4301715ad9ab010002"); // tmp
 		assertValue("customer.id", "402880466eae0e5b016eae13f9f70002");		
 		assertValue("minutes", "90");
 		assertValue("hours", "1.50");		
-		assertValue("closed", "true");
+		// tmp assertValue("closed", "true");
 		
 		assertFile("attachments", 0, "text/plain");
 		assertFile("screenshots", 0, "image");

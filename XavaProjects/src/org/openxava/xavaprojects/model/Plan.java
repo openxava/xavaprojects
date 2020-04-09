@@ -24,7 +24,8 @@ public class Plan extends Identifiable {
 	@ManyToOne(optional=false)
 	private Period period;
 	
-	@ListProperties("title, description, project.name, version.name, closed")
+	// tmp @ListProperties("title, description, project.name, version.name, closed")
+	@ListProperties("status.icon, title, type.icon, project.name, version.name") // tmp
 	@OneToMany(mappedBy="assignedTo")
 	@OrderColumn(name="Plan_issues_ORDER")
 	private List<Issue> issues;
