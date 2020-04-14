@@ -59,8 +59,8 @@ public class Issue extends Identifiable {
 	
 	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY, optional=false)
-	@DefaultValueCalculator(DefaultIssueStatusCalculator.class) // TMP ME QUEDÉ POR AQUÍ: NO FUNCIONA
-	private IssueStatus status; // tmp	
+	@DefaultValueCalculator(DefaultIssueStatusCalculator.class) 
+	private IssueStatus status; 
 	
 	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -73,11 +73,6 @@ public class Issue extends Identifiable {
 	@Calculation("minutes / 60")
 	@Column(length=6, scale=2)
 	private BigDecimal hours; 
-
-	// tmp private boolean closed;
-
-
-	
 	
 	@Stereotype("FILES") @Column(length=32)
 	private String attachments;
@@ -125,16 +120,6 @@ public class Issue extends Identifiable {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-
-	/* tmp
-	public boolean isClosed() {
-		return closed;
-	}
-
-	public void setClosed(boolean closed) {
-		this.closed = closed;
-	}
-	*/
 
 	public LocalDate getCreatedOn() {
 		return createdOn;

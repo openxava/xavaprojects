@@ -30,7 +30,6 @@ public class Version extends Identifiable {
 	@Column(length=20)
 	private String name; 
 	
-	// tmp @ListProperties("title, description, createdBy, closed")
 	@ListProperties("status.icon, title, type.icon, createdBy")
 	@OneToMany(mappedBy="version")
 	@OrderColumn

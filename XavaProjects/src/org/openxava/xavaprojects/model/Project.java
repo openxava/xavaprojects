@@ -1,12 +1,8 @@
 package org.openxava.xavaprojects.model;
 
 import java.util.*;
-
 import javax.persistence.*;
-
-import org.openxava.annotations.*;
 import org.openxava.jpa.*;
-import org.openxava.model.*;
 
 /**
  * 

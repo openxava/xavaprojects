@@ -1,0 +1,35 @@
+Change Log for XavaProjects
+===========================
+
+TMP FALTA INSTALAR, MIGRAR openxava.org Y CREAR VERSION GIT
+
+XavaProjects 2020.04 (2020-4-15)
+--------------------------------
+- Status in Issue (a reference to the a new IssueStatus).
+- New icon property in IssueType.
+- Refined list properties for collections in Plan and Version.
+- Removed property closed in Issue, now we use status.
+- Added changelog.txt.
+- OpenXava upgraded to OpenXava 6.3.1.
+
+XavaProjects 2020.03 (2020-3-4)
+-------------------------------
+- Upgraded to OpenXava 6.3.
+ 
+XavaProjects 2019.12 (2019-12-16)
+---------------------------------
+- Welcome page with screenshot and features.
+- SEO pages.
+- Upgraded to OpenXava 6.2.2.
+ 
+XavaProjects 2019.11 (2019-11-27)
+---------------------------------
+- Customer module and reference to Customer, minutes and hours to Issue.
+ 
+XavaProjects 2019.10 (2019-11-4)
+--------------------------------
+- Priority, Plan, Worker and Period.
+
+XavaProjects 2019.09 (2019-9-24)
+--------------------------------
+- Issues, issue types and version.

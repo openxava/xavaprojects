@@ -8,9 +8,7 @@ public class DefaultIssueStatusCalculator implements ICalculator {
 	
 	public Object calculate() throws Exception {
 		IssueStatus theDefaultOne = IssueStatus.findTheDefaultOne();
-		Object result = theDefaultOne == null?null:theDefaultOne.getId();
-		System.out.println("[DefaultIssueStatusCalculator.calculate] result=" + result); // tmp
-		return result;
+		return theDefaultOne == null?null:theDefaultOne.getId();
 	}
 	
 }

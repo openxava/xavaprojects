@@ -5,7 +5,6 @@ import javax.persistence.*;
 import org.openxava.jpa.*;
 
 /**
- * TMP ME QUEDÉ POR: YA ESTÁ TODO HECHO. FALTA REVISAR CÓDIGO, PASAR SUITE, PROBAR MIGRACIÓN EN ORGANIZACION E INSTALAR
  * @author Javier Paniza
  */
 

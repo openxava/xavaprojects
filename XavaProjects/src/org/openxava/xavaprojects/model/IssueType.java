@@ -8,6 +8,6 @@ import javax.persistence.*;
  */
 
 @Entity
-public class IssueType extends /* tmp Nameable */ Iconable {
+public class IssueType extends Iconable {
 	
 }

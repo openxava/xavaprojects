@@ -3,7 +3,7 @@ package org.openxava.xavaprojects.tests;
 import org.openxava.tests.*;
 
 /**
- * tmp
+ * 
  * @author Javier Paniza
  */
 
