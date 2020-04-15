@@ -1,8 +1,6 @@
 Change Log for XavaProjects
 ===========================
 
-TMP FALTA INSTALAR, MIGRAR openxava.org Y CREAR VERSION GIT
-
 XavaProjects 2020.04 (2020-4-15)
 --------------------------------
 - Status in Issue (a reference to the a new IssueStatus).
