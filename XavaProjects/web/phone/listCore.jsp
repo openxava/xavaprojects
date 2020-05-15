@@ -101,9 +101,10 @@ for (java.util.Iterator<ListElement> it = new ListElementIterator(tab, view, req
 			onSelectCollectionElementAction, row, viewObject, prefixIdRow + row,
 			selectedRowStyle, rowStyle, 
 			onSelectCollectionElementMetaAction, tabObject);
+	String cssStyle = tab.getStyle(f); 
 %>
-<div id="<%=prefixIdRow%><%=row%>">
-	<div class="phone-list-element">
+<div id="<%=prefixIdRow%><%=row%>" class="<%=cssStyle%>">
+	<div class="phone-list-element"> 
 		<span class="phone-list-element-check"">
 			<INPUT type="<%=singleSelection?"RADIO":"CHECKBOX"%>" name="<xava:id name='xava_selected'/>" value="<%=prefix + "selected"%>:<%=row%>" <%=checked%> <%=actionOnClick%> />
 		</span>

@@ -1,6 +1,11 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2020.05 (2020-5-15)
+--------------------------------
+- Removed custom code to manage @OrderColumn collections.
+- OpenXava upgraded to OpenXava 6.3.2.
+
 XavaProjects 2020.04 (2020-4-15)
 --------------------------------
 - Status in Issue (a reference to the a new IssueStatus).
