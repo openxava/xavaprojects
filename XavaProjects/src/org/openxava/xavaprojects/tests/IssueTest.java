@@ -60,7 +60,6 @@ public class IssueTest extends ModuleTestBase {
 		assertValidValues("assignedTo.id", plans);
 		setValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");		
 		
-		// tmp ini
 		String [][] status = {
 			{ "", "" },	
 			{ "4028b881715acc4301715adab58c0003", "Done" },
@@ -71,7 +70,6 @@ public class IssueTest extends ModuleTestBase {
 		
 		assertValidValues("status.id", status);
 		assertValue("status.id", "4028b881715acc4301715ad9ab010002");		
-		// tmp fin
 		
 		String [][] customers = {
 			{ "", "" },	
@@ -87,7 +85,6 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("hours", "1.50");
 		assertNoEditable("hours");
 		
-		// tmp setValue("closed", "true");
 		uploadFile("attachments", "test-files/notes.txt");
 		uploadFile("screenshots", "test-files/issue-screenshot.png");
 		postDiscussionComment("discussion", "I agree");
@@ -118,11 +115,10 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("priority.level", "7"); 
 		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
 		assertValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");
-		assertValue("status.id", "4028b881715acc4301715ad9ab010002"); // tmp
+		assertValue("status.id", "4028b881715acc4301715ad9ab010002"); 
 		assertValue("customer.id", "402880466eae0e5b016eae13f9f70002");		
 		assertValue("minutes", "90");
 		assertValue("hours", "1.50");		
-		// tmp assertValue("closed", "true");
 		
 		assertFile("attachments", 0, "text/plain");
 		assertFile("screenshots", 0, "image");
@@ -132,6 +128,36 @@ public class IssueTest extends ModuleTestBase {
 		removeFile("screenshots", 0);
 		execute("CRUD.delete");
 		assertNoErrors();
+	}
+	
+	public void testMinimalIssue() throws Exception {
+		// This work because a hack in MapFacadeBean. Waiting for: https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff80808172295ea301722dab087f0005
+		login("admin", "admin"); 
+		setValue("title", "JUnit Simple Incident");
+		String [][] types = {
+			{ "", "" },	
+			{ "402880426d5f6588016d5f70e3920001", "Bug" },
+			{ "402880426d5f6588016d5f7100650002", "Feature" }
+		};
+		assertValidValues("type.id", types);
+		setValue("type.id", "402880426d5f6588016d5f70e3920001");
+		setValue("description", "This is a JUnit Incident");
+		
+		execute("CRUD.save");
+		assertNoErrors();
+		execute("Mode.list");
+		assertListRowCount(1);
+		assertValueInList(0, 0, "JUnit Simple Incident");
+		execute("List.viewDetail", "row=0");
+		
+		assertValue("title", "JUnit Simple Incident");
+		assertValue("type.id", "402880426d5f6588016d5f70e3920001");
+		assertValue("description", "This is a JUnit Incident");
+		assertValue("createdBy", "admin");
+		assertValue("createdOn", getCurrentDate());
+
+		execute("CRUD.delete");
+		assertNoErrors();		
 	}
 	
 	private String getCurrentDate() {
