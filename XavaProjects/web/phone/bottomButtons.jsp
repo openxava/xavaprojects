@@ -38,6 +38,21 @@ if (!phoneManager.showsActionsOnDropDownMenu()) {
 		}
 	}
 } 
+else {
+	Iterator<MetaAction> it = manager.getMetaActions().iterator();
+	while (it.hasNext()) {
+		MetaAction action = it.next();
+		if (action.equals(defaultAction)) continue;
+		if (action.hasIcon() || action.hasIcon()) continue;
+		if (phoneManager.showsAction(action, mode, request)) {
+			%>
+			<xava:button action="<%=action.getQualifiedName()%>"/>
+			<%
+			break; 
+		} 
+	}
+}
+
 if (previousViews.isEmpty()) {
 	for (Object obj : manager.getSubcontrollers()) {
 		MetaSubcontroller subcontroller = (MetaSubcontroller) obj;

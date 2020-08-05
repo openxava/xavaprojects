@@ -77,6 +77,16 @@ else {
 	</xava:link>
 <% 
 		}				
+		if (subview.isModify()) {
+			MetaAction modifyAction = MetaControllers.getMetaAction("Reference.modify");
+%> 
+	<xava:link action="Reference.modify" argv='<%="model="+ref.getReferencedModelName() + ",keyProperty="+propertyInReferencePrefix%>'>
+		<div class="phone-frame-action">
+			<%=modifyAction.getLabel()%>
+		</div>
+	</xava:link>
+<% 
+		}				
 	} 
 %>
 </div>
