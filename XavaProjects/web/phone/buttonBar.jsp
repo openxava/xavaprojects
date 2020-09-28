@@ -75,11 +75,16 @@ PhoneManager phoneManager = new PhoneManager(manager);
 	</span>
 	
 	<% if (phoneManager.showsActionsOnDropDownMenu()) { %>
-		<jsp:include page="actionsMenu.jsp"/>
+		<div class="phone-dropdown-button" onclick="phone.showDropdown('actions')">
+			<i class="mdi mdi-dots-vertical"></i>
+		</div>
 	<% } %>	
 	
 	<% if (manager.isListMode()) { %>
-		<jsp:include page="listOrder.jsp"/>
-	<% } %>
+		<div class="phone-dropdown-button" onclick="phone.showDropdown('order')">
+			<i class="mdi mdi-sort"></i>
+		</div>
+	<% } %>	
 		
 </div>
+

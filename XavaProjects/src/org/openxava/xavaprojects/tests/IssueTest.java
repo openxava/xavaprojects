@@ -131,7 +131,6 @@ public class IssueTest extends ModuleTestBase {
 	}
 	
 	public void testMinimalIssue() throws Exception {
-		// This work because a hack in MapFacadeBean. Waiting for: https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff80808172295ea301722dab087f0005
 		login("admin", "admin"); 
 		setValue("title", "JUnit Simple Incident");
 		String [][] types = {

@@ -49,9 +49,9 @@ phone.hideSearching = function() {
 	$('#searching_list').removeClass('searching');
 }
 
-phone.showDropdown = function() {
+phone.showDropdown = function(dropdownId) { 
 	var button = $(event.currentTarget);
-	var d = button.next();
+	var d = $('#phone_dropdown_' + dropdownId); 
 	if (d.is(":visible")) {
 		button.removeClass("selected");
 		d.fadeOut();

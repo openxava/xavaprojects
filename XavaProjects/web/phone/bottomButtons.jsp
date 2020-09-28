@@ -66,3 +66,13 @@ if (previousViews.isEmpty()) {
 	}
 }	
 %>
+
+<div>
+	<% if (phoneManager.showsActionsOnDropDownMenu()) { %>
+		<jsp:include page="actionsMenu.jsp"/>
+	<% } %>	
+	
+	<% if (manager.isListMode()) { %>
+		<jsp:include page="listOrder.jsp"/>
+	<% } %>
+</div>

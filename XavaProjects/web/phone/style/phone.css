@@ -66,6 +66,15 @@ input[type="text"], input[type="password"], input[type="file"], select, textarea
 	top: 0;
 }
 
+.phone-title {
+	display: inline-block;
+	vertical-align: top;
+	width: calc(100% - 110px);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;  
+}
+
 .ox-view {
 	margin-top: 55px;
 }
@@ -98,7 +107,7 @@ input[type="text"], input[type="password"], input[type="file"], select, textarea
 }
 
 #modules_list .selected {
-	background: transparent;		
+	background: transparent; 		
 	border-right: none;
 }
 
@@ -265,7 +274,7 @@ A:hover .module-row, A:hover .folder-row, A:hover #organizations_index {
 }
 
 .ox-subcontroller-select a {
-	background: transparent;
+	background: transparent; 
 }
 
 .ox-subcontroller-button i:first-of-type, .ox-subcontroller a span {
@@ -302,10 +311,10 @@ input[type="text"] + a {
 
 .phone-dropdown {
  	padding: 5px;
-  	position: absolute;
+  	position: fix;
   	right: 10px;
   	top: 50px;
-    display: none;
+    display: none; 
     box-shadow: 0px 0px 7px black;
     width: initial; 
 }
@@ -329,7 +338,7 @@ input[type="text"] + a {
 	left: -13px;
 	margin: -15px;
 	color: white !important;
-	background: transparent !important;
+	background: transparent !important; 
 	font-weight: bold;
 }
 
