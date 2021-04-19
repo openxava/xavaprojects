@@ -45,8 +45,8 @@ if (Is.empty(labelStyle)) labelStyle = XavaPreferences.getInstance().getDefaultL
 String label = ref.getLabel(request);
 %>
 
-<% if (view.isFlowLayout()) { %> 
-<div class='<%=frame?"ox-flow-layout":""%>'>
+<% if (view.isFlowLayout()) { %>
+	<div class='<%=frame?"ox-flow-layout":""%>'>
 <% } %>
 
 <% if (!onlyEditor) { %>

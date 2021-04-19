@@ -9,7 +9,7 @@ body {
 	width: calc(100% - 4px);
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="date"] {
 	height: 25px;
 }
 
@@ -37,8 +37,8 @@ input[type="text"], input[type="password"] {
 	font-size: 80%;
 }
 
-input[type="text"], input[type="password"], input[type="file"], select, textarea, 
-.ui-widget input[type="text"], .ui-widget input[type="password"], .ui-widget input[type="file"], 
+input[type="text"], input[type="password"], input[type="file"], input[type="date"], select, textarea, 
+.ui-widget input[type="text"], .ui-widget input[type="password"], .ui-widget input[type="file"], .ui-widget input[type="date"],  
 .ui-widget select, .ui-widget textarea {
 	font-size: 16px;
 }
@@ -88,9 +88,32 @@ input[type="text"], input[type="password"], input[type="file"], select, textarea
 	padding: 3px;
 }
 
-#search_modules, #filter_list {  
-	margin: 0px 0px 12px 0px; 
+#search_modules, #filter_list, #phone_list_configurations {  
 	padding: 5px;
+}
+
+#search_modules {  
+	margin: 0px 0px 12px 0px; 
+}
+
+#filter_list {  
+	margin: 0px; 
+}
+
+#phone_list_configurations select {
+	font-size: 100%;
+	width: 100%;
+	background: transparent; 
+	height: 40px;
+	font-weight: bold;
+	color: var(--color);
+	border-color: var(--background);
+}
+
+#phone_list_configurations {
+	background: var(--mobile-search-modules-filter-list-background);
+	box-shadow: 2px 0px 9px var(--mobile-search-modules-filter-list-shadow);
+
 }
 
 #search_modules {  
@@ -285,11 +308,8 @@ span[class="phone-list-element-check"] > input[name*="_Index__xava_selected"] {
 	display: none;
 }
 
-/* To adjust calendar position for dates */
-input[type="text"] + a {
-	float: right;
-	top: -31px;
-	left: 0px;	
+input[type="date"] + a { 
+	display: none;
 }
 
 .ox-date-calendar input {
@@ -382,4 +402,26 @@ input[type="text"] + a {
 
 .ox-element-collection .ox-label {
 	font-size: small;
+}
+
+.privacy-policy {
+	max-width: fit-content;
+	font-size: 0.9em; 
+	padding: 0px;
+}
+
+.accept-privacy-policy {
+	font-size: 1.1em;
+	white-space: normal;
+}
+
+.accept-privacy-policy input[type="checkbox"] {
+	float: left;
+	margin-top: 6px;
+	margin-left: 10px;
+	margin-right: 20px;
+}
+
+.accept-privacy-policy .editor {
+	width: inherit;
 }

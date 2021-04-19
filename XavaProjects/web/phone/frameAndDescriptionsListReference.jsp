@@ -88,7 +88,20 @@ else {
 <% 
 		}				
 	} 
+	java.util.Iterator itActions = view.getActionsNamesForReference(ref, editable).iterator();
+	while (itActions.hasNext()) {
+		String action = (String) itActions.next();
+		MetaAction metaAction = MetaControllers.getMetaAction(action);
 %>
+		<xava:link action="<%=action%>">
+			<div class="phone-frame-action">
+				<%=metaAction.getLabel()%>
+			</div>
+		</xava:link>
+<%
+	}
+%>
+	
 </div>
 
 <jsp:include page="detail.jsp"> 

@@ -28,24 +28,25 @@ if (collection == null || collection.equals("")) {
 <% if (style.isShowModuleDescription()) { %>
 <%=manager.getModuleDescription()%>
 <% } %>
-<% String confName = tab.getConfigurationName();%>
-<select title="<%=confName%>" 
-	onchange="openxava.executeAction('<%=request.getParameter("application")%>', '<%=request.getParameter("module")%>', '', false, 'List.filter','configurationId=' + this.value)">
-	
-	<option value=""><%=confName%></option>
-	<% 
-	int count = 1; 
-	for (Tab.Configuration conf: tab.getConfigurations()) {
-		if (!confName.equals(conf.getName())) {
-			if (++count > Tab.MAX_CONFIGURATIONS_COUNT) break; 
-	%>
-	<option value="<%=conf.getId()%>"><%=conf.getName()%></option>
-	<% 
-		}
-	} 
-	%>
-</select>
+
+<jsp:include page="listConfigurations.jsp"/>
+
+<%
+if (!tab.isAllConfiguration()) { 
+	if (tab.isSaveConfigurationAllowed()) { %>
+<span id="xava_save_list_configuration">
+<xava:link action="List.saveConfiguration"/>
+</span>
+<% 
+   	}	 
+   	else {
+%>
 <xava:link action="List.changeConfiguration"/>
+<%
+   	}
+}
+%>
+
 <% 
 if (tab.isTitleVisible()) { 
 %> 

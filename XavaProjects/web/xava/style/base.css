@@ -27,6 +27,8 @@
 	--module-header-link-hover-color: var(--module-header-color);
 	--organizations-index-icon-color-hover: white;	
 	--folder-row-hover-icon-color: white;	
+	--module-list-hide-show-color: var(--modules-list-selected-color);
+	--module-list-hide-show-background: var(--modules-list-selected-background);
 	
 	--module-header-link-color: var(--module-header-color);
 	--module-header-icon-color: var(--module-header-color);
@@ -225,6 +227,8 @@
 	
 	--reverse-label-color: white;
 	--reverse-label-background: black;
+	
+	--calendar-selected-day: var(--modules-list-background);
 		
 	--message-box-color: white;
 	--message-box-a-color: white;
@@ -409,7 +413,24 @@ A.sign-out  {
 	z-index: 10;
 }
 
+#module_header_menu_button, #module_extended_title {
+	display: none;
+}
+
+@media only screen and (max-width: 1040px) {
+
+	#modules_list, #modules_list_hide {
+		display: none;
+	}
+	
+	#module_header_menu_button, #module_extended_title {
+		display: inline;
+	}
+	
+}
+
 .mobile #modules_list {
+	display: initial;  
 	background: var(--mobile-modules-list-background);
 }
 
@@ -437,6 +458,10 @@ A.sign-out  {
 
 #modules_list, #modules_list_outbox, #modules_list_core { 
 	width: 180px;  
+}
+
+.ie #modules_list { 
+	width: 210px;  
 }
 
 #modules_list A {
@@ -614,8 +639,8 @@ A:hover .module-row, A:hover .folder-row, A:hover #organizations_index {
 	margin-bottom: 30px;
 }
 
-input[type="text"], input[type="password"], input[type="file"], select, textarea, 
-.ui-widget input[type="text"], .ui-widget input[type="password"], .ui-widget input[type="file"], 
+input[type="text"], input[type="password"], input[type="file"], input[type="date"], select, textarea,  
+.ui-widget input[type="text"], .ui-widget input[type="password"], .ui-widget input[type="file"], .ui-widget input[type="date"],  
 .ui-widget select, .ui-widget textarea {   
 	border-color: var(--input-border);  
 	border-style: solid;	
@@ -625,15 +650,15 @@ input[type="text"], input[type="password"], input[type="file"], select, textarea
 	color: var(--input-color);
 }
 
-input[type="text"], input[type="password"], input[type="file"], textarea {
+input[type="text"], input[type="password"], input[type="file"], input[type="date"], textarea { 
 	padding: 4px;
 }
 
-input[type="text"], input[type="password"], input[type="file"] {
+input[type="text"], input[type="password"], input[type="file"], input[type="date"] { 
 	height: 20px;
 }
 
-input[type="text"]:disabled, input[type="password"]:disabled, input[type="file"]:disabled, textarea:disabled {
+input[type="text"]:disabled, input[type="password"]:disabled, input[type="file"]:disabled, input[type="date"]:disabled, textarea:disabled { 
 	background: var(--disabled-input-background);
 }
 
@@ -646,12 +671,17 @@ input[type="text"]:disabled, input[type="password"]:disabled, input[type="file"]
 	margin-top: 5px;
 }
 
-.ox-date-calendar input {
+.ox-date-calendar input, .ox-web-url input {  
 	padding-right: 25px;
 }
 
 .firefox .ox-date-calendar input {
 	padding-right: 4px;
+}
+
+.flatpickr-day.selected {
+	background: var(--calendar-selected-day) !important;
+	border-color: transparent !important;
 }
 
 .ie .ox-date-calendar input {
@@ -694,7 +724,7 @@ select:not([multiple]) {
 	padding: 1px 12px 5px 0px; 
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="file"]:focus, select:focus, textarea:focus, #module .cke_focus { 
+input[type="text"]:focus, input[type="password"]:focus, input[type="file"]:focus, input[type="date"]:focus, select:focus, textarea:focus, #module .cke_focus {  
 	outline: 0;
 	border-color: var(--input-focus-border) !important; 
 }
@@ -900,6 +930,12 @@ i {
 
 .mdi-delete:hover {
 	color: var(--icon-delete-hover-color);
+}
+
+#xava_save_list_configuration {
+	display: none;	
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 .ox-list-odd i, .ox-list-pair i {
@@ -1256,7 +1292,7 @@ input[type="button"] {
 	margin: 8px 10px 0px 12px;  
 }
 
-.ox-flow-layout {
+.ox-flow-layout, .ox-frame .ox-flow-layout > div.ox-flow-layout { 
 	margin-left: 0px;
 }
 
@@ -1963,10 +1999,6 @@ i.ox-sort-indicator2 {
 	color: var(--descriptions-list-handle-hover-color);
 }
 
-.ox-web-url { 
-	margin-right: -20px;
-}
-
 .ox-element-collection .ox-descriptions-list i {
 	top: -3px; 
 }
@@ -2354,7 +2386,7 @@ div[id$="_Index__view"] .ox-list-title {
 	color: var(--reference-search-icon-hover-color);
 }
 
-.ox-required-editor input, .ox-required-editor select {
+.ox-required-editor input, .ox-required-editor select, .ox-required-editor textarea {
 	border-color: var(--required-editor-border); 
 }
 
@@ -2463,3 +2495,31 @@ div[id$="_Index__view"] .ox-list-title {
 .ie .ox-read-only-html-text p {
 	margin-top: -5px;
 }
+
+#modules_list_hide, #modules_list_show  {
+	position: absolute;
+	top: 50%;
+	background: var(--module-list-hide-show-background);	
+    border-radius: 100px;
+    padding: 3px;
+}
+
+#modules_list_hide {
+	left: 160px;
+}
+
+#modules_list_show  {
+	left: -20px;
+}
+
+#modules_list_hide i, #modules_list_show i {
+	font-size: 30px;	
+	color: var(--module-list-hide-show-color);
+	position: relative;
+	left: 9px;
+}
+
+#module_header_menu_button {
+	padding-right: 4px;
+}
+
