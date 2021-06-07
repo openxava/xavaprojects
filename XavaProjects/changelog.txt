@@ -1,6 +1,10 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2021.06 (2021-6-7)
+-------------------------------
+- OpenXava upgraded to OpenXava 6.5.2.
+
 XavaProjects 2021.04 (2021-4-19)
 --------------------------------
 - OpenXava upgraded to OpenXava 6.5.1.
