@@ -47,10 +47,11 @@ if (view.displayReferenceWithNoFrameEditor(ref)) {
 else { 
 	String viewName = viewObject + "_" + ref.getName();
 	View subview = view.getSubview(ref.getName());
-	if (subview.isRepresentsEntityReference()) subview.setKeyEditable(false);
+	// if (subview.isRepresentsEntityReference()) subview.setKeyEditable(false); // Put back when solved: https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff8080817a9fb263017aa5fef39c0012 
 	context.put(request, viewName, subview);
 	String propertyInReferencePrefix = view.getPropertyPrefix() + ref.getName() + ".";	 
 	boolean editable = view.isEditable(ref); 
+	if (subview.isRepresentsEntityReference()) view.setEditable(ref.getName(), false); // Remove when solved: https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff8080817a9fb263017aa5fef39c0012
 %>
 <div class="phone-frame-title"><%=label%></div>
 <div class="ox-frame">
@@ -111,6 +112,7 @@ else {
 </jsp:include>
 
 </div> 
-<% 		
+<% 	
+	if (subview.isRepresentsEntityReference()) view.setEditable(ref.getName(), editable); // Remove when solved: https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff8080817a9fb263017aa5fef39c0012	
 }
 %>

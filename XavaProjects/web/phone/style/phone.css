@@ -9,6 +9,12 @@ body {
 	width: calc(100% - 4px);
 }
 
+.ox-editor-suffix {
+	display: block;
+	font-size: 80%;
+	white-space: normal;
+}
+
 input[type="text"], input[type="password"], input[type="date"] {
 	height: 25px;
 }
@@ -44,7 +50,8 @@ input[type="text"], input[type="password"], input[type="file"], input[type="date
 }
 
 .ox-descriptions-list i {
- 	right: 40px; 
+ 	right: 40px;
+ 	top: 3px;  
 }
 
 #xava_loading2 {

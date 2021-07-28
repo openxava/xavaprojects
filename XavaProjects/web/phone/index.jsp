@@ -20,8 +20,6 @@
 
 <%
 Organizations.setPersistenceDefaultSchema(request.getSession()); 
-Locales.setCurrent(request);
-SessionData.setCurrent(request);
 String version = org.openxava.controller.ModuleManager.getVersion();
 folders.setApplicationNameAsRootLabel(true);
 folders.setIncludeFixedAndBoookmarkModules(true); 
