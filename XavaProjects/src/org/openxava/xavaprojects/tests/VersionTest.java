@@ -15,7 +15,7 @@ public class VersionTest extends ModuleTestBase {
 		super(nameTest, "XavaProjects", "Version");
 	}
 	
-	public void testVersionsDependsOnProjectInIssue() throws Exception {
+	public void testVersionsDependsOnProjectInIssue_projectDefaultValueOnCreateIssueFromVersion() throws Exception {
 		login("admin", "admin");
 		execute("CRUD.new");
 		execute("Reference.createNew", "model=Project,keyProperty=project.id");
@@ -27,14 +27,13 @@ public class VersionTest extends ModuleTestBase {
 		Project newProject = Project.findByName("XavaProjects"); 
 		setValue("project.id", newProject.getId());
 		setValue("name", "2020.01");
-		// tmp ini
-		// TMP ME QUEDÉ POR AQUÍ: ESTO FUNCIONA, FALTA CAMBIAR NOMBRE DE MÉTODO TEST Y PASAR LA SUITE
+
 		assertNoAction("Collection.new");
 		execute("VersionIssues.new", "viewObject=xava_view_issues");
 		assertNoEditable("project");
 		assertDescriptionValue("project.id", "XavaProjects");
 		closeDialog();
-		// tmp fin
+
 		execute("CRUD.save");
 		
 		XPersistence.commit();
