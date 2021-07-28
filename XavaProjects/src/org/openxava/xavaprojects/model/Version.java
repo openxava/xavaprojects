@@ -33,6 +33,7 @@ public class Version extends Identifiable {
 	@ListProperties("status.icon, title, type.icon, createdBy")
 	@OneToMany(mappedBy="version")
 	@OrderColumn
+	@NewAction("VersionIssues.new")
 	private List<Issue> issues;
 	
 	public String getName() {

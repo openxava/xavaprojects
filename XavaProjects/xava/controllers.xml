@@ -22,4 +22,12 @@
 	</controller>    
     -->
     
+    <!-- tmp ini -->
+    <controller name="VersionIssues">
+    	<action name="new" hidden="true"
+			icon="library-plus"
+			class="org.openxava.xavaprojects.actions.CreateNewIssueInVersionAction"/>
+	</controller>
+	<!-- tmp fin -->
+    
 </controllers>
