@@ -152,12 +152,6 @@
 	<script type='text/javascript' src='<%=contextPath%>/dwr/interface/Tab.js?ox=<%=version%>'></script>
 	<script type='text/javascript' src='<%=contextPath%>/dwr/interface/View.js?ox=<%=version%>'></script>
 	<script type='text/javascript' src='<%=contextPath%>/xava/js/openxava.js?ox=<%=version%>'></script>
-	<% if (Browsers.isIE(request)) { %>
-	<script type='text/javascript' src="<%=request.getContextPath()%>/xava/js/babel-polyfill.js?ox=<%=version%>"></script>
-	<script type='text/javascript' src="<%=request.getContextPath()%>/xava/js/filepond-polyfill.js?ox=<%=version%>"></script>
-	<script type='text/javascript' src="<%=request.getContextPath()%>/xava/js/css-vars-ponyfill.js?ox=<%=version%>"></script>
-	<script type='text/javascript'>cssVars({ }); </script>
-	<% } %>
 	<script type='text/javascript'>
 		openxava.lastApplication='<%=app%>'; 		
 		openxava.lastModule='<%=module%>'; 
@@ -325,6 +319,10 @@ if (manager.isResetFormPostNeeded()) {
 		openxava.closeDialogOnEscape = <%=browser != null && browser.indexOf("Firefox") >= 0 ? "false":"true"%>;		  
 		openxava.calendarAlign = '<%=browser != null && browser.indexOf("MSIE 6") >= 0 ? "tr":"Br"%>';
 		openxava.subcontrollerSelectedClass = '<%=style.getSubcontrollerSelected()%>';
+		openxava.mapsTileProvider = '<%=XavaPreferences.getInstance().getMapsTileProvider()%>';
+		openxava.mapsAttribution = "<%=XavaPreferences.getInstance().getMapsAttribution().replace("\"", "'")%>";
+		openxava.mapsTileSize = <%=XavaPreferences.getInstance().getMapsTileSize()%>;
+		openxava.mapsZoomOffset = <%=XavaPreferences.getInstance().getMapsZoomOffset()%>;
 		<% java.text.DecimalFormatSymbols symbols = java.text.DecimalFormatSymbols.getInstance(Locales.getCurrent()); %>
 		openxava.decimalSeparator = "<%=symbols.getDecimalSeparator()%>";
 		openxava.groupingSeparator = "<%=symbols.getGroupingSeparator()%>";		

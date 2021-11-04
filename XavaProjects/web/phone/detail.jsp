@@ -40,6 +40,10 @@ for (Iterator it = view.getMetaMembers().iterator(); it.hasNext();) {
 		String label = view.getLabelFor(p);
 		boolean editable = view.isEditable(p);
 		boolean throwPropertyChanged = view.throwsPropertyChanged(p);
+		String propertyKey= Ids.decorate(
+			request.getParameter("application"),
+			request.getParameter("module"),
+			propertyPrefix + p.getName());
 		if (!divIsOpen) {  
 			divIsOpen = true;
 %>
@@ -51,6 +55,15 @@ for (Iterator it = view.getMetaMembers().iterator(); it.hasNext();) {
 	<span id="<xava:id name='<%="label_" + view.getPropertyPrefix() + p.getName()%>'/>" class="<%=labelStyle%>">
 		<%=label%>
 	</span>
+	<span id="<xava:id name='<%="property_actions_" + view.getPropertyPrefix() + p.getName()%>'/>">
+		<% if (view.propertyHasActions(p)) { %>
+			<jsp:include page="propertyActions.jsp">
+				<jsp:param name="propertyName" value="<%=p.getName()%>"/>
+				<jsp:param name="propertyKey" value="<%=propertyKey%>"/>
+				<jsp:param name="editable" value="<%=editable%>"/>
+			</jsp:include>
+		<% } %>
+	</span>
 	<br/> 
 	<% String required = view.isEditable() && p.isRequired() ? "class='" + style.getRequiredEditor() + "'":""; %>
 	<span id="<xava:id name='<%="editor_" + view.getPropertyPrefix() + p.getName()%>'/>" <%=required%>>
@@ -61,6 +74,8 @@ for (Iterator it = view.getMetaMembers().iterator(); it.hasNext();) {
 	}
 	else if (m instanceof MetaReference) {
 		MetaReference ref = (MetaReference) m;
+		View subview = view.getSubview(ref.getName());
+		boolean withFrame = subview.displayWithFrame();
 		if (view.displayReferenceWithNoFrameEditor(ref)) {
 			if (!divIsOpen) {
 				divIsOpen = true;
@@ -70,20 +85,31 @@ for (Iterator it = view.getMetaMembers().iterator(); it.hasNext();) {
 			}
 		}		
 		else if (divIsOpen) {
-			divIsOpen = false;
+			if (withFrame) { 
+				divIsOpen = false; 
 %>
-</div>
+				</div>
 <%
+			} 
+		}
+		else {
+			if (!withFrame) {
+				divIsOpen = true; 
+%>
+
+				<div class="<%=containerClass%>"> 
+<%		
+			}		
 		}
 		String referenceKey = Ids.decorate(
 				request.getParameter("application"),
 				request.getParameter("module"),
 				propertyPrefix +  ref.getName()); 
 		request.setAttribute(referenceKey, ref);
-%>
+%>	
 		<jsp:include page="frameAndDescriptionsListReference.jsp">
 			<jsp:param name="referenceKey" value="<%=referenceKey%>"/>
-		</jsp:include>		
+		</jsp:include>
 <%
 	}
 	else if (m instanceof MetaCollection) {

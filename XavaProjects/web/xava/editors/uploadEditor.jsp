@@ -35,17 +35,27 @@ String dataPreview = !preview?"data-preview='false'":"";
 String script = request.getParameter("script");
 boolean throwsChanged = script != null && script.contains(".throwPropertyChanged(");
 String dataThrowsChanged = throwsChanged?"data-throws-changed='true'":"";
+String acceptFileTypes = request.getParameter("acceptFileTypes");
+if (!Is.emptyString(acceptFileTypes) && acceptFileTypes.toLowerCase().contains("text/csv")) {
+	acceptFileTypes += ",.csv";
+}
+String accept = Is.emptyString(acceptFileTypes)?"":"accept='" + acceptFileTypes + "'";
+String maxFileSizeInKb = request.getParameter("maxFileSizeInKb");
+String dataFileSizeInKb = Is.emptyString(maxFileSizeInKb) || "-1".equals(maxFileSizeInKb)?"":"data-max-file-size='" + maxFileSizeInKb + "KB'";
 %>
 <input id='<%=propertyKey%>' 
 	type="file" class="xava_upload<%=cssClass%>"
 	data-application="<%=applicationName%>" 
 	data-module="<%=module%>"
+	<%=accept%> 
 	<%=dataMultiple%>
 	<%=dataPreview%>
 	<%=dataFiles%> 
 	<%=dataEmpty%>
 	<%=dataEditable%>
-	<%=dataThrowsChanged%>/> 
+	<%=dataThrowsChanged%>
+	<%=dataFileSizeInKb%> 
+/> 
 
 <input type="hidden" name="<%=propertyKey%>" value="<%=value%>">
 

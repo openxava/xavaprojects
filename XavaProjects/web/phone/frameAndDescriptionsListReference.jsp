@@ -52,9 +52,12 @@ else {
 	String propertyInReferencePrefix = view.getPropertyPrefix() + ref.getName() + ".";	 
 	boolean editable = view.isEditable(ref); 
 	if (subview.isRepresentsEntityReference()) view.setEditable(ref.getName(), false); // Remove when solved: https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff8080817a9fb263017aa5fef39c0012
+	boolean withFrame = subview.displayWithFrame(); 
 %>
+<% if (withFrame) { %> 
 <div class="phone-frame-title"><%=label%></div>
 <div class="ox-frame">
+<% } %> 
 <div id="<%=labelKey%>" class="phone-frame-header"> 
 <% 
 	if (subview.isRepresentsEntityReference() && editable) { 
@@ -111,7 +114,9 @@ else {
 	<jsp:param name="frame" value="false"/> 
 </jsp:include>
 
+<% if (withFrame) { %> 
 </div> 
+<% } %>
 <% 	
 	if (subview.isRepresentsEntityReference()) view.setEditable(ref.getName(), editable); // Remove when solved: https://openxava.org/XavaProjects/o/OpenXava/m/Issue?detail=ff8080817a9fb263017aa5fef39c0012	
 }

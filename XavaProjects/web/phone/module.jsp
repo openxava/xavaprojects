@@ -12,3 +12,9 @@ phoneContext.get(phoneApp, phoneModule, "manager", "com.openxava.phone.controlle
 %>
 
 <%@ include file="../xava/module.jsp" %>
+
+<script type="text/javascript">
+openxava.setFocus = function() {		
+}
+</script>
+

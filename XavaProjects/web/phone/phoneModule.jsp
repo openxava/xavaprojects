@@ -23,7 +23,7 @@ if (Users.currentNeedsToChangePassword() && !"ChangePassword".equals(module)) {
 
 <%
 String app = request.getParameter("application");
-modules.setCurrent(request.getParameter("application"), request.getParameter("module")); 
+modules.setCurrent(request); 
 String oxVersion = org.openxava.controller.ModuleManager.getVersion();
 session.setAttribute("xava.initListRowCount", true); 
 %>

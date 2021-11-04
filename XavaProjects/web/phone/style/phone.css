@@ -227,6 +227,11 @@ A:hover .module-row, A:hover .folder-row, A:hover #organizations_index {
 	font-weight: bold;
 }
 
+.phone-detail-element .ox-action-link  {
+	float: right;
+	margin-right: -13px;
+}
+
 .ox-bottom-buttons .ox-subcontroller-button {
 	margin-left: 10px;
 }
@@ -435,4 +440,10 @@ input[type="date"] + a {
 
 .accept-privacy-policy .editor {
 	width: inherit;
+}
+
+.xava_coordinates {
+	width: calc(100% + 4px);
+	min-width: inherit;
+	max-height: 90vh;
 }

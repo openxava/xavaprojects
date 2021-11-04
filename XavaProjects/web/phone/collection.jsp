@@ -12,6 +12,9 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="java.util.Iterator"%>
 
+<%@ page import="org.apache.commons.collections4.IteratorUtils"%>  
+
+
 <jsp:useBean id="context" class="org.openxava.controller.ModuleContext" scope="session"/>
 <jsp:useBean id="style" class="org.openxava.web.style.Style" scope="request"/>
 
@@ -77,6 +80,25 @@ if (collectionEditable && !subview.isRepresentsElementCollection() && (!Is.empty
 		}
 	}	
 	%>	
+	
+	<%
+	Collection excludedActions = MetaControllers.getMetaController("DefaultListActionsForCollections").getAllMetaActions(); 
+	Iterator itListActions = IteratorUtils.chainedIterator(
+		subview.getActionsNamesList().iterator(), 
+		subview.getActionsNamesRow().iterator());		
+	while (itListActions.hasNext()) {
+		String listAction = itListActions.next().toString();
+		MetaAction metaAction = MetaControllers.getMetaAction(listAction);
+		if (excludedActions.contains(metaAction)) continue;
+	%>
+		<xava:link action='<%=listAction%>' argv='<%="viewObject="+viewName%>'>
+			<div class="phone-frame-action">
+				<%=MetaControllers.getMetaAction(listAction).getLabel()%>
+			</div>
+		</xava:link>
+	<%
+	} // while list actions
+	%>
 
 	<% 
 	for(String listSubcontroller : listSubcontrollers){

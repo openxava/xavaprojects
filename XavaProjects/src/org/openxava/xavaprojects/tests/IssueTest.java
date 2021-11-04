@@ -111,7 +111,7 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("description", "This is a JUnit Incident");
 		assertDescriptionValue("project.id", "OpenXava"); 
 		assertValue("createdBy", "admin");
-		assertValue("createdOn", getCurrentDate());
+		assertValue("createdOn", getCurrentDate()); // If fails revise the serverTimezone in MySQL url
 		assertValue("priority.level", "7"); 
 		assertValue("version.id", "402880426d5f6588016d5f7129ce0003"); 
 		assertValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");
