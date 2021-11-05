@@ -77,9 +77,6 @@ public class Issue extends Identifiable {
 	@Stereotype("FILES") @Column(length=32)
 	private String attachments;
 	
-	@Stereotype("IMAGES_GALLERY") @Column(length=32)
-	private String screenshots;
-
 	@Stereotype("DISCUSSION")
 	@Column(length=32)
 	private String discussion;
@@ -135,14 +132,6 @@ public class Issue extends Identifiable {
 
 	public void setAttachments(String attachments) {
 		this.attachments = attachments;
-	}
-
-	public String getScreenshots() {
-		return screenshots;
-	}
-
-	public void setScreenshots(String screenshots) {
-		this.screenshots = screenshots;
 	}
 
 	public String getDiscussion() {

@@ -86,7 +86,6 @@ public class IssueTest extends ModuleTestBase {
 		assertNoEditable("hours");
 		
 		uploadFile("attachments", "test-files/notes.txt");
-		uploadFile("screenshots", "test-files/issue-screenshot.png");
 		postDiscussionComment("discussion", "I agree");
 		
 		execute("CRUD.save");
@@ -121,11 +120,9 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("hours", "1.50");		
 		
 		assertFile("attachments", 0, "text/plain");
-		assertFile("screenshots", 0, "image");
 		assertDiscussionCommentsCount("discussion", 1);
 		assertDiscussionCommentContentText("discussion", 0, "I agree");
 		
-		removeFile("screenshots", 0);
 		execute("CRUD.delete");
 		assertNoErrors();
 	}

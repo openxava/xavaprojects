@@ -1,6 +1,7 @@
 Change Log for XavaProjects
 ===========================
 
+- Screenshots property removed from Issue.
 - OpenXava upgraded to OpenXava 6.6.
 
 XavaProjects 2021.07 (2021-7-29)
