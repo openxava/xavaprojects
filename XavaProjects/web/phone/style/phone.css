@@ -15,7 +15,7 @@ body {
 	white-space: normal;
 }
 
-input[type="text"], input[type="password"], input[type="date"] {
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime-local"] { 
 	height: 25px;
 }
 
@@ -44,6 +44,7 @@ input[type="text"], input[type="password"], input[type="date"] {
 }
 
 input[type="text"], input[type="password"], input[type="file"], input[type="date"], select, textarea, 
+input[type="datetime-local"], .ui-widget input[type="datetime-local"], 
 .ui-widget input[type="text"], .ui-widget input[type="password"], .ui-widget input[type="file"], .ui-widget input[type="date"],  
 .ui-widget select, .ui-widget textarea {
 	font-size: 16px;
@@ -320,8 +321,14 @@ span[class="phone-list-element-check"] > input[name*="_Index__xava_selected"] {
 	display: none;
 }
 
-input[type="date"] + a { 
+input[type="date"] + a, input[type="datetime-local"] + a { 
+	right: 30px !important;
+	top: 3px;
 	display: none;
+}
+
+.iphone input[type="date"] + a, .iphone input[type="datetime-local"] + a {
+	display: inline;
 }
 
 .ox-date-calendar input {
