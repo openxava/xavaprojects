@@ -61,8 +61,14 @@ public class VersionTest extends ModuleTestBase {
 		setValue("project.id", oldProject.getId());
 		String [][] oldProjectVersions = {
 			{ "", "" },
+			/* tmr
 			{ "402880426d5f6588016d5f7135ee0004", "2.0" },
 			{ "402880426d5f6588016d5f7129ce0003", "1.0" }
+			*/
+			// tmr ini
+			{ "4028808d7eea19fe017eea5074130012", "2.0" },
+			{ "4028808d7eea19fe017eea5057f30011", "1.0" }
+			// tmr fin
 		};
 		assertValidValues("version.id", oldProjectVersions);
 		

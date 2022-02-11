@@ -5,8 +5,8 @@
 <jsp:useBean id="modules" class="com.openxava.naviox.Modules" scope="session"/>
 <jsp:useBean id="folders" class="com.openxava.naviox.Folders" scope="session"/> 
 
-<% 
-folders.setModules(modules); 
+<%
+folders.setModules(modules);
 
 for (Iterator it= folders.getSubfolders(request).iterator(); it.hasNext();) { 
 	Folder folder = (Folder) it.next();

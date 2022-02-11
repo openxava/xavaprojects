@@ -2,7 +2,6 @@ package org.openxava.xavaprojects.tests;
 
 import java.time.*;
 import java.time.format.*;
-import java.util.*;
 
 import org.openxava.tests.*;
 
@@ -21,12 +20,19 @@ public class IssueTest extends ModuleTestBase {
 		login("admin", "admin"); 
 		setValue("title", "JUnit Incident");
 		String [][] types = {
-			{ "", "" },	
+			{ "", "" },
+			/* tmr
 			{ "402880426d5f6588016d5f70e3920001", "Bug" },
 			{ "402880426d5f6588016d5f7100650002", "Feature" }
+			*/
+			// tmr ini
+			{ "4028808d7eea19fe017eea61bec90024", "Bug" },
+			{ "4028808d7eea19fe017eea61d4f20025", "Feature" }
+			// tmr fin
 		};
 		assertValidValues("type.id", types);
-		setValue("type.id", "402880426d5f6588016d5f70e3920001");
+		// tmr setValue("type.id", "402880426d5f6588016d5f70e3920001");
+		setValue("type.id", "4028808d7eea19fe017eea61bec90024"); // Bug tmr
 		setValue("description", "This is a JUnit Incident");
 		assertValidValuesCount("project.id", 2);
 		assertDescriptionValue("project.id", "OpenXava"); 		
@@ -46,30 +52,55 @@ public class IssueTest extends ModuleTestBase {
 
 		String [][] versions = {
 			{ "", "" },
+			/* tmr
 			{ "402880426d5f6588016d5f7135ee0004", "2.0" },
 			{ "402880426d5f6588016d5f7129ce0003", "1.0" }
+			*/
+			// tmr ini
+			{ "4028808d7eea19fe017eea5074130012", "2.0" },
+			{ "4028808d7eea19fe017eea5057f30011", "1.0" }
+			// tmr fin
 		};
 		assertValidValues("version.id", versions);
-		setValue("version.id", "402880426d5f6588016d5f7129ce0003");		
+		// tmr setValue("version.id", "402880426d5f6588016d5f7129ce0003");		
+		setValue("version.id", "4028808d7eea19fe017eea5057f30011"); // 1.0 tmr
 			
 		String [][] plans = {
 			{ "", "" },	
+			/* tmr
 			{ "402880406dfa06e9016dfa0925830003", "Javi 2019.10" },
 			{ "402880406dfa06e9016dfa16f9160006", "Javi 2019.11" }
+			*/
+			// tmr ini
+			{ "4028808d7eea19fe017eea5b5534001e", "Javi 2019.10" },
+			{ "4028808d7eea19fe017eea5b675b001f", "Javi 2019.11" }
+			// tmr fin
 		};
 		assertValidValues("assignedTo.id", plans);
-		setValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");		
+		// tmr setValue("assignedTo.id", "402880406dfa06e9016dfa16f9160006");		
+		setValue("assignedTo.id", "4028808d7eea19fe017eea5b675b001f"); // 2019.11 tmr
 		
 		String [][] status = {
 			{ "", "" },	
+			/* tmr
 			{ "4028b881715acc4301715adab58c0003", "Done" },
 			{ "4028b881715acc4301715aecad7e0004", "Not reproducible" },
 			{ "4028b881715acc4301715ad9ab010002", "Pending" },
 			{ "4028b881715acc4301715af05d8b0005", "Rejected" }
+			*/
+			// tmr ini
+			{ "4028808d7eea19fe017eea2160df0002", "Done" },
+			{ "4028808d7eea19fe017eea2272ae0003", "Not reproducible" },
+			{ "4028808d7eea19fe017eea1e4ffb0001", "Pending" },
+			{ "4028808d7eea19fe017eea2380970004", "Rejected" }
+			// tmr fin
 		};
 		
 		assertValidValues("status.id", status);
-		assertValue("status.id", "4028b881715acc4301715ad9ab010002");		
+		// tmr assertValue("status.id", "4028b881715acc4301715ad9ab010002");		
+		assertValue("status.id", "4028808d7eea19fe017eea1e4ffb0001"); // Pending tmr
+		
+		// TMR ME QUEDÉ POR AQUÍ, ESTABA ACTUALIZANDO LOS OIDS
 		
 		String [][] customers = {
 			{ "", "" },	
@@ -131,12 +162,18 @@ public class IssueTest extends ModuleTestBase {
 		login("admin", "admin"); 
 		setValue("title", "JUnit Simple Incident");
 		String [][] types = {
-			{ "", "" },	
+			{ "", "" },
+			/* tmr
 			{ "402880426d5f6588016d5f70e3920001", "Bug" },
 			{ "402880426d5f6588016d5f7100650002", "Feature" }
+			*/
+			// tmr ini
+			{ "4028808d7eea19fe017eea61bec90024", "Bug" },
+			{ "4028808d7eea19fe017eea61d4f20025", "Feature" }
+			// tmr fin
 		};
 		assertValidValues("type.id", types);
-		setValue("type.id", "402880426d5f6588016d5f70e3920001");
+		setValue("type.id", "4028808d7eea19fe017eea61bec90024"); // Bug
 		setValue("description", "This is a JUnit Incident");
 		
 		execute("CRUD.save");
@@ -147,7 +184,8 @@ public class IssueTest extends ModuleTestBase {
 		execute("List.viewDetail", "row=0");
 		
 		assertValue("title", "JUnit Simple Incident");
-		assertValue("type.id", "402880426d5f6588016d5f70e3920001");
+		// tmr assertValue("type.id", "402880426d5f6588016d5f70e3920001");
+		assertValue("type.id", "4028808d7eea19fe017eea61bec90024"); // tmr
 		assertValue("description", "This is a JUnit Incident");
 		assertValue("createdBy", "admin");
 		assertValue("createdOn", getCurrentDate());
