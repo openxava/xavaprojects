@@ -30,7 +30,7 @@
     <Resource name="jdbc/XavaProjectsDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="root" password="openxava" driverClassName="com.mysql.jdbc.Driver"
-	      url="jdbc:mysql://localhost:3306?serverTimezone=GMT%2B1"/>	      
+	      url="jdbc:mysql://localhost:3306?serverTimezone=GMT%2B2"/>	      
 	      
 	<!-- PostgreSQL 
 	<Resource name="jdbc/XavaProjectsDS" auth="Container" type="javax.sql.DataSource"
