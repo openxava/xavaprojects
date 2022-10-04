@@ -1,1 +1,0 @@
-<%@ include file="../xava/messages.jsp" %>

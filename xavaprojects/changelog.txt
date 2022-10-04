@@ -1,0 +1,76 @@
+Change Log for XavaProjects
+===========================
+
+XavaProjects 2022.04 (2022-4-6)
+-------------------------------
+- OpenXava upgraded to OpenXava 6.6.3.
+
+XavaProjects 2022.02 (2022-2-15)
+--------------------------------
+- OpenXava upgraded to OpenXava 6.6.2.
+
+XavaProjects 2021.12 (2021-12-14)
+---------------------------------
+- OpenXava upgraded to OpenXava 6.6.1.
+
+XavaProjects 2021.11 (2021-11-5)
+--------------------------------
+- Screenshots property removed from Issue.
+- OpenXava upgraded to OpenXava 6.6.
+
+XavaProjects 2021.07 (2021-7-29)
+--------------------------------
+- OpenXava upgraded to OpenXava 6.5.3.
+- Fix: On creating a new issue from version the project name is empty.
+
+XavaProjects 2021.06 (2021-6-7)
+-------------------------------
+- OpenXava upgraded to OpenXava 6.5.2.
+
+XavaProjects 2021.04 (2021-4-19)
+--------------------------------
+- OpenXava upgraded to OpenXava 6.5.1.
+
+XavaProjects 2020.09 (2020-9-28)
+--------------------------------
+- OpenXava upgraded to OpenXava 6.4.1.
+
+XavaProjects 2020.08 (2020-8-5)
+-------------------------------
+- OpenXava upgraded to OpenXava 6.4.
+
+XavaProjects 2020.05 (2020-5-15)
+--------------------------------
+- Removed custom code to manage @OrderColumn collections.
+- OpenXava upgraded to OpenXava 6.3.2.
+
+XavaProjects 2020.04 (2020-4-15)
+--------------------------------
+- Status in Issue (a reference to the a new IssueStatus).
+- New icon property in IssueType.
+- Refined list properties for collections in Plan and Version.
+- Removed property closed in Issue, now we use status.
+- Added changelog.txt.
+- OpenXava upgraded to OpenXava 6.3.1.
+
+XavaProjects 2020.03 (2020-3-4)
+-------------------------------
+- Upgraded to OpenXava 6.3.
+ 
+XavaProjects 2019.12 (2019-12-16)
+---------------------------------
+- Welcome page with screenshot and features.
+- SEO pages.
+- Upgraded to OpenXava 6.2.2.
+ 
+XavaProjects 2019.11 (2019-11-27)
+---------------------------------
+- Customer module and reference to Customer, minutes and hours to Issue.
+ 
+XavaProjects 2019.10 (2019-11-4)
+--------------------------------
+- Priority, Plan, Worker and Period.
+
+XavaProjects 2019.09 (2019-9-24)
+--------------------------------
+- Issues, issue types and version.
