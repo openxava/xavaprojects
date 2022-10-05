@@ -1,17 +1,21 @@
 package org.openxava.xavaprojects.model;
 
 import java.util.*;
+
 import javax.persistence.*;
+
 import org.openxava.jpa.*;
+
+import lombok.*;
 
 /**
  * @author Javier Paniza
  */
 
-@Entity
+@Entity @Getter @Setter
 public class IssueStatus extends Iconable {
 			
-	private boolean useAsDefaultValue;
+	boolean useAsDefaultValue;
 	
 	public static IssueStatus findTheDefaultOne() {
 		List<IssueStatus> status = XPersistence.getManager()
@@ -23,10 +27,6 @@ public class IssueStatus extends Iconable {
 		
 	private void unsetUseAsDefaultValueForAll() {
 		XPersistence.getManager().createQuery("update IssueStatus set useAsDefaultValue = false").executeUpdate();
-	}
-
-	public boolean isUseAsDefaultValue() {
-		return useAsDefaultValue;
 	}
 
 	public void setUseAsDefaultValue(boolean useAsDefaultValue) {

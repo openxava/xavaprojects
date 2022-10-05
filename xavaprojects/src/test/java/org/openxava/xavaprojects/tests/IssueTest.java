@@ -13,7 +13,7 @@ import org.openxava.tests.*;
 public class IssueTest extends ModuleTestBase {
 
 	public IssueTest(String nameTest) {
-		super(nameTest, "XavaProjects", "Issue");
+		super(nameTest, "xavaprojects", "Issue");
 	}
 	
 	public void testCreateNewIssue() throws Exception {
@@ -106,7 +106,7 @@ public class IssueTest extends ModuleTestBase {
 		
 		assertValue("title", "JUnit Incident");
 		assertValue("type.id", "4028808d7eea19fe017eea61bec90024"); // Bug  
-		assertValue("description", "This is a JUnit Incident");
+		assertValue("description", "<p>This is a JUnit Incident</p>");
 		assertDescriptionValue("project.id", "OpenXava"); 
 		assertValue("createdBy", "admin");
 		assertValue("createdOn", getCurrentDate()); // If fails revise the serverTimezone in MySQL url
@@ -126,6 +126,10 @@ public class IssueTest extends ModuleTestBase {
 		assertNoErrors();
 	}
 	
+	protected String getDiscussionCommentContentText(String name, int row) { // tmr  
+		return getDiscussionCommentText(name, row).split("\n", 2)[1];
+	}
+
 	public void testMinimalIssue() throws Exception {
 		login("admin", "admin"); 
 		setValue("title", "JUnit Simple Incident");
@@ -147,7 +151,7 @@ public class IssueTest extends ModuleTestBase {
 		
 		assertValue("title", "JUnit Simple Incident");
 		assertValue("type.id", "4028808d7eea19fe017eea61bec90024"); 
-		assertValue("description", "This is a JUnit Incident");
+		assertValue("description", "<p>This is a JUnit Incident</p>");
 		assertValue("createdBy", "admin");
 		assertValue("createdOn", getCurrentDate());
 

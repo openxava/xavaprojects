@@ -5,35 +5,21 @@ import javax.validation.constraints.*;
 
 import org.openxava.annotations.*;
 
+import lombok.*;
+
 /**
  * 
  * @author Javier Paniza
  */
 
-@Entity
+@Entity @Getter @Setter
 @Tab(defaultOrder="${level} desc")
 public class Priority {
 	
 	@Id @Max(9)
-	private int level;
+	int level;
 	
 	@Column(length=40) @Required
-	private String description;
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	String description;
 
 }

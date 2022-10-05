@@ -12,7 +12,7 @@ import org.openxava.xavaprojects.model.*;
 public class VersionTest extends ModuleTestBase {
 
 	public VersionTest(String nameTest) {
-		super(nameTest, "XavaProjects", "Version");
+		super(nameTest, "xavaprojects", "Version");
 	}
 	
 	public void testVersionsDependsOnProjectInIssue_projectDefaultValueOnCreateIssueFromVersion() throws Exception {

@@ -1,15 +1,19 @@
 package org.openxava.xavaprojects.model;
 
 import java.util.*;
+
 import javax.persistence.*;
+
 import org.openxava.jpa.*;
+
+import lombok.*;
 
 /**
  * 
  * @author Javier Paniza
  */
 
-@Entity
+@Entity @Getter @Setter
 public class Project extends Nameable {
 	
 	public static Project findUnique() {

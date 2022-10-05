@@ -1,18 +1,21 @@
 package org.openxava.xavaprojects.model;
 
 import java.util.*;
+
 import javax.persistence.*;
 
 import org.openxava.annotations.*;
 import org.openxava.jpa.*;
-import org.openxava.model.Identifiable;
+import org.openxava.model.*;
+
+import lombok.*;
 
 /**
  * 
  * @author Javier Paniza
  */
 
-@Entity
+@Entity @Getter @Setter
 @Tab(defaultOrder="${name} desc") 
 public class Version extends Identifiable {
 	
@@ -25,39 +28,16 @@ public class Version extends Identifiable {
 
 	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Project project;
+	Project project;
 	
 	@Column(length=20)
-	private String name; 
+	String name; 
 	
-	@ListProperties("status.icon, title, type.icon, createdBy")
+	// tmr @ListProperties("status.icon, title, type.icon, createdBy")
+	@ListProperties("status.icon, title, type.icon, createdBy, assignedTo") // tmr
 	@OneToMany(mappedBy="version")
 	@OrderColumn
 	@NewAction("VersionIssues.new")
-	private List<Issue> issues;
+	List<Issue> issues;
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Issue> getIssues() {
-		return issues;
-	}
-
-	public void setIssues(List<Issue> issues) {
-		this.issues = issues;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
 }

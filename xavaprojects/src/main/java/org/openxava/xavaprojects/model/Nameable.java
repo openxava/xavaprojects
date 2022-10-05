@@ -5,23 +5,17 @@ import javax.persistence.*;
 import org.openxava.annotations.*;
 import org.openxava.model.*;
 
+import lombok.*;
+
 /**
  * 
  * @author Javier Paniza
  */
 
-@MappedSuperclass
+@MappedSuperclass @Getter @Setter
 public class Nameable extends Identifiable {
 
 	@Column(length=40) @Required
-	private String name;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	String name;
 	
 }
