@@ -61,5 +61,5 @@ To run your application in Linux or Mac:
 The difference is the separator ; or :
 Also you should be able to use it from Eclipse, IntelliJ, NetBeans, Visual Studio Code or any other IDE with Maven support.	
 
-## Any problem?
-Put a question in the [OpenXava public forum](https://sourceforge.net/p/openxava/discussion/419690/).
+ ## Any problem?
+ Put a question in the [OpenXava public forum](https://sourceforge.net/p/openxava/discussion/419690/).

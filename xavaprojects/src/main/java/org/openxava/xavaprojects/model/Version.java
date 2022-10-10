@@ -33,8 +33,7 @@ public class Version extends Identifiable {
 	@Column(length=20)
 	String name; 
 	
-	// tmr @ListProperties("status.icon, title, type.icon, createdBy")
-	@ListProperties("status.icon, title, type.icon, createdBy, assignedTo") // tmr
+	@ListProperties("status.icon, title, type.icon, createdBy, assignedTo.worker.name") 
 	@OneToMany(mappedBy="version")
 	@OrderColumn
 	@NewAction("VersionIssues.new")
