@@ -54,7 +54,7 @@ To run XavaProjects in Windows:
 
 	c:\> java -cp "target/xavaprojects/WEB-INF/classes;target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
 
-To run your application in Linux or Mac:
+To run XavaProjects in Linux or Mac:
 	
 	$ java -cp "target/xavaprojects/WEB-INF/classes:target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
 
