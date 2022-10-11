@@ -8,28 +8,27 @@ You need Java and Maven installed
 ## Adjust dependencies
 Edit the pom.xml and remove or comment the next dependencies:
 
-		<!-- For XavaPro --> 
-		<dependency>
-			<groupId>com.openxava</groupId>
-			<artifactId>xavapro</artifactId>
-			<version>${openxava.version}</version>
-		</dependency>	
+<!-- For XavaPro --> 
+<dependency>
+	<groupId>com.openxava</groupId>
+	<artifactId>xavapro</artifactId>
+	<version>${openxava.version}</version>
+</dependency>	
 		
-		<dependency>
-			<groupId>org.openxava</groupId>
-			<artifactId>xavaprojects-email-conf</artifactId>
-			<version>1.0</version>
-		</dependency>
+<dependency>
+	<groupId>org.openxava</groupId>
+	<artifactId>xavaprojects-email-conf</artifactId>
+	<version>1.0</version>
+</dependency>
 		
 Then in the same pom.xml uncomment the next dependency:
 
-		<!-- For plain OpenXava --> 
-		<dependency>
-			<groupId>org.openxava</groupId>
-			<artifactId>openxava</artifactId>
-			<version>${openxava.version}</version>
-		</dependency>
-		
+<!-- For plain OpenXava --> 
+<dependency>
+	<groupId>org.openxava</groupId>
+	<artifactId>openxava</artifactId>
+	<version>${openxava.version}</version>
+</dependency>		
 
 
 ## Build the project
