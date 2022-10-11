@@ -34,7 +34,7 @@ Then in the same pom.xml uncomment the next dependency:
 ## Build the project
 From command line prompt inside xavaprojects folder type:
 
-	mvn clean package
+	mvn clean package -Dmaven.test.skip
 
 ## Configure database
 You need to have installed and running a MySQL database. If not, go to [MySQL site](https://www.mysql.com/) and download and install it.
@@ -52,11 +52,11 @@ Fill the *username* and *password* attributes.
 ## Run XavaProjects
 To run XavaProjects in Windows:
 
-	c:\> java -cp "target/xavaprojects/WEB-INF/classes;target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
+	java -cp "target/xavaprojects/WEB-INF/classes;target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
 
 To run XavaProjects in Linux or Mac:
 	
-	$ java -cp "target/xavaprojects/WEB-INF/classes:target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
+	java -cp "target/xavaprojects/WEB-INF/classes:target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
 
 The difference is the separator ; or :
 Also you should be able to use it from Eclipse, IntelliJ, NetBeans, Visual Studio Code or any other IDE with Maven support.	
