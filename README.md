@@ -47,6 +47,7 @@ Edit the *xavaprojects/src/main/webapp/META-INF/context.xml* file to put the cor
 	      password="YOUR PASSWORD HERE" 
 	      driverClassName="com.mysql.cj.jdbc.Driver"
 	      url="jdbc:mysql://localhost:3306?serverTimezone=GMT%2B1"/>
+
 Fill the *username* and *password* attributes.
 
 ## Run XavaProjects
@@ -56,7 +57,7 @@ To run XavaProjects in Windows:
 
 To run your application in Linux or Mac:
 	
-	$ c:\> java -cp "target/xavaprojects/WEB-INF/classes:target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
+	$ java -cp "target/xavaprojects/WEB-INF/classes:target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
 
 The difference is the separator ; or :
 Also you should be able to use it from Eclipse, IntelliJ, NetBeans, Visual Studio Code or any other IDE with Maven support.	
