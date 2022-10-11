@@ -126,7 +126,7 @@ public class IssueTest extends ModuleTestBase {
 		assertNoErrors();
 	}
 	
-	protected String getDiscussionCommentContentText(String name, int row) { // tmr  
+	protected String getDiscussionCommentContentText(String name, int row) { // Remove when fixed in ModuleTestBase
 		return getDiscussionCommentText(name, row).split("\n", 2)[1];
 	}
 

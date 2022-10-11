@@ -20,7 +20,7 @@ import lombok.*;
  */
 
 @Entity @Getter @Setter
-// tmr ini
+// Remove @View when flowLayout works again 
 @View(members= "#title, type;"
 	+ "description;"
 	+ "project, createdBy;"
@@ -31,7 +31,6 @@ import lombok.*;
 	+ "attachments;"
 	+ "discussion;"
 )
-// tmr fin
 public class Issue extends Identifiable {
 
 	@Column(length=100) @Required
