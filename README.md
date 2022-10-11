@@ -1,47 +1,65 @@
 # XavaProjects
 
-XavaProjects is an issue and project tracking application for software projects written with [OpenXava](https://www.openxava.org). For more information go to [XavaProjects site](https://www.openxava.org/XavaProjects).
+XavaProjects is an issue and project tracking application for software projects written with [OpenXava](https://www.openxava.org). For more information go to [XavaProjects site](https://www.openxava.org/xavaprojects).
 
-## Install OpenXava
+## Prerequisites
+You need Java and Maven installed
 
-Go to [openxava.org](https://www.openxava.org) and download the latest OpenXava version. It's a zip, just uncompress it. Open the *quick-start.html* file and from there follow the *Getting Started* lesson, so you get used to OpenXava a little.
+## Adjust dependencies
+Edit the pom.xml and remove or comment the next dependencies:
 
-## Install XavaProjects
+	<!-- For XavaPro --> 
+	<dependency>
+		<groupId>com.openxava</groupId>
+		<artifactId>xavapro</artifactId>
+		<version>${openxava.version}</version>
+	</dependency>	
+		
+	<dependency>
+		<groupId>org.openxava</groupId>
+		<artifactId>xavaprojects-email-conf</artifactId>
+		<version>1.0</version>
+	</dependency>
+		
+Then in the same pom.xml uncomment the next dependency:
 
-### Download it from GitHub
-Click on the above green button *Clone or download* and choose *Download ZIP*. You'll get a file called *xavaprojects-master.zip*.
+	<!-- For plain OpenXava --> 
+	<dependency>
+		<groupId>org.openxava</groupId>
+		<artifactId>openxava</artifactId>
+		<version>${openxava.version}</version>
+	</dependency>		
 
-### Import it into Eclipse
-Start Eclipse and choose as workspace the one included in the OpenXava distribution. 
-From Eclipse:
 
- - Choose the option *File > Import...* . It will show a dialog.
- - In the folder *General* choose the option *Existing Project into Workspace*. 
- - Click on *Next*.
- - Choose *Select archive file*, and click on *Browse...*
- - Look for the file you have downloaded, *xavaprojects-master.zip*, and choose it.
- - Check *XavaProjects (xavaprojects-master/XavaProjects/)*.
- - Click on *Finish*.
+## Build the project
+From command line prompt inside xavaprojects folder type:
 
-Now, you should have the *XavaProjects* project in your workspace.
-
-### Update XavaProjects with OpenXava
-In *XavaProjects* project inside Eclipse look for the file *build.xml*, with the right mouse button select *Run As > Ant Build...* . This will open a dialog, where you have to uncheck *desployWar* and check *updateOX*. Then click on *Run*. After the ant task completes, select the *XavaProjects* project and click F5 to refresh it. Finally, press Ctrl-B to build the project.
+	mvn clean package -Dmaven.test.skip
 
 ## Configure database
 You need to have installed and running a MySQL database. If not, go to [MySQL site](https://www.mysql.com/) and download and install it.
-Edit the *XavaProjects/web/META-INF/context.xml* file to put the correct user name and password for your MySQL database:
+Edit the *xavaprojects/src/main/webapp/META-INF/context.xml* file to put the correct user name and password for your MySQL database:
 
-	   <Resource name="jdbc/XavaProjectsDS" auth="Container" type="javax.sql.DataSource"
-	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="YOUR USERNAME HERE" 
-	      password="YOUR PASSWORD HERE" 
-	      driverClassName="com.mysql.jdbc.Driver"
-	      url="jdbc:mysql://localhost:3306?serverTimezone=GMT%2B1"/>
+	<Resource name="jdbc/xavaprojectsDS" auth="Container" type="javax.sql.DataSource"
+		maxTotal="20" maxIdle="5" maxWaitMillis="10000"
+		username="YOUR USERNAME HERE" 
+		password="YOUR PASSWORD HERE" 
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306?serverTimezone=GMT%2B1"/>
+
 Fill the *username* and *password* attributes.
 
 ## Run XavaProjects
-From Eclipse open *XavaProjects > src > _run*. There you have a class called *_Run_XavaProjects*, just click on *Run As > Java Application* on it. Wait a few seconds, until see a message in console saying "Application started". Then, open your browser on http://localhost:8080/XavaProjects, click on the *Sign in* link and use *admin/admin* to sign in.
+To run XavaProjects in Windows:
 
- ## Any problem?
- Put a question in the [OpenXava public forum](https://sourceforge.net/p/openxava/discussion/419690/).
+	java -cp "target/xavaprojects/WEB-INF/classes;target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
+
+To run XavaProjects in Linux or Mac:
+	
+	java -cp "target/xavaprojects/WEB-INF/classes:target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
+
+The difference is the separator ; or :
+Also you should be able to use it from Eclipse, IntelliJ, NetBeans, Visual Studio Code or any other IDE with Maven support.	
+
+## Any problem?
+Put a question in the [OpenXava public forum](https://sourceforge.net/p/openxava/discussion/419690/).
