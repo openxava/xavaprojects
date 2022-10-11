@@ -8,12 +8,12 @@ You need Java and Maven installed
 ## Adjust dependencies
 Edit the pom.xml and remove or comment the next dependencies:
 
-<!-- For XavaPro --> 
-<dependency>
-	<groupId>com.openxava</groupId>
-	<artifactId>xavapro</artifactId>
-	<version>${openxava.version}</version>
-</dependency>	
+	<!-- For XavaPro --> 
+	<dependency>
+		<groupId>com.openxava</groupId>
+		<artifactId>xavapro</artifactId>
+		<version>${openxava.version}</version>
+	</dependency>	
 		
 <dependency>
 	<groupId>org.openxava</groupId>
