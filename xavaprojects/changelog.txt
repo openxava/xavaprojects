@@ -1,6 +1,12 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2022.10bis (2022-10-27)
+------------------------------------
+- Flow layout activated again.
+- OpenXava upgraded to OpenXava 7.0.1.
+- Removed getDiscussionCommentContentText() from IssueTest.
+
 XavaProjects 2022.10 (2022-10-11)
 ---------------------------------
 - Project mavenized.

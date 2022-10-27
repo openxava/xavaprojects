@@ -126,10 +126,6 @@ public class IssueTest extends ModuleTestBase {
 		assertNoErrors();
 	}
 	
-	protected String getDiscussionCommentContentText(String name, int row) { // Remove when fixed in ModuleTestBase
-		return getDiscussionCommentText(name, row).split("\n", 2)[1];
-	}
-
 	public void testMinimalIssue() throws Exception {
 		login("admin", "admin"); 
 		setValue("title", "JUnit Simple Incident");
