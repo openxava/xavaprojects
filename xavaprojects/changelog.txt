@@ -1,6 +1,10 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2022.11 (2022-11-15)
+---------------------------------
+- OpenXava upgraded to OpenXava 7.0.2.
+
 XavaProjects 2022.10bis (2022-10-27)
 ------------------------------------
 - Flow layout activated again.
