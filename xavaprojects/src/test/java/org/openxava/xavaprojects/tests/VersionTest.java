@@ -78,7 +78,7 @@ public class VersionTest extends ModuleTestBase {
 		changeModule("Version");
 		execute("Mode.list");
 		assertListRowCount(4);
-		setConditionValues(newProject.getId());
+		setConditionValues(newProject.getName()); 
 		assertListRowCount(2);
 		checkAll();
 		execute("CRUD.deleteSelected");
