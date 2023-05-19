@@ -1,7 +1,7 @@
 Change Log for XavaProjects
 ===========================
 
-XavaProjects 2023.02 (2023-5-19)
+XavaProjects 2023.05 (2023-5-19)
 --------------------------------
 - OpenXava upgraded to OpenXava 7.1.
 
