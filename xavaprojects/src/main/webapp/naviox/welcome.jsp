@@ -43,7 +43,9 @@ else title = title + " - XavaProjects";
 
 <div class="ox-bottom-buttons">
 	<input type="hidden">
-	<input type="button" tabindex="1" onclick="window.location='https://github.com/openxava/xavaprojects'" value="<xava:message key='download_from_github'/>">
+	<a href="https://github.com/openxava/xavaprojects">
+	<input type="button" tabindex="1" value="<xava:message key='download_from_github'/>">
+	</a>
 	<br>
 	<a href="<%=request.getContextPath()%>/m/SignIn"><xava:label key='SignIn'/></a>   
 </div>
@@ -69,7 +71,9 @@ else title = title + " - XavaProjects";
 
 <div class="ox-bottom-buttons">
 	<input type="hidden">
-	<input type="button" tabindex="1" onclick="window.location='https://github.com/openxava/xavaprojects'" value="<xava:message key='download_from_github'/>">
+	<a href="https://github.com/openxava/xavaprojects">
+	<input type="button" tabindex="1" value="<xava:message key='download_from_github'/>">
+	</a>
 </div>
 
 </body>

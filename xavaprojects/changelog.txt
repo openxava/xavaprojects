@@ -1,6 +1,11 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2024.06 (2024-6-18)
+--------------------------------
+- OpenXava upgraded to OpenXava 7.3.3.
+- Fix: DOWNLOAD FROM GITHUB button in Welcome page does not work.
+
 XavaProjects 2024.05bis (2024-5-28)
 -----------------------------------
 - OpenXava upgraded to OpenXava 7.3.2.
