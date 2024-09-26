@@ -1,0 +1,5 @@
+Pending (tmr)
+
+
+Para arquetipos:
+- Añadir Planned a la DB en tipo de incidencia con icono "calendar"

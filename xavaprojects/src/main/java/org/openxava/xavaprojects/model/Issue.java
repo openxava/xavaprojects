@@ -45,6 +45,8 @@ public class Issue extends Identifiable {
 	@DefaultValueCalculator(CurrentLocalDateCalculator.class) 
 	LocalDate createdOn;
 	
+	LocalDate plannedFor; // tmr En schema-evolution
+	
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList(order="${level} desc")
 	@DefaultValueCalculator(value=IntegerCalculator.class, 
