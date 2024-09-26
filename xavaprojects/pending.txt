@@ -1,5 +1,6 @@
 Pending (tmr)
-
+- TMR ME QUEDÉ EVALUANDO SI HACER UN MÓDULO MyCalendar O USAR ISSUES + CALENDAR
 
 Para arquetipos:
 - Añadir Planned a la DB en tipo de incidencia con icono "calendar"
+- Añadir Task to Tipo en la DB.
