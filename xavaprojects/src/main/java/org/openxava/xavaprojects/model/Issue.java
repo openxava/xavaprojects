@@ -20,6 +20,16 @@ import lombok.*;
  */
 
 @Entity @Getter @Setter
+/* tmr
+@Tab(name="MyCalendar", editors="Calendar, List", 
+	properties="assignedTo.worker.userName", 
+	baseCondition = "${assignedTo.worker.userName} = ?", 
+	filter=org.openxava.filters.UserFilter.class) // tmr
+*/	
+// TMR ME QUEDÉ POR AQUÍ, FALLA, AÑADÍ BUG, QUIZÁS BUSCAR ALGO PARA AVANZAR MIENTRAS TANTO
+@Tab(name="MyCalendar", editors="Calendar, List", 
+	properties="title, assignedTo.worker.name", 
+	baseCondition = "${assignedTo.worker.name} = 'Javi'") // tmr
 public class Issue extends Identifiable {
 
 	@Column(length=100) @Required
@@ -41,12 +51,12 @@ public class Issue extends Identifiable {
 	@DefaultValueCalculator(CurrentUserCalculator.class)
 	String createdBy;
 	
+	LocalDate plannedFor; // tmr En schema-evolution	
+	
 	@ReadOnly 
 	@DefaultValueCalculator(CurrentLocalDateCalculator.class) 
 	LocalDate createdOn;
-	
-	LocalDate plannedFor; // tmr En schema-evolution
-	
+		
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList(order="${level} desc")
 	@DefaultValueCalculator(value=IntegerCalculator.class, 

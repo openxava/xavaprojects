@@ -27,5 +27,18 @@
 			icon="library-plus"
 			class="org.openxava.xavaprojects.actions.CreateNewIssueInVersionAction"/>
 	</controller>
+	
+	<!-- tmr ini -->
+	<controller name="MyCalendar">
+		<extends controller="CRUD"/>
+		<!-- tmr 
+		<action name="startOnList"
+			on-init="true"
+			hidden="true"
+			class="org.openxava.actions.GoListAction"/>
+		-->	
+	</controller>
+	<!-- tmr fin -->
+	
     
 </controllers>

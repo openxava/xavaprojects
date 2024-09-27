@@ -20,4 +20,12 @@
 	</module>		
 	-->
 	
+	<!-- tmr ini -->
+	<module name="MyCalendar"> <!-- tmr i18n -->
+		<model name="Issue"/>
+		<tab name="MyCalendar"/>
+		<controller name="MyCalendar"/>
+	</module>
+	<!-- tmr fin -->
+	
 </application>

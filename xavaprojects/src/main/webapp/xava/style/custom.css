@@ -74,3 +74,17 @@ Put here your own style
 	box-shadow: 0 0 4px gray;
 	border-top-left-radius: 5px;
 }
+
+/* tmr ini */
+#ox_xavaprojects_MyCalendar__core .ox-list-title {
+	display: none;
+}
+
+#ox_xavaprojects_MyCalendar__core .xava_calendar_date_preferences {
+	display: none;
+}
+
+#ox_xavaprojects_MyCalendar__core #xava_calendar {
+	margin-top: 20px;
+}
+/* tmr fin */
