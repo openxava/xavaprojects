@@ -31,12 +31,11 @@
 	<!-- tmr ini -->
 	<controller name="MyCalendar">
 		<extends controller="CRUD"/>
-		<!-- tmr 
+		<!-- TMR ME QUEDÉ POR AQUÍ: INTENTANDO QUE ARRANQUE EN MODO LISTA -->
 		<action name="startOnList"
 			on-init="true"
 			hidden="true"
 			class="org.openxava.actions.GoListAction"/>
-		-->	
 	</controller>
 	<!-- tmr fin -->
 	
