@@ -31,12 +31,36 @@
 	<!-- tmr ini -->
 	<controller name="MyCalendar">
 		<extends controller="CRUD"/>
-		<!-- TMR ME QUEDÉ POR AQUÍ: INTENTANDO QUE ARRANQUE EN MODO LISTA -->
-		<action name="startOnList"
+		<action name="new" 
+			class="org.openxava.xavaprojects.actions.NewIssueFromMyCalendarAction"
+			image="new.gif"
+			icon="library-plus"
+			keystroke="Control N"
+			loses-changed-data="true">
+			<set property="restoreModel" value="true"/>			
+		</action>
+	</controller>
+	
+	<!-- 
+	tmr This to start MyCalendar in list mode always. 
+	tmr We should add to OpenXava a simpler way to do it. Add as a Feature Request. 
+	-->
+	<controller name="Mode">
+	
+		<action name="list"
+			icon="chevron-left"
+			class="org.openxava.actions.GoListAction"
+			keystroke="F9"
+			loses-changed-data="true"/>
+	
+		<action name="initOnList"
 			on-init="true"
 			hidden="true"
-			class="org.openxava.actions.GoListAction"/>
-	</controller>
+			class="org.openxava.xavaprojects.actions.InitOnListAction">
+			<set property="module" value="MyCalendar"/>
+		</action>							
+	</controller>	
+	
 	<!-- tmr fin -->
 	
     

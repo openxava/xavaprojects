@@ -13,7 +13,8 @@ import lombok.*;
 @Entity @Getter @Setter
 // tmr ini
 @Table(indexes = {
-	@Index(name = "idx_period_dates", columnList = "startDate, endDate") // tmr schema-evolution.sql 
+    @Index(name = "idx_start_date", columnList = "startDate"), // tmr schema-evolution.sql
+    @Index(name = "idx_end_date", columnList = "endDate") // tmr schema-evolution.sql
 })
 //tmr fin
 public class Period extends Nameable {
