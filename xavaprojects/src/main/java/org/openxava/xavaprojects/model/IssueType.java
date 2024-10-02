@@ -10,6 +10,10 @@ import lombok.*;
  */
 
 @Entity @Getter @Setter
-public class IssueType extends Iconable {
+public class IssueType extends IconableWithUseAsDefaultValueForMyCalendar {
+	
+	public static IssueType findTheDefaultOneForMyCalendar() {
+		return (IssueType) findTheDefaultOne("IssueType", "useAsDefaultValueForMyCalendar");
+	}
 	
 }

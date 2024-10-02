@@ -1,10 +1,6 @@
 package org.openxava.xavaprojects.model;
 
-import java.util.*;
-
 import javax.persistence.*;
-
-import org.openxava.jpa.*;
 
 import lombok.*;
 
@@ -13,10 +9,11 @@ import lombok.*;
  */
 
 @Entity @Getter @Setter
-public class IssueStatus extends Iconable {
+public class IssueStatus extends IconableWithUseAsDefaultValueForMyCalendar {
 			
 	boolean useAsDefaultValue;
-	
+		
+	/* tmr
 	public static IssueStatus findTheDefaultOne() {
 		List<IssueStatus> status = XPersistence.getManager()
 			.createQuery("from IssueStatus where useAsDefaultValue = true")
@@ -24,7 +21,7 @@ public class IssueStatus extends Iconable {
 		if (status.size() == 1) return status.get(0);
 		return null;
 	}
-		
+			
 	private void unsetUseAsDefaultValueForAll() {
 		XPersistence.getManager().createQuery("update IssueStatus set useAsDefaultValue = false").executeUpdate();
 	}
@@ -34,5 +31,22 @@ public class IssueStatus extends Iconable {
 		unsetUseAsDefaultValueForAll();
 		this.useAsDefaultValue = useAsDefaultValue;
 	}
+	*/
+	
+	// tmr ini
+	public static IssueStatus findTheDefaultOne() {
+		return (IssueStatus) findTheDefaultOne("IssueStatus", "useAsDefaultValue");
+	}
+	
+	public static IssueStatus findTheDefaultOneForMyCalendar() {
+		return (IssueStatus) findTheDefaultOne("IssueStatus", "useAsDefaultValueForMyCalendar");
+	}	
+	
+	public void setUseAsDefaultValue(boolean useAsDefaultValue) {
+		if (this.useAsDefaultValue == useAsDefaultValue) return;
+		unsetUseAsDefaultValueForAll("useAsDefaultValue");
+		this.useAsDefaultValue = useAsDefaultValue;
+	}		
+	// tmr fin
 
 }

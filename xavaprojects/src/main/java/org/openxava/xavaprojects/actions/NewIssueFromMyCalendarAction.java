@@ -19,15 +19,31 @@ import org.openxava.xavaprojects.model.*;
  */
 public class NewIssueFromMyCalendarAction extends NewAction {
 	
+	private boolean goList = false;
+	
 	public void execute() throws Exception {
+		// TMR ME QUEDÉ POR AQUÍ: YA FUNCIONA. DEBERÍA EMPEZAR CON LOS TESTS
+		if ("true".equals(getRequest().getParameter("firstRequest"))) {
+			goList = true;
+			return;
+		}
 		super.execute();
-		calculatePlanDefaultValue();
+		calculatePlanDefaultValue();	
+		calculateStatusDefaultValue();
+		calculateTypeDefaultValue();
+	}
+
+	public String getNextMode() {
+		return goList?IChangeModeAction.LIST:IChangeModeAction.DETAIL;
 	}
 
 	private void calculatePlanDefaultValue() {
-		// TMR ME QUEDÉ POR AQUÍ. YA NO FALLA, FALTA PROBARLO CON VARIOS CASOS, PARA VER SI FUNCIONA BIEN
 		// LocalDate plannedFor = (LocalDate) getView().getValue("plannedFor"); // tmr Waiting to bug be fixed		
 		LocalDate plannedFor = parseDate(getView().getValueString("plannedFor"));
+		if (plannedFor == null) {
+			plannedFor = LocalDate.now();
+			getView().setValue("plannedFor", plannedFor);
+		}
 		Query query = XPersistence.getManager().createQuery(
 			"from Plan p where p.worker.userName = :userName and :plannedFor between p.period.startDate and p.period.endDate");
 		query.setParameter("plannedFor", plannedFor);
@@ -39,8 +55,16 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 			return;
 		}
 		Plan plan = plans.get(0);
-		getView().setValue("plan.id", plan.getId());
+		getView().setValue("assignedTo.id", plan.getId());
 	}
+	
+	private void calculateStatusDefaultValue() {
+		getView().setValue("status.id", IssueStatus.findTheDefaultOneForMyCalendar().getId());
+	}
+	
+	private void calculateTypeDefaultValue() {
+		getView().setValue("type.id", IssueType.findTheDefaultOneForMyCalendar().getId());
+	}	
 	
 	private LocalDate parseDate(Object dateString) {
 		// tmr return LocalDate.parse((String) dateString, DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(Locales.getCurrent()));
