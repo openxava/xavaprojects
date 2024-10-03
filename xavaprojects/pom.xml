@@ -38,6 +38,16 @@
 		</dependency>
 		-->
 		
+	    <!-- last version supported for java 8 -->
+	    <!-- tmr -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.13.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		
 		<!-- 
 		To access to your database uncomment the corresponding entry 
 		from the below dependencies. If you don't find yours, look in

@@ -1,5 +1,7 @@
 Pending (tmr)
 - Propiedades para @Tab en Incidente (a arquetipo)
+- Enviar el correo cuando toque con Quartz (otra incidencia).
+- flowLayout=true, para probar por mi mismo la experiencia de usuario con flowLayout=true
 
 Para arquetipos:
 - Añadir Planned a la DB en tipo de incidencia con icono "calendar"
@@ -7,4 +9,4 @@ Para arquetipos:
 
 Diferido (7.5)
 - ¿@InCalendar(forTabs) para decidir que fecha usar? ¿O un @Calendar(name="", properties)? 
-- ¿Quitar configuraciones y grupos por código por código?
+- ¿Octultar visualmente en la lista la parte de configuraciones y grupos por código?

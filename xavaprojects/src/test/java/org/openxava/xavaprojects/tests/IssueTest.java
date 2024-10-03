@@ -22,7 +22,8 @@ public class IssueTest extends ModuleTestBase {
 		String [][] types = {
 			{ "", "" },
 			{ "4028808d7eea19fe017eea61bec90024", "Bug" },
-			{ "4028808d7eea19fe017eea61d4f20025", "Feature" }
+			{ "4028808d7eea19fe017eea61d4f20025", "Feature" },
+			{ "2c96c081922fb47401922fb812570003", "Task" } // tmr
 		};
 		assertValidValues("type.id", types);
 		setValue("type.id", "4028808d7eea19fe017eea61bec90024"); // Bug 
@@ -32,6 +33,8 @@ public class IssueTest extends ModuleTestBase {
 		assertValue("createdBy", "admin");
 		assertNoEditable("createdBy");
 		assertValue("createdOn", getCurrentDate());
+		assertValue("plannedFor", ""); // tmr
+		setValue("plannedFor", "10/30/2024"); // tmr
 
 		String [][] priorities = {
 			{ "", "" },
@@ -64,6 +67,7 @@ public class IssueTest extends ModuleTestBase {
 			{ "4028808d7eea19fe017eea2160df0002", "Done" },
 			{ "4028808d7eea19fe017eea2272ae0003", "Not reproducible" },
 			{ "4028808d7eea19fe017eea1e4ffb0001", "Pending" },
+			{ "2c96c081922f794f01922f8750de0001", "Planned" },
 			{ "4028808d7eea19fe017eea2380970004", "Rejected" }
 		};
 		
@@ -110,6 +114,7 @@ public class IssueTest extends ModuleTestBase {
 		assertDescriptionValue("project.id", "OpenXava"); 
 		assertValue("createdBy", "admin");
 		assertValue("createdOn", getCurrentDate()); // If fails revise the serverTimezone in MySQL url
+		assertValue("plannedFor", "10/30/2024"); // tmr
 		assertValue("priority.level", "7"); 
 		assertValue("version.id", "4028808d7eea19fe017eea5057f30011"); // 1.0 
 		assertValue("assignedTo.id", "4028808d7eea19fe017eea5b675b001f"); // 2019.11
@@ -132,7 +137,8 @@ public class IssueTest extends ModuleTestBase {
 		String [][] types = {
 			{ "", "" },
 			{ "4028808d7eea19fe017eea61bec90024", "Bug" },
-			{ "4028808d7eea19fe017eea61d4f20025", "Feature" }
+			{ "4028808d7eea19fe017eea61d4f20025", "Feature" },
+			{ "2c96c081922fb47401922fb812570003", "Task" } // tmr
 		};
 		assertValidValues("type.id", types);
 		setValue("type.id", "4028808d7eea19fe017eea61bec90024"); // Bug
