@@ -117,7 +117,7 @@ abstract public class WebDriverTestBase extends TestCase {
 	protected void executeWithoutArg(String moduleName, String action) throws Exception {
 		String[] actionS = action.split("\\.");
 		WebElement button = driver.findElement
-				(By.id("ox_x_" + moduleName + "__" + actionS[0] + "___" + actionS[1]));
+				(By.id("ox_xavaprojects_" + moduleName + "__" + actionS[0] + "___" + actionS[1]));
 		button.click();
 		acceptInDialogJS(driver);
 		wait(driver);

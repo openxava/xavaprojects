@@ -30,7 +30,7 @@
         </properties>
     </persistence-unit>
                     
-    <!-- JUnit Hypersonic -->
+    <!-- JUnit MySQL -->
     <persistence-unit name="junit">
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	<class>org.openxava.web.editors.DiscussionComment</class>

@@ -12,7 +12,7 @@ import lombok.*;
 
 @Entity @Getter @Setter
 public class Worker extends Nameable {
-	
+		
 	/* It could be in this way with XavaPro
 	@DescriptionsList
 	@ManyToOne(fetch = FetchType.LAZY)
