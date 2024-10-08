@@ -22,7 +22,6 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 	private boolean goList = false;
 	
 	public void execute() throws Exception {
-		// TMR ME QUEDÉ POR AQUÍ: YA FUNCIONA. DEBERÍA EMPEZAR CON LOS TESTS
 		if ("true".equals(getRequest().getParameter("firstRequest"))) {
 			goList = true;
 			return;

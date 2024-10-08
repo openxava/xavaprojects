@@ -21,7 +21,7 @@ import lombok.*;
 
 @Entity @Getter @Setter
 @Tab(name="MyCalendar", editors="Calendar", 
-	properties="assignedTo.worker.userName", 
+	properties="title", 
 	baseCondition = "${assignedTo.worker.userName} = ?", 
 	filter=org.openxava.filters.UserFilter.class) // tmr
 public class Issue extends Identifiable {

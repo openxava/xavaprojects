@@ -55,8 +55,9 @@ public class MyCalendarTest extends WebDriverTestBase {
 		execute("CRUD.save");
 		execute("Mode.list");
 		
-		// TMR ME QUEDÉ POR AQUÍ. LO DE ABAJO FALLA, HAY QUE AJUSTARLO. HAY QUE PROBAR QUE CON PEDRO NO SALE
-		assertDayText(year, month, 15, "javi"); // tmr "javi" hasta que tengamos la 7.4.1
+		assertDayText(year, month, 15, "JUnit incident from My calendar"); 
+		
+		// TMR ME QUEDÉ POR AQUÍ: FALTA COMPROBAR QUE SI ME IDENTIFICO CON OTRO USUARIO NO SALE AL INCIDENCIA
 	}
 
 	private void clickOnDay(int year, int month, int day) throws Exception {
@@ -69,8 +70,8 @@ public class MyCalendarTest extends WebDriverTestBase {
 	private void assertDayText(int year, int month, int day, String expectedText) throws Exception {
 		String date =  year + "-" + month + "-15";
 		WebElement dayElement = getDriver().findElement(By.cssSelector("td[data-date='" + date + "']"));
-		System.out.println("[MyCalendarTest.assertDayText] dayElement.getText()=" + dayElement.getText()); // tmp
-		assertEquals(expectedText, dayElement.getText());
+		System.out.println("[MyCalendarTest.assertDayText] dayElement.getText()=" + dayElement.getText()); // tmr
+		assertEquals(day + "\n" + expectedText, dayElement.getText());
 	}
 
 	private void createPlanForMonth(int year, int month) throws Exception {
