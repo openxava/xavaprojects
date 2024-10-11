@@ -1,7 +1,8 @@
 Pending (tmr)
+- Limpiar código: TMR ME QUEDÉ POR AQUÍ, LIMPIANDO EL CÓDIGO. LA SUITE YA FUNCIONO CON EL NUEVO TEST ACABADO
 - Propiedades para @Tab en Incidente (a arquetipo)
 - Enviar el correo cuando toque con Quartz (otra incidencia).
-- flowLayout=true, para probar por mi mismo la experiencia de usuario con flowLayout=true
+- resizeColumns=true, para probar por mi mismo la experiencia de usuario con resizeColumns=true
 
 Para arquetipos:
 - Añadir Planned a la DB en tipo de incidencia con icono "calendar"

@@ -46,7 +46,7 @@ abstract public class WebDriverTestBase extends TestCase {
 	    options.addArguments("--disable-search-engine-choice-screen"); 
 	    if (isHeadless()) {
 		    options.addArguments("--headless"); 
-		    options.addArguments("--disable-gpu"); 	    	
+		    options.addArguments("--disable-gpu");
 	    }
 		return new ChromeDriver(options);
 	}
@@ -358,6 +358,11 @@ abstract public class WebDriverTestBase extends TestCase {
 		List<WebElement> messages = getDriver().findElements(By.className("ox-message-box"));
 		assertEquals(expectedMessage, messages.get(messages.size()-1).getText());
 	}
+	
+	protected void assertError(String expectedError) { // tmr
+		List<WebElement> errors = getDriver().findElements(By.cssSelector(".ox-errors .ox-message-box"));
+		assertEquals(expectedError, errors.get(errors.size()-1).getText());
+	}
 		
 	protected void assertNoMessages() {
 		List<WebElement> messages = getDriver().findElements(By.className("ox-message-box"));
@@ -372,6 +377,12 @@ abstract public class WebDriverTestBase extends TestCase {
 		
 		WebElement loginButton = driver.findElement(By.id("ox_xavaprojects_SignIn__SignIn___signIn"));
 		loginButton.click();
+		wait(driver);
+	}
+
+	protected void logout() throws Exception { // tmr
+		WebElement loginLink = driver.findElement(By.cssSelector("#sign_in_out .sign-in"));
+		loginLink.click();
 		wait(driver);
 	}
 	

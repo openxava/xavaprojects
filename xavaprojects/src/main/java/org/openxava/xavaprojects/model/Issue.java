@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
 
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
+import org.openxava.jpa.*;
 import org.openxava.model.*;
 import org.openxava.web.editors.*;
 import org.openxava.xavaprojects.calculators.*;
@@ -92,6 +93,13 @@ public class Issue extends Identifiable {
 	@PreRemove
 	void removeDiscussion() {
 	    DiscussionComment.removeForDiscussion(discussion);
+	}
+
+	public static Issue findByTitle(String title) { // tmr
+		TypedQuery<Issue> query = XPersistence.getManager().createQuery(
+			"from Issue i where i.title = :title", Issue.class);
+		query.setParameter("title", title);
+		return query.getSingleResult();
 	}
 
 }

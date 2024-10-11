@@ -6,6 +6,7 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import org.apache.commons.logging.*;
 import org.openxava.actions.*;
 import org.openxava.formatters.*;
 import org.openxava.jpa.*;
@@ -13,11 +14,12 @@ import org.openxava.util.*;
 import org.openxava.xavaprojects.model.*;
 
 /**
- * tmr
  * 
  * @author Javier Paniza
  */
 public class NewIssueFromMyCalendarAction extends NewAction {
+
+	private static final Log log = LogFactory.getLog(NewIssueFromMyCalendarAction.class);
 	
 	private boolean goList = false;
 	
@@ -37,7 +39,7 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 	}
 
 	private void calculatePlanDefaultValue() {
-		// LocalDate plannedFor = (LocalDate) getView().getValue("plannedFor"); // tmr Waiting to bug be fixed		
+		// LocalDate plannedFor = (LocalDate) getView().getValue("plannedFor"); // Waiting to bug be fixed		
 		LocalDate plannedFor = parseDate(getView().getValueString("plannedFor"));
 		if (plannedFor == null) {
 			plannedFor = LocalDate.now();
@@ -49,8 +51,7 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 		query.setParameter("userName", Users.getCurrent());
 		List<Plan> plans = query.getResultList(); 
 		if (plans.isEmpty()) {
-			addWarning("There is no plan for " + Users.getCurrent() + " for the date " + plannedFor);
-			addWarning("You should create it and assign to this issue");
+			addError("no_plan_for_user_date", "assignedTo", plannedFor, "'" + Users.getCurrent() + "'"); 
 			return;
 		}
 		Plan plan = plans.get(0);
@@ -65,14 +66,13 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 		getView().setValue("type.id", IssueType.findTheDefaultOneForMyCalendar().getId());
 	}	
 	
-	private LocalDate parseDate(Object dateString) {
-		// tmr return LocalDate.parse((String) dateString, DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(Locales.getCurrent()));
+	private LocalDate parseDate(Object dateString) { 
 		String date = ((String) dateString).split(" ")[0];
 		try {
 			return (LocalDate) new LocalDateFormatter().parse(getRequest(), date);
 		} 
 		catch (ParseException ex) {			
-			ex.printStackTrace(); // tmr
+			log.warn(ex);
 			return null;
 		}
 	}

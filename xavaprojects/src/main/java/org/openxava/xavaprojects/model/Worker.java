@@ -3,6 +3,8 @@ package org.openxava.xavaprojects.model;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.openxava.jpa.*;
+
 import lombok.*;
 
 /**
@@ -24,5 +26,9 @@ public class Worker extends Nameable {
 	
 	@Column(length=60) @Email 
 	String email; // tmr En schema-evolution.sql
+	
+	public static Worker findById(String id) { // tmr 
+		return XPersistence.getManager().find(Worker.class, id);
+	}
 	
 }

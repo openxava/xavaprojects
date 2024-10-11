@@ -3,6 +3,8 @@ package org.openxava.xavaprojects.tests;
 import java.time.*;
 import java.util.*;
 
+import javax.persistence.*;
+
 import org.openqa.selenium.*;
 import org.openxava.jpa.*;
 import org.openxava.util.*;
@@ -10,32 +12,25 @@ import org.openxava.xavaprojects.model.*;
 import org.openxava.xavaprojects.model.Period;
 
 /**
- * tmr
+ * 
  * @author Javier Paniza
  */
 
 public class MyCalendarTest extends WebDriverTestBase {
 	
-	protected boolean isHeadless() {
-		return false;
-	}
-	
 	protected void setUp() throws Exception {
 		super.setUp();
 		XPersistence.setPersistenceUnit("junit");
 	}
-	
-	protected void tearDown() throws Exception { // tmr Para no cierre el navegador
-	}
-	
-	public void testCreateIssueFromADay() throws Exception {
+		
+	public void testCreateIssue() throws Exception {
 		goModule("MyCalendar");
 		login("javi", "javi");
 		int year = Dates.getYear(new Date());
 		int month = Dates.getMonth(new Date());
 
 		clickOnDay(year, month, 15);
-		assertMessage("You should create it and assign to this issue");
+		assertError("There is no plan for javi on the date " + year + "-" + month + "-15. Create one and set it in the Assigned to field");
 		assertValue("plannedFor", month + "/15/" + year);
 		assertDescriptionValue("type.id", "Task");
 		assertDescriptionValue("status.id", "Planned");
@@ -45,7 +40,7 @@ public class MyCalendarTest extends WebDriverTestBase {
 		execute("Mode.list");
 		
 		clickOnDay(year, month, 15);
-		assertNoMessages();
+		assertNoErrors();
 		assertValue("plannedFor", month + "/15/" + year);
 		assertDescriptionValue("type.id", "Task");
 		assertDescriptionValue("status.id", "Planned");
@@ -57,32 +52,49 @@ public class MyCalendarTest extends WebDriverTestBase {
 		
 		assertDayText(year, month, 15, "JUnit incident from My calendar"); 
 		
-		// TMR ME QUEDÉ POR AQUÍ: FALTA COMPROBAR QUE SI ME IDENTIFICO CON OTRO USUARIO NO SALE AL INCIDENCIA
+		execute("MyCalendar.new");
+		assertNoErrors();
+		assertValue("plannedFor", month + "/" + Dates.getDay(new Date()) + "/" + year);
+		assertDescriptionValue("type.id", "Task");
+		assertDescriptionValue("status.id", "Planned");
+		assertDescriptionValue("assignedTo.id", "Javi " + year + "." + month);	
+		
+		logout();
+		login("juan", "juan");
+		goModule("MyCalendar");
+		assertDayText(year, month, 15, "");
+		
+		deleteData("JUnit incident from My calendar");
+		
+		
 	}
 
 	private void clickOnDay(int year, int month, int day) throws Exception {
-		String date =  year + "-" + month + "-15";
-		WebElement dayElement = getDriver().findElement(By.cssSelector("td[data-date='" + date + "']")); // tmr ¿Refactorizar con assertDayText?
+		WebElement dayElement = getDayElement(year, month);
 		dayElement.click();
 		wait(getDriver());
 	}
 	
 	private void assertDayText(int year, int month, int day, String expectedText) throws Exception {
-		String date =  year + "-" + month + "-15";
-		WebElement dayElement = getDriver().findElement(By.cssSelector("td[data-date='" + date + "']"));
-		System.out.println("[MyCalendarTest.assertDayText] dayElement.getText()=" + dayElement.getText()); // tmr
-		assertEquals(day + "\n" + expectedText, dayElement.getText());
+		WebElement dayElement = getDayElement(year, month);
+		String expectedDayContent = Is.emptyString(expectedText)?Integer.toString(day): day + "\n" + expectedText; 
+		assertEquals(expectedDayContent, dayElement.getText());
 	}
+	
+	private WebElement getDayElement(int year, int month) {
+		String date =  year + "-" + month + "-15";
+		WebElement dayElement = getDriver().findElement(By.cssSelector("td[data-date='" + date + "']")); 
+		return dayElement;
+	}	
 
 	private void createPlanForMonth(int year, int month) throws Exception {
 		org.openxava.xavaprojects.model.Period period = new Period();
 		period.setName(year + "." + month);
 		period.setStartDate(LocalDate.of(year, month, 1));
-		period.setEndDate(LocalDate.of(year, month, 28)); // 28 to work for all months, enough for the test
-		
+		period.setEndDate(YearMonth.now().atEndOfMonth()); 
 		
 		Plan plan = new Plan();
-		plan.setWorker(XPersistence.getManager().find(Worker.class, "4028808d7eea19fe017eea56ed120018")); // Javi
+		plan.setWorker(Worker.findById("4028808d7eea19fe017eea56ed120018")); // Javi
 		plan.setPeriod(period);
 		
 		XPersistence.getManager().persist(period);
@@ -91,4 +103,14 @@ public class MyCalendarTest extends WebDriverTestBase {
 		XPersistence.commit();
 	}
 	
+	private void deleteData(String issueTitle) {
+		Issue issue = Issue.findByTitle(issueTitle);
+		EntityManager pm = XPersistence.getManager();
+		pm.remove(issue);
+		Plan plan = issue.getAssignedTo();
+		pm.remove(plan);
+		pm.remove(plan.getPeriod());
+		XPersistence.commit();
+	}
+
 }
