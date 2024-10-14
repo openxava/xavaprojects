@@ -1,7 +1,7 @@
 Change Log for XavaProjects
 ===========================
 
-XavaProjects 2024.10 (2024-10-XX)
+XavaProjects 2024.10 (2024-10-14)
 ---------------------------------
 - New MyCalendar module.
 - Resize columns for lists enabled.
