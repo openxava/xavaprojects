@@ -1,6 +1,17 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2024.10 (2024-10-XX)
+---------------------------------
+- New MyCalendar module.
+- Resize columns for lists enabled.
+- Default columns for list mode of Issue refined.
+- Property plannedFor added to Issue.
+- IssueType and IssueStatus has a useAsDefaultValueForMyCalendar property.
+- Properties startDate and endDate added to Period.
+- Properties userName and email added to Worker.
+- OpenXava upgraded to OpenXava 7.4.1.
+
 XavaProjects 2024.09 (2024-9-17)
 --------------------------------
 - OpenXava upgraded to OpenXava 7.4.

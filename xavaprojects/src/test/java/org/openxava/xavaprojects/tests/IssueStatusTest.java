@@ -14,11 +14,10 @@ public class IssueStatusTest extends ModuleTestBase {
 	}
 	
 	public void testUseAsDefaultValue() throws Exception {
-		// tmr Code adapted to PLanned and useAsDefaultValueForMyCalendar
 		login("admin", "admin");
 		assertListRowCount(5);
 		assertValueInList(0, 0, "Planned");
-		assertValueInList(0, 2, "Use as default value for my calendar");
+		assertValueInList(0, 2, "Use as default value for My calendar");
 		assertValueInList(0, 3, "");
 		assertValueInList(1, 0, "Pending");
 		assertValueInList(1, 2, "");
@@ -53,7 +52,7 @@ public class IssueStatusTest extends ModuleTestBase {
 		assertValueInList(3, 2, "");
 		assertValueInList(3, 3, "");
 		assertValueInList(4, 0, "Rejected");
-		assertValueInList(4, 2, "Use as default value for my calendar");
+		assertValueInList(4, 2, "Use as default value for My calendar");
 		assertValueInList(4, 3, "Use as default value");
 		
 		execute("List.viewDetail", "row=0");
@@ -69,7 +68,7 @@ public class IssueStatusTest extends ModuleTestBase {
 		execute("Mode.list");		
 		
 		assertValueInList(0, 0, "Planned");
-		assertValueInList(0, 2, "Use as default value for my calendar");
+		assertValueInList(0, 2, "Use as default value for My calendar");
 		assertValueInList(0, 3, "");
 		assertValueInList(1, 0, "Pending");
 		assertValueInList(1, 2, "");

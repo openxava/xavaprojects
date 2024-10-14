@@ -15,8 +15,7 @@ import org.openxava.web.*;
 import junit.framework.*;
 
 /**
- * tmr Copiada de openxavatest, ¿crear un openxava-test o openxava-selenium project?
- * Base class to test using Selenium WebDriver
+ * Base class to test using Selenium WebDriver.
  * 
  * @author Javier Paniza
  */
@@ -359,7 +358,7 @@ abstract public class WebDriverTestBase extends TestCase {
 		assertEquals(expectedMessage, messages.get(messages.size()-1).getText());
 	}
 	
-	protected void assertError(String expectedError) { // tmr
+	protected void assertError(String expectedError) { 
 		List<WebElement> errors = getDriver().findElements(By.cssSelector(".ox-errors .ox-message-box"));
 		assertEquals(expectedError, errors.get(errors.size()-1).getText());
 	}
@@ -380,7 +379,7 @@ abstract public class WebDriverTestBase extends TestCase {
 		wait(driver);
 	}
 
-	protected void logout() throws Exception { // tmr
+	protected void logout() throws Exception { 
 		WebElement loginLink = driver.findElement(By.cssSelector("#sign_in_out .sign-in"));
 		loginLink.click();
 		wait(driver);

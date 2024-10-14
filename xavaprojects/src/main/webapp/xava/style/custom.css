@@ -75,7 +75,6 @@ Put here your own style
 	border-top-left-radius: 5px;
 }
 
-/* tmr ini */
 #ox_xavaprojects_MyCalendar__core .ox-list-title {
 	display: none;
 }
@@ -87,4 +86,3 @@ Put here your own style
 #ox_xavaprojects_MyCalendar__core #xava_calendar {
 	margin-top: 20px;
 }
-/* tmr fin */

@@ -9,14 +9,14 @@ import org.openxava.jpa.*;
 import lombok.*;
 
 /**
- * tmr
+ * 
  * @author Javier Paniza
  */
 
 @MappedSuperclass @Getter @Setter
 public class IconableWithUseAsDefaultValueForMyCalendar extends Iconable {
 			
-	boolean useAsDefaultValueForMyCalendar; // tmr i18n, en schema-evolution.sql
+	boolean useAsDefaultValueForMyCalendar; 
 			
 	protected static Object findTheDefaultOne(String entity, String property) {
 		List status = XPersistence.getManager()

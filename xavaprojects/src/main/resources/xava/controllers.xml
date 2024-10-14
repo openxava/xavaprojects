@@ -28,7 +28,6 @@
 			class="org.openxava.xavaprojects.actions.CreateNewIssueInVersionAction"/>
 	</controller>
 	
-	<!-- tmr ini -->
 	<controller name="MyCalendar">
 		<extends controller="CRUD"/>
 		<action name="new" 

@@ -13,27 +13,6 @@ public class IssueStatus extends IconableWithUseAsDefaultValueForMyCalendar {
 			
 	boolean useAsDefaultValue;
 		
-	/* tmr
-	public static IssueStatus findTheDefaultOne() {
-		List<IssueStatus> status = XPersistence.getManager()
-			.createQuery("from IssueStatus where useAsDefaultValue = true")
-			.getResultList();
-		if (status.size() == 1) return status.get(0);
-		return null;
-	}
-			
-	private void unsetUseAsDefaultValueForAll() {
-		XPersistence.getManager().createQuery("update IssueStatus set useAsDefaultValue = false").executeUpdate();
-	}
-
-	public void setUseAsDefaultValue(boolean useAsDefaultValue) {
-		if (this.useAsDefaultValue == useAsDefaultValue) return;
-		unsetUseAsDefaultValueForAll();
-		this.useAsDefaultValue = useAsDefaultValue;
-	}
-	*/
-	
-	// tmr ini
 	public static IssueStatus findTheDefaultOne() {
 		return (IssueStatus) findTheDefaultOne("IssueStatus", "useAsDefaultValue");
 	}
@@ -47,6 +26,5 @@ public class IssueStatus extends IconableWithUseAsDefaultValueForMyCalendar {
 		unsetUseAsDefaultValueForAll("useAsDefaultValue");
 		this.useAsDefaultValue = useAsDefaultValue;
 	}		
-	// tmr fin
 
 }

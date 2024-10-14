@@ -22,12 +22,12 @@ public class Worker extends Nameable {
 	*/
 	
 	@Column(length=30)
-	String userName; // tmr En schema-evolution.sql
+	String userName; 
 	
 	@Column(length=60) @Email 
-	String email; // tmr En schema-evolution.sql
+	String email; 
 	
-	public static Worker findById(String id) { // tmr 
+	public static Worker findById(String id) {  
 		return XPersistence.getManager().find(Worker.class, id);
 	}
 	

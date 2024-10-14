@@ -21,10 +21,11 @@ import lombok.*;
  */
 
 @Entity @Getter @Setter
+@Tab(properties="title, type.name, description, project.name, version.name, createdBy, createdOn, status.name")
 @Tab(name="MyCalendar", editors="Calendar", 
 	properties="title", 
 	baseCondition = "${assignedTo.worker.userName} = ?", 
-	filter=org.openxava.filters.UserFilter.class) // tmr
+	filter=org.openxava.filters.UserFilter.class)
 public class Issue extends Identifiable {
 
 	@Column(length=100) @Required
@@ -46,7 +47,7 @@ public class Issue extends Identifiable {
 	@DefaultValueCalculator(CurrentUserCalculator.class)
 	String createdBy;
 	
-	LocalDate plannedFor; // tmr En schema-evolution	
+	LocalDate plannedFor; 	
 	
 	@ReadOnly 
 	@DefaultValueCalculator(CurrentLocalDateCalculator.class) 
@@ -95,7 +96,7 @@ public class Issue extends Identifiable {
 	    DiscussionComment.removeForDiscussion(discussion);
 	}
 
-	public static Issue findByTitle(String title) { // tmr
+	public static Issue findByTitle(String title) { 
 		TypedQuery<Issue> query = XPersistence.getManager().createQuery(
 			"from Issue i where i.title = :title", Issue.class);
 		query.setParameter("title", title);
