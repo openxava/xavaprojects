@@ -1,6 +1,5 @@
 package org.openxava.xavaprojects.actions;
 
-import java.text.*;
 import java.time.*;
 import java.util.*;
 
@@ -8,7 +7,6 @@ import javax.persistence.*;
 
 import org.apache.commons.logging.*;
 import org.openxava.actions.*;
-import org.openxava.formatters.*;
 import org.openxava.jpa.*;
 import org.openxava.util.*;
 import org.openxava.xavaprojects.model.*;
@@ -39,8 +37,7 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 	}
 
 	private void calculatePlanDefaultValue() {
-		// LocalDate plannedFor = (LocalDate) getView().getValue("plannedFor"); // Waiting to bug be fixed		
-		LocalDate plannedFor = parseDate(getView().getValueString("plannedFor"));
+		LocalDate plannedFor = (LocalDate) getView().getValue("plannedFor"); 		
 		if (plannedFor == null) {
 			plannedFor = LocalDate.now();
 			getView().setValue("plannedFor", plannedFor);
@@ -66,15 +63,4 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 		getView().setValue("type.id", IssueType.findTheDefaultOneForMyCalendar().getId());
 	}	
 	
-	private LocalDate parseDate(Object dateString) { 
-		String date = ((String) dateString).split(" ")[0];
-		try {
-			return (LocalDate) new LocalDateFormatter().parse(getRequest(), date);
-		} 
-		catch (ParseException ex) {			
-			log.warn(ex);
-			return null;
-		}
-	}
-
 }

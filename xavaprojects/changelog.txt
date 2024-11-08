@@ -1,6 +1,8 @@
 Change Log for XavaProjects
 ===========================
 
+- OpenXava upgraded to OpenXava 7.4.2.
+
 XavaProjects 2024.10 (2024-10-14)
 ---------------------------------
 - New MyCalendar module.
