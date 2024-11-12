@@ -10,6 +10,7 @@ import org.openxava.annotations.*;
 import org.openxava.calculators.*;
 import org.openxava.jpa.*;
 import org.openxava.model.*;
+import org.openxava.util.*;
 import org.openxava.web.editors.*;
 import org.openxava.xavaprojects.calculators.*;
 
@@ -47,7 +48,46 @@ public class Issue extends Identifiable {
 	@DefaultValueCalculator(CurrentUserCalculator.class)
 	String createdBy;
 	
-	LocalDate plannedFor; 	
+	LocalDate plannedFor;
+	// tmr ini
+	public void setPlannedFor(LocalDate plannedFor) {
+		if (Is.equal(this.plannedFor, plannedFor)) return;
+		// TMR ME QUEDÉ POR AQUÍ: INTENTANDO HACER LA IMPLEMENTACIÓN REAL
+		/*
+		if (this.plannedFor == null) {
+			try {
+				JobDataMap jobDataMap = new JobDataMap();
+				jobDataMap.put("title", getTitle());
+				jobDataMap.put("worker", getAssignedTo().getWorker()); // tmr ¿Qué pasa si no hay?
+				jobDataMap.put("email", getAssignedTo().getWorker().getEmail());
+				jobDataMap.put("issueURL", "The issueURL");	// tmr
+		        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
+		            .withIdentity("emailJob", "group1")
+		            .usingJobData(jobDataMap)	
+		            .build();
+	
+				LocalDateTime localDateTime = plannedFor.atStartOfDay(); 
+				Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
+				Trigger trigger = TriggerBuilder.newTrigger()
+		            .withIdentity("emailTrigger", "group1")
+		            .startAt(date)  
+		            .build();
+	
+				StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
+			}
+			catch (Exception ex) {
+				ex.printStackTrace(); // tmr
+			}
+			
+		}
+		else {
+			// TMR YA EXISTE
+		}
+		*/
+		this.plannedFor = plannedFor;
+	}
+	// tmr fin
+	
 	
 	@ReadOnly 
 	@DefaultValueCalculator(CurrentLocalDateCalculator.class) 
@@ -65,12 +105,12 @@ public class Issue extends Identifiable {
 	
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@DescriptionsList(descriptionProperties="worker.name, period.name")
-	Plan assignedTo;
+	Plan assignedTo; // tmr cuando cambie replanear
 	
 	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY, optional=false)
 	@DefaultValueCalculator(DefaultIssueStatusCalculator.class) 
-	IssueStatus status; 
+	IssueStatus status; // tmr cuando cambie replanear
 	
 	@DescriptionsList
 	@ManyToOne(fetch=FetchType.LAZY)
