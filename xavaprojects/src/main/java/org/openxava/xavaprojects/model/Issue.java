@@ -2,6 +2,7 @@ package org.openxava.xavaprojects.model;
 
 import java.math.*;
 import java.time.*;
+import java.util.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -13,6 +14,9 @@ import org.openxava.model.*;
 import org.openxava.util.*;
 import org.openxava.web.editors.*;
 import org.openxava.xavaprojects.calculators.*;
+import org.openxava.xavaprojects.jobs.*;
+import org.quartz.*;
+import org.quartz.impl.*;
 
 import lombok.*;
 
@@ -52,39 +56,52 @@ public class Issue extends Identifiable {
 	// tmr ini
 	public void setPlannedFor(LocalDate plannedFor) {
 		if (Is.equal(this.plannedFor, plannedFor)) return;
-		// TMR ME QUEDÉ POR AQUÍ: INTENTANDO HACER LA IMPLEMENTACIÓN REAL
-		/*
-		if (this.plannedFor == null) {
-			try {
-				JobDataMap jobDataMap = new JobDataMap();
-				jobDataMap.put("title", getTitle());
-				jobDataMap.put("worker", getAssignedTo().getWorker()); // tmr ¿Qué pasa si no hay?
-				jobDataMap.put("email", getAssignedTo().getWorker().getEmail());
-				jobDataMap.put("issueURL", "The issueURL");	// tmr
-		        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
-		            .withIdentity("emailJob", "group1")
-		            .usingJobData(jobDataMap)	
-		            .build();
-	
-				LocalDateTime localDateTime = plannedFor.atStartOfDay(); 
-				Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
-				Trigger trigger = TriggerBuilder.newTrigger()
-		            .withIdentity("emailTrigger", "group1")
-		            .startAt(date)  
-		            .build();
-	
-				StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
-			}
-			catch (Exception ex) {
-				ex.printStackTrace(); // tmr
-			}
-			
-		}
-		else {
-			// TMR YA EXISTE
-		}
-		*/
+		if (this.plannedFor != null) unplanReminder();
 		this.plannedFor = plannedFor;
+		planReminder();		
+	}
+	
+	private void planReminder() {
+		try {
+			if (plannedFor == null) return;
+			if (getId() == null) return;
+			JobDataMap jobDataMap = new JobDataMap();
+			jobDataMap.put("issue.id", getId());
+	        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
+	            .withIdentity(getId(), "issueReminders")
+	            .usingJobData(jobDataMap)	
+	            .build();
+	
+			// tmr LocalDateTime localDateTime = plannedFor.atStartOfDay();	    
+	        // TMR ME QUEDÉ POR AQUÍ. HICE LAS PRIMERAS PRUEBAS Y PARECE QUE FUNCIONÓ, USANDO EL TRUCO DE LOS MINUTOS
+	        LocalDateTime localDateTime = LocalDateTime.of(2024, 11, 13, 21, plannedFor.getDayOfMonth()); // tmr Solo para testear
+	        System.out.println("[Issue.planReminder] Planificando " + getId()  +" para " + localDateTime); // tmr
+			Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
+			Trigger trigger = TriggerBuilder.newTrigger()
+	            .withIdentity(getId(), "issueReminders")
+	            .startAt(date)  
+	            .build();
+	
+			StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	private void unplanReminder() {
+		try {
+			System.out.println("[Issue.unplanReminder] Quitando del plan " + getId()); // tmr
+			StdSchedulerFactory.getDefaultScheduler().deleteJob(new JobKey(getId(), "issueReminders"));
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}		
+	}
+	
+	@PostPersist
+	private void planReminderIfNeeded() {
+		if (plannedFor != null) planReminder();
 	}
 	// tmr fin
 	
@@ -142,5 +159,9 @@ public class Issue extends Identifiable {
 		query.setParameter("title", title);
 		return query.getSingleResult();
 	}
+	
+	public static Issue findById(String id) { // tmr 
+		return XPersistence.getManager().find(Issue.class, id);
+	}	
 
 }
