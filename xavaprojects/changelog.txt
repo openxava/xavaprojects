@@ -1,6 +1,7 @@
 Change Log for XavaProjects
 ===========================
 
+- Email reminder to worker for his planned issues for the day, using Quartz.
 - OpenXava upgraded to OpenXava 7.4.2.
 
 XavaProjects 2024.10 (2024-10-14)

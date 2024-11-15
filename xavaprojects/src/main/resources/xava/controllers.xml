@@ -37,16 +37,7 @@
 			keystroke="Control N"
 			loses-changed-data="true">
 			<set property="restoreModel" value="true"/>						
-		</action>
-		
-		<!-- tmr ini -->
-		<action name="plan" 
-			class="org.openxava.xavaprojects.actions.PlanAction"
-			image="new.gif"
-			icon="clock-check-outline">
-		</action>
-		<!-- tmr fin -->
-		
+		</action>			
 	</controller>	
     
 </controllers>
