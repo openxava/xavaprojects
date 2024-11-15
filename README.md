@@ -49,6 +49,9 @@ Edit the *xavaprojects/src/main/webapp/META-INF/context.xml* file to put the cor
 
 Fill the *username* and *password* attributes.
 
+If you want the email reminders to be remembered when the application is restarted, you have to create the Quartz tables using the following scripts:
+https://github.com/quartz-scheduler/quartz/tree/main/quartz/src/main/resources/org/quartz/impl/jdbcjobstore
+
 ## Run XavaProjects
 To run XavaProjects in Windows:
 
