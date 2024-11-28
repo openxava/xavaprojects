@@ -21,7 +21,8 @@ import junit.framework.*;
  */
 abstract public class WebDriverTestBase extends TestCase {
 	
-	private boolean headless = true;
+	// tmr private boolean headless = true;
+	private boolean headless = false; // tmr
 	private String module;
 	private WebDriver driver;
 	
@@ -34,7 +35,7 @@ abstract public class WebDriverTestBase extends TestCase {
 	}
 
 	protected void tearDown() throws Exception {
-		driver.quit();
+		// tmr driver.quit();
 	}
 	
 	protected WebDriver createWebDriver(String lang) {

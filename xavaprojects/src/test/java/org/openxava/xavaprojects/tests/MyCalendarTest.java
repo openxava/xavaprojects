@@ -42,8 +42,9 @@ public class MyCalendarTest extends WebDriverTestBase {
 		assertDescriptionValue("assignedTo.id", "Javi " + year + "." + month);	
 		
 		setValue("title", "JUnit incident from My calendar");
-		execute("CRUD.save");
-		execute("Mode.list");
+		// tmr execute("CRUD.save");
+		execute("MyCalendar.save"); // tmr
+		// tmr execute("Mode.list"); // TMR ME QUEDÉ POR AQUÍ. ESTO FUNCIONÓ, SOLO FALTA PASAR LA SUITE Y LIMPIAR
 		
 		assertDayText(year, month, 15, "JUnit incident from My calendar"); 
 		

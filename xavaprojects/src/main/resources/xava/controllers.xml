@@ -37,7 +37,18 @@
 			keystroke="Control N"
 			loses-changed-data="true">
 			<set property="restoreModel" value="true"/>						
-		</action>			
+		</action>
+		
+		<!-- tmr ini -->
+		<action name="save" mode="detail"
+			by-default="if-possible"
+			class="org.openxava.xavaprojects.actions.SaveReturningToListAction"
+			image="save.gif"
+			icon="content-save"
+			keystroke="Control S"/>
+		<!-- tmr fin -->						
 	</controller>	
+	
+	
     
 </controllers>
