@@ -18,6 +18,9 @@ import org.openxava.xavaprojects.model.Period;
 
 public class MyCalendarTest extends WebDriverTestBase {
 	
+	private int year = Dates.getYear(new Date());
+	private int month = Dates.getMonth(new Date());
+	
 	protected void setUp() throws Exception {
 		super.setUp();
 		XPersistence.setPersistenceUnit("junit");
@@ -26,18 +29,10 @@ public class MyCalendarTest extends WebDriverTestBase {
 	public void testCreateIssue() throws Exception {
 		goModule("MyCalendar");
 		login("javi", "javi");
-		int year = Dates.getYear(new Date());
-		int month = Dates.getMonth(new Date());
 
-		clickOnDay(year, month, 15);
-		assertError("There is no plan for javi on the date " + year + "-" + month + "-15. Create one and set it in the Assigned to field");
-		assertValue("plannedFor", month + "/15/" + year);
-		assertDescriptionValue("type.id", "Task");
-		assertDescriptionValue("status.id", "Planned");
-		assertDescriptionValue("assignedTo.id", "");
-		
-		createPlanForMonth(year, month);
-		execute("Mode.list");
+		assertNewWithNoPlan();		
+		createPlanForMonth(year, month);		
+		assertNewWithNoDefaultForStatusAndType();
 		
 		clickOnDay(year, month, 15);
 		assertNoErrors();
@@ -65,8 +60,42 @@ public class MyCalendarTest extends WebDriverTestBase {
 		assertDayText(year, month, 15, "");
 		
 		deleteData("JUnit incident from My calendar");
+	}
+
+	private void assertNewWithNoDefaultForStatusAndType() throws Exception {
+		IssueStatus issueStatus = IssueStatus.findTheDefaultOneForMyCalendar();
+		issueStatus.setUseAsDefaultValueForMyCalendar(false);
+		String issueStatusId = issueStatus.getId();
 		
+		IssueType issueType = IssueType.findTheDefaultOneForMyCalendar();
+		issueType.setUseAsDefaultValueForMyCalendar(false);
+		String issueTypeId = issueType.getId();
 		
+		XPersistence.commit();
+		
+		clickOnDay(year, month, 15);
+		
+		assertNoErrors();
+		assertValue("plannedFor", month + "/15/" + year);
+		assertDescriptionValue("type.id", "");
+		assertDescriptionValue("status.id", "Pending");  
+		assertDescriptionValue("assignedTo.id", "Javi " + year + "." + month);
+		
+		IssueStatus.findById(issueStatusId).setUseAsDefaultValueForMyCalendar(true);
+		IssueType.findById(issueTypeId).setUseAsDefaultValueForMyCalendar(true);
+		XPersistence.commit();
+		
+		execute("Mode.list");
+	}
+
+	private void assertNewWithNoPlan() throws Exception {
+		clickOnDay(year, month, 15);
+		assertError("There is no plan for javi on the date " + year + "-" + month + "-15. Create one and set it in the Assigned to field");
+		assertValue("plannedFor", month + "/15/" + year);
+		assertDescriptionValue("type.id", "Task");
+		assertDescriptionValue("status.id", "Planned");
+		assertDescriptionValue("assignedTo.id", "");
+		execute("Mode.list");
 	}
 
 	private void clickOnDay(int year, int month, int day) throws Exception {

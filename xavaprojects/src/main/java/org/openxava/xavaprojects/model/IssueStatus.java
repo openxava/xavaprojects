@@ -2,6 +2,8 @@ package org.openxava.xavaprojects.model;
 
 import javax.persistence.*;
 
+import org.openxava.jpa.*;
+
 import lombok.*;
 
 /**
@@ -12,6 +14,10 @@ import lombok.*;
 public class IssueStatus extends IconableWithUseAsDefaultValueForMyCalendar {
 			
 	boolean useAsDefaultValue;
+	
+	public static IssueStatus findById(String id) { 
+		return (IssueStatus) XPersistence.getManager().find(IssueStatus.class, id);
+	}
 		
 	public static IssueStatus findTheDefaultOne() {
 		return (IssueStatus) findTheDefaultOne("IssueStatus", "useAsDefaultValue");

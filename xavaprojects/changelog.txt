@@ -1,6 +1,8 @@
 Change Log for XavaProjects
 ===========================
 
+- Fix: If no IssueStatus or IssueType by default for calendar an error is shown on create issue in calendar. 
+
 XavaProjects 2024.11 (2024-11-19)
 ---------------------------------
 - Email reminder to worker for his planned issues for the day, using Quartz.

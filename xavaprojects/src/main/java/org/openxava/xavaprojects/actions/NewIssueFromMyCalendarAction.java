@@ -56,11 +56,17 @@ public class NewIssueFromMyCalendarAction extends NewAction {
 	}
 	
 	private void calculateStatusDefaultValue() {
-		getView().setValue("status.id", IssueStatus.findTheDefaultOneForMyCalendar().getId());
+		IssueStatus issueStatus = IssueStatus.findTheDefaultOneForMyCalendar();
+		if (issueStatus != null) {
+			getView().setValue("status.id", issueStatus.getId());
+		}
 	}
 	
 	private void calculateTypeDefaultValue() {
-		getView().setValue("type.id", IssueType.findTheDefaultOneForMyCalendar().getId());
+		IssueType issueType = IssueType.findTheDefaultOneForMyCalendar();
+		if (issueType != null) {
+			getView().setValue("type.id", issueType.getId());
+		}
 	}	
 	
 }
