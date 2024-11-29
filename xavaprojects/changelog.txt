@@ -1,6 +1,7 @@
 Change Log for XavaProjects
 ===========================
 
+- Saving an issue from MyCalendar module returns to the calendar view (the list).
 - Added the 'Planned for' date to the issues list in plan.  
 - Fix: If no IssueStatus or IssueType by default for calendar an error is shown on create issue in calendar. 
 

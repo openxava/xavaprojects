@@ -3,9 +3,8 @@ package org.openxava.xavaprojects.actions;
 import org.openxava.actions.*;
 
 /**
- *  tmr ¿Incluir en OpenXava? 
  * 
- * @author javie
+ * @author Javier Paniza
  */
 public class SaveReturningToListAction extends SaveAction {
 	

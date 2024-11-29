@@ -5,7 +5,6 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import org.apache.commons.logging.*;
 import org.openxava.actions.*;
 import org.openxava.jpa.*;
 import org.openxava.util.*;
@@ -17,8 +16,6 @@ import org.openxava.xavaprojects.model.*;
  */
 public class NewIssueFromMyCalendarAction extends NewAction {
 
-	private static final Log log = LogFactory.getLog(NewIssueFromMyCalendarAction.class);
-	
 	private boolean goList = false;
 	
 	public void execute() throws Exception {
