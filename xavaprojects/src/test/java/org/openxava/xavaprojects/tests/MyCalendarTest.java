@@ -41,8 +41,12 @@ public class MyCalendarTest extends WebDriverTestBase {
 		assertDescriptionValue("status.id", "Planned");
 		assertDescriptionValue("assignedTo.id", "Javi " + year + "." + month);	
 		
+		execute("MyCalendar.save"); 
+		assertError("Value for Title in Issue is required");
+
 		setValue("title", "JUnit incident from My calendar");
 		execute("MyCalendar.save"); 
+		assertNoErrors(); 
 		
 		assertDayText(year, month, 15, "JUnit incident from My calendar"); 
 		
