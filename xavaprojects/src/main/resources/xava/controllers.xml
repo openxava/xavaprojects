@@ -30,6 +30,7 @@
 	
 	<controller name="MyCalendar">
 		<extends controller="CRUD"/>
+		
 		<action name="new" 
 			class="org.openxava.xavaprojects.actions.NewIssueFromMyCalendarAction"
 			image="new.gif"
@@ -39,14 +40,13 @@
 			<set property="restoreModel" value="true"/>						
 		</action>
 		
-		<!-- tmr ini -->
 		<action name="save" mode="detail"
 			by-default="if-possible"
 			class="org.openxava.xavaprojects.actions.SaveReturningToListAction"
 			image="save.gif"
 			icon="content-save"
 			keystroke="Control S"/>
-		<!-- tmr fin -->						
+			
 	</controller>	
 	
 	

@@ -3,6 +3,9 @@ Change Log for XavaProjects
 
 - Saving an issue from MyCalendar module returns to the calendar view (the list).
 - Added the 'Planned for' date to the issues list in plan.  
+- MySQL JDBC driver upgraded to 8.0.33.
+- OpenXava upgraded to OpenXava 7.4.4.
+- Fix: Security vulnerability from dependencies.
 - Fix: If no IssueStatus or IssueType by default for calendar an error is shown on create issue in calendar. 
 
 XavaProjects 2024.11 (2024-11-19)
