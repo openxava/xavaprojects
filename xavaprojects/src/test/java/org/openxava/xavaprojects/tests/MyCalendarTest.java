@@ -34,7 +34,7 @@ public class MyCalendarTest extends WebDriverTestBase {
 		createPlanForMonth(year, month);		
 		assertNewWithNoDefaultForStatusAndType();
 		
-		clickOnDay(year, month, 15);
+		clickOnDay();
 		assertNoErrors();
 		assertValue("plannedFor", month + "/15/" + year);
 		assertDescriptionValue("type.id", "Task");
@@ -48,7 +48,7 @@ public class MyCalendarTest extends WebDriverTestBase {
 		execute("MyCalendar.save"); 
 		assertNoErrors(); 
 		
-		assertDayText(year, month, 15, "JUnit incident from My calendar"); 
+		assertDayText(15, "JUnit incident from My calendar"); 
 		
 		execute("MyCalendar.new");
 		assertNoErrors();
@@ -60,7 +60,7 @@ public class MyCalendarTest extends WebDriverTestBase {
 		logout();
 		login("juan", "juan");
 		goModule("MyCalendar");
-		assertDayText(year, month, 15, "");
+		assertDayText(15, "");
 		
 		deleteData("JUnit incident from My calendar");
 	}
@@ -76,7 +76,7 @@ public class MyCalendarTest extends WebDriverTestBase {
 		
 		XPersistence.commit();
 		
-		clickOnDay(year, month, 15);
+		clickOnDay();
 		
 		assertNoErrors();
 		assertValue("plannedFor", month + "/15/" + year);
@@ -92,29 +92,33 @@ public class MyCalendarTest extends WebDriverTestBase {
 	}
 
 	private void assertNewWithNoPlan() throws Exception {
-		clickOnDay(year, month, 15);
-		assertError("There is no plan for javi on the date " + year + "-" + month + "-15. Create one and set it in the Assigned to field");
+		clickOnDay();
+		assertError("There is no plan for javi on the date " + formattedDate() + ". Create one and set it in the Assigned to field");
 		assertValue("plannedFor", month + "/15/" + year);
 		assertDescriptionValue("type.id", "Task");
 		assertDescriptionValue("status.id", "Planned");
 		assertDescriptionValue("assignedTo.id", "");
 		execute("Mode.list");
 	}
+	
+	private String formattedDate() {
+		return String.format("%d-%02d-15", year, month);
+	}
 
-	private void clickOnDay(int year, int month, int day) throws Exception {
-		WebElement dayElement = getDayElement(year, month);
+	private void clickOnDay() throws Exception {
+		WebElement dayElement = getDayElement();
 		dayElement.click();
 		wait(getDriver());
 	}
 	
-	private void assertDayText(int year, int month, int day, String expectedText) throws Exception {
-		WebElement dayElement = getDayElement(year, month);
+	private void assertDayText(int day, String expectedText) throws Exception {
+		WebElement dayElement = getDayElement();
 		String expectedDayContent = Is.emptyString(expectedText)?Integer.toString(day): day + "\n" + expectedText; 
 		assertEquals(expectedDayContent, dayElement.getText());
 	}
 	
-	private WebElement getDayElement(int year, int month) {
-		String date =  year + "-" + month + "-15";
+	private WebElement getDayElement() {
+		String date =  formattedDate();
 		WebElement dayElement = getDriver().findElement(By.cssSelector("td[data-date='" + date + "']")); 
 		return dayElement;
 	}	
