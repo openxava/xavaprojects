@@ -22,6 +22,7 @@
     	<class>com.openxava.naviox.model.SSORecord</class>
     	<class>com.openxava.naviox.model.User</class>
     	<class>org.openxava.util.impl.EmailSubscription</class>
+    	<class>com.openxava.naviox.model.LDAPConfiguration</class>
         <properties>
         	<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="javax.persistence.schema-generation.database.action" value="update"/>
@@ -44,6 +45,8 @@
     	<class>com.openxava.naviox.model.SessionRecord</class>
     	<class>com.openxava.naviox.model.SSORecord</class>
     	<class>com.openxava.naviox.model.User</class>
+    	<class>org.openxava.util.impl.EmailSubscription</class>
+    	<class>com.openxava.naviox.model.LDAPConfiguration</class>
         <properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
 			<property name="hibernate.default_catalog" value="XavaProjects"/>
