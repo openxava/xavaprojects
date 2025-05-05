@@ -28,7 +28,7 @@ public class MyCalendarTest extends WebDriverTestBase {
 		
 	public void testCreateIssue() throws Exception {
 		goModule("MyCalendar");
-		login("javi", "javi");
+		login("javi", "javi999");
 
 		assertNewWithNoPlan();		
 		createPlanForMonth(year, month);		
@@ -58,7 +58,7 @@ public class MyCalendarTest extends WebDriverTestBase {
 		assertDescriptionValue("assignedTo.id", "Javi " + year + "." + month);	
 		
 		logout();
-		login("juan", "juan");
+		login("juan", "juan888");
 		goModule("MyCalendar");
 		assertDayText(15, "");
 		
