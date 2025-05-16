@@ -22,6 +22,7 @@ public class PlannedIssueReminderJob implements Job {
     	try {
     		issueId = context.getJobDetail().getJobDataMap().getString("issue.id");
     		Issue issue = Issue.findById(issueId);
+			// tmr Lo if returns los podría cambiar por lanzar excepciones
     		if (issue == null) return;
     		Plan plan = issue.getAssignedTo();
     		if (plan == null) return;

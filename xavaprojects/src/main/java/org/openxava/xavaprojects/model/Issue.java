@@ -68,6 +68,8 @@ public class Issue extends Identifiable {
 			if (plannedFor == null) return;
 			if (getId() == null) return;
 			JobDataMap jobDataMap = new JobDataMap();
+			// TMR ME QUEDÉ POR AQUÍ: CREO QUE FALLA EN ORGANIZACIÓN. COMPROBARLO ANTES DE CAMBIAR NADA.
+			// TMR ENVIAR EL ESQUEMA
 			jobDataMap.put("issue.id", getId());
 	        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
 	            .withIdentity(getId(), "issueReminders")
@@ -75,6 +77,7 @@ public class Issue extends Identifiable {
 	            .build();
 	
 			LocalDateTime localDateTime = plannedFor.atStartOfDay();	    
+			// tmr Para las pruebas aquí podría planificar para dentro de 2 minutos
 			Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
 			Trigger trigger = TriggerBuilder.newTrigger()
 	            .withIdentity(getId(), "issueReminders")
