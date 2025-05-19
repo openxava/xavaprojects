@@ -67,9 +67,11 @@ public class Issue extends Identifiable {
 		try {
 			if (plannedFor == null) return;
 			if (getId() == null) return;
+			System.out.println("Issue.planReminder() XPersistence.getDefaultSchema()=" + XPersistence.getDefaultSchema());
 			JobDataMap jobDataMap = new JobDataMap();
-			// TMR ME QUEDÉ POR AQUÍ. FALLA CON ORGANIZACIÓN PROBAR ENVIAR EL ESQUEMA
+			// TMR FALLA CON ORGANIZACIÓN PROBAR ENVIAR EL ESQUEMA
 			jobDataMap.put("issue.id", getId());
+			jobDataMap.put("schema", XPersistence.getDefaultSchema());
 	        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
 	            .withIdentity(getId(), "issueReminders")
 	            .usingJobData(jobDataMap)	

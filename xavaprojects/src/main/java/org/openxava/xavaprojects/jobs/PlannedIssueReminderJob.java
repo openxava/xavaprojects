@@ -23,7 +23,17 @@ public class PlannedIssueReminderJob implements Job {
     	try {
     		issueId = context.getJobDetail().getJobDataMap().getString("issue.id");
 			System.out.println("PlannedIssueReminderJob.execute() issueId=" + issueId); // tmr
+			String schema = context.getJobDetail().getJobDataMap().getString("schema");
+			System.out.println("PlannedIssueReminderJob.execute() schema=" + schema); // tmr
+			if (schema != null) {
+				System.out.println("PlannedIssueReminderJob.execute() Setting schema=" + schema); // tmr
+				XPersistence.setDefaultSchema(schema);
+			}
+			else {
+				System.out.println("PlannedIssueReminderJob.execute() No schema found"); // tmr
+			}
     		Issue issue = Issue.findById(issueId);
+			System.out.println("PlannedIssueReminderJob.execute() issue=" + issue);
 			// tmr Lo if returns los podría cambiar por lanzar excepciones
     		if (issue == null) return;
     		Plan plan = issue.getAssignedTo();
