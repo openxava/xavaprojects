@@ -34,15 +34,30 @@ public class PlannedIssueReminderJob implements Job {
 			}
     		Issue issue = Issue.findById(issueId);
 			System.out.println("PlannedIssueReminderJob.execute() issue=" + issue);
-			// tmr Lo if returns los podría cambiar por lanzar excepciones
-    		if (issue == null) return;
+			// TMR ME QUEDÉ POR AQUÍ: COMPROBAR QUE LO LOGS FUNCIONAN BIEN
+    		if (issue == null) {
+    			log.error(XavaResources.getString("planned_issue_reminder_no_field", issueId, "issue"));
+    			return;
+    		}
     		Plan plan = issue.getAssignedTo();
-    		if (plan == null) return;
+    		if (plan == null) {
+    			log.error(XavaResources.getString("planned_issue_reminder_no_field", issueId, "plan"));
+    			return;
+    		}
     		Worker worker = plan.getWorker();
-    		if (worker == null) return;
+    		if (worker == null) {
+    			log.error(XavaResources.getString("planned_issue_reminder_no_field", issueId, "worker"));
+    			return;
+    		}
     		workerEmail = worker.getEmail();
-    		if (Is.emptyString(workerEmail)) return;
-    		if (issue.getPlannedFor() == null) return;
+    		if (Is.emptyString(workerEmail)) {
+    			log.error(XavaResources.getString("planned_issue_reminder_no_field", issueId, "email"));
+    			return;
+    		}
+    		if (issue.getPlannedFor() == null) {
+    			log.error(XavaResources.getString("planned_issue_reminder_no_field", issueId, "plannedFor"));
+    			return;
+    		}
     		
     		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
     		String formattedDate = issue.getPlannedFor().format(formatter);
