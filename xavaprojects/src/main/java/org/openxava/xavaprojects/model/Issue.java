@@ -69,17 +69,19 @@ public class Issue extends Identifiable {
 			if (getId() == null) return;
 			JobDataMap jobDataMap = new JobDataMap();
 			jobDataMap.put("issue.id", getId());
+			jobDataMap.put("schema", XPersistence.getDefaultSchema());
 	        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
 	            .withIdentity(getId(), "issueReminders")
 	            .usingJobData(jobDataMap)	
 	            .build();
 	
 			LocalDateTime localDateTime = plannedFor.atStartOfDay();	    
-			Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
+			Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        			
+		
 			Trigger trigger = TriggerBuilder.newTrigger()
-	            .withIdentity(getId(), "issueReminders")
-	            .startAt(date)  
-	            .build();
+				.withIdentity(getId(), "issueReminders")
+				.startAt(date)  
+				.build();
 	
 			StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
 		}

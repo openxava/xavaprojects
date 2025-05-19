@@ -1,6 +1,7 @@
 Change Log for XavaProjects
 ===========================
 
+- Fix: Email reminder does not work for a schema different from the default one (like from an organization).
 - Eclipse configuration files removed from GitHub code, still works with Eclipse importing as Maven project.
 
 XavaProjects 2025.05 (2025-5-5)
