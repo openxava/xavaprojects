@@ -43,6 +43,7 @@ abstract public class WebDriverTestBase extends TestCase {
 	    options.addArguments("--accept-lang=" + lang);
 	    options.addArguments("--lang=" + lang); 
 	    options.addArguments("--disable-search-engine-choice-screen"); 
+		options.addArguments("--window-size=900,850"); 
 	    if (isHeadless()) {
 		    options.addArguments("--headless"); 
 		    options.addArguments("--disable-gpu");

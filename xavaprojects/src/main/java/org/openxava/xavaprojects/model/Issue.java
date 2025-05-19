@@ -67,9 +67,7 @@ public class Issue extends Identifiable {
 		try {
 			if (plannedFor == null) return;
 			if (getId() == null) return;
-			System.out.println("Issue.planReminder() XPersistence.getDefaultSchema()=" + XPersistence.getDefaultSchema());
 			JobDataMap jobDataMap = new JobDataMap();
-			// TMR FALLA CON ORGANIZACIÓN PROBAR ENVIAR EL ESQUEMA
 			jobDataMap.put("issue.id", getId());
 			jobDataMap.put("schema", XPersistence.getDefaultSchema());
 	        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
@@ -77,14 +75,8 @@ public class Issue extends Identifiable {
 	            .usingJobData(jobDataMap)	
 	            .build();
 	
-			// Original code (commented for testing)
-			// LocalDateTime localDateTime = plannedFor.atStartOfDay();	    
-			// Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
-			
-			// tmr No dejar así
-			// Test code: Schedule for 2 minutes from now
-			LocalDateTime nowPlusTwoMinutes = LocalDateTime.now().plusMinutes(2);
-			Date date = Date.from(nowPlusTwoMinutes.atZone(ZoneId.systemDefault()).toInstant());
+			LocalDateTime localDateTime = plannedFor.atStartOfDay();	    
+			Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        			
 		
 			Trigger trigger = TriggerBuilder.newTrigger()
 				.withIdentity(getId(), "issueReminders")
