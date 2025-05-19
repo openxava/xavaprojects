@@ -68,21 +68,26 @@ public class Issue extends Identifiable {
 			if (plannedFor == null) return;
 			if (getId() == null) return;
 			JobDataMap jobDataMap = new JobDataMap();
-			// TMR ME QUEDÉ POR AQUÍ: CREO QUE FALLA EN ORGANIZACIÓN. COMPROBARLO ANTES DE CAMBIAR NADA.
-			// TMR ENVIAR EL ESQUEMA
+			// TMR ME QUEDÉ POR AQUÍ. FALLA CON ORGANIZACIÓN PROBAR ENVIAR EL ESQUEMA
 			jobDataMap.put("issue.id", getId());
 	        JobDetail job = JobBuilder.newJob(PlannedIssueReminderJob.class)
 	            .withIdentity(getId(), "issueReminders")
 	            .usingJobData(jobDataMap)	
 	            .build();
 	
-			LocalDateTime localDateTime = plannedFor.atStartOfDay();	    
-			// tmr Para las pruebas aquí podría planificar para dentro de 2 minutos
-			Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
+			// Original code (commented for testing)
+			// LocalDateTime localDateTime = plannedFor.atStartOfDay();	    
+			// Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());	        
+			
+			// tmr No dejar así
+			// Test code: Schedule for 2 minutes from now
+			LocalDateTime nowPlusTwoMinutes = LocalDateTime.now().plusMinutes(2);
+			Date date = Date.from(nowPlusTwoMinutes.atZone(ZoneId.systemDefault()).toInstant());
+		
 			Trigger trigger = TriggerBuilder.newTrigger()
-	            .withIdentity(getId(), "issueReminders")
-	            .startAt(date)  
-	            .build();
+				.withIdentity(getId(), "issueReminders")
+				.startAt(date)  
+				.build();
 	
 			StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
 		}

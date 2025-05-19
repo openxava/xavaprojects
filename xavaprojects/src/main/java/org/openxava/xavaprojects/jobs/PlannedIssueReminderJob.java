@@ -17,10 +17,12 @@ public class PlannedIssueReminderJob implements Job {
 	private static final Log log = LogFactory.getLog(PlannedIssueReminderJob.class);
     
     public void execute(JobExecutionContext context) {
+		System.out.println("PlannedIssueReminderJob.execute() Entering"); // tmr
     	String issueId = "Unknow";
     	String workerEmail = "Unknow";
     	try {
     		issueId = context.getJobDetail().getJobDataMap().getString("issue.id");
+			System.out.println("PlannedIssueReminderJob.execute() issueId=" + issueId); // tmr
     		Issue issue = Issue.findById(issueId);
 			// tmr Lo if returns los podría cambiar por lanzar excepciones
     		if (issue == null) return;
@@ -38,6 +40,7 @@ public class PlannedIssueReminderJob implements Job {
     		String subject = XavaResources.getString("planned_issue_reminder_subject", issue.getTitle(), formattedDate);
     		String content = XavaResources.getString("planned_issue_reminder_content", issue.getTitle(), issue.getDescription(), formattedDate);
     		
+			System.out.println("PlannedIssueReminderJob.execute() Sending email to " + workerEmail); // tmr
     		Emails.send(workerEmail, subject, content);
     	}
     	catch (Exception ex) {
