@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+
+<!DOCTYPE editors SYSTEM "dtds/editors.dtd">
+
+<editors>
+
+	<editor url="dateCalendarEditor.jsp">
+		<formatter class="org.openxava.formatters.LocalDateFormatter" />
+		<list-formatter class="org.openxava.xavaprojects.formatters.DeadlineDateListFormatter" />
+		<for-model-property model="Issue" property="plannedFor" />
+	</editor>	
+	
+</editors>
