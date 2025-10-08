@@ -1,10 +1,11 @@
 Change Log for XavaProjects
 ===========================
 
+- Issue's plannedFor date is shown with different colors for today, yesterday and the day before yesterday.
+
 XavaProjects 2025.09 (2025-9-22)
 --------------------------------
 - OpenXava upgraded to OpenXava 7.6.
-
 
 XavaProjects 2025.06 (2025-6-23)
 --------------------------------
