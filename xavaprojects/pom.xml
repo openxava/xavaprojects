@@ -4,11 +4,11 @@
 
 	<groupId>org.openxava</groupId>
 	<artifactId>xavaprojects</artifactId>
-	<version>2025.09</version>
+	<version>2025.10</version>
 	<packaging>war</packaging>
 
 	<properties>
-		<openxava.version>7.6</openxava.version>
+		<openxava.version>7.6.1</openxava.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- OpenXava applications work nicely with Java 1.8, 11 and 17 -->
 		<maven.compiler.source>11</maven.compiler.source>
