@@ -1,6 +1,8 @@
 Change Log for XavaProjects
 ===========================
 
+- Fix: Navigating between plans with issues with no plannedFor date shows errors to the user.
+
 XavaProjects 2025.10 (2025-10-20)
 ---------------------------------
 - OpenXava upgraded to OpenXava 7.6.1.

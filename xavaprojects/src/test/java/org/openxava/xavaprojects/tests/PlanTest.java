@@ -48,8 +48,11 @@ public class PlanTest extends ModuleTestBase {
 		assertListRowCount(3);
 		assertValueInList(1, 0, "Pedro");
 		assertValueInList(1, 1, "2019.11");
+
+		execute("List.viewDetail", "row=0");
+		execute("Navigation.next");
+		assertNoErrors(); // To test a bug with plannedFor data formatter when navigating
 		
-		execute("List.viewDetail", "row=1"); 
 		assertValue("worker.id", "4028808d7eea19fe017eea56ffeb0019"); // Pedro
 		assertValue("period.id", "4028808d7eea19fe017eea5ab6dc001b"); // 2019.11		
 		assertCollectionRowCount("issues", 1);
@@ -66,8 +69,9 @@ public class PlanTest extends ModuleTestBase {
 		execute("CRUD.deleteSelected");
 		assertNoErrors();
 	}
+
 	
-	public void testDeadlineDateListFormatter() throws Exception {
+	public void testDeadlineDateListFormatter() throws Exception { 
 		login("admin", "admin");
 		
 		// Get the first plan
