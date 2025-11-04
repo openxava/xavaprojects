@@ -14,6 +14,7 @@ public class DeadlineDateListFormatter extends LocalDateFormatter {
 
     @Override
     public String format(HttpServletRequest request, Object object) {
+        if (object == null) return "";
         LocalDate date = (LocalDate) object;
         String formattedDate = super.format(request, date);
         
