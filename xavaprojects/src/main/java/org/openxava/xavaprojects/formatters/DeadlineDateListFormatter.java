@@ -19,27 +19,27 @@ public class DeadlineDateListFormatter extends LocalDateFormatter {
         String formattedDate = super.format(request, date);
         
         LocalDate today = LocalDate.now();
-        LocalDate lastWorkingDay = getPreviousWorkingDay(today);
-        LocalDate secondLastWorkingDay = getPreviousWorkingDay(lastWorkingDay);
+        LocalDate nextWorkingDay = getNextWorkingDay(today);
+        LocalDate secondNextWorkingDay = getNextWorkingDay(nextWorkingDay);
         
         if (date.equals(today)) {
             formattedDate = "<span class='deadline-today'>" + formattedDate + "</span>";
-        } else if (date.equals(lastWorkingDay)) {
-            formattedDate = "<span class='deadline-yesterday'>" + formattedDate + "</span>";
-        } else if (date.equals(secondLastWorkingDay)) {
-            formattedDate = "<span class='deadline-day-before-yesterday'>" + formattedDate + "</span>";
+        } else if (date.equals(nextWorkingDay)) {
+            formattedDate = "<span class='deadline-tomorrow'>" + formattedDate + "</span>";
+        } else if (date.equals(secondNextWorkingDay)) {
+            formattedDate = "<span class='deadline-day-after-tomorrow'>" + formattedDate + "</span>";
         }
         
         return formattedDate;
     }
     
-    private LocalDate getPreviousWorkingDay(LocalDate date) {
-        LocalDate previousDay = date.minusDays(1);
-        while (previousDay.getDayOfWeek() == DayOfWeek.SATURDAY || 
-               previousDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
-            previousDay = previousDay.minusDays(1);
+    private LocalDate getNextWorkingDay(LocalDate date) {
+        LocalDate nextDay = date.plusDays(1);
+        while (nextDay.getDayOfWeek() == DayOfWeek.SATURDAY || 
+               nextDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
+            nextDay = nextDay.plusDays(1);
         }
-        return previousDay;
+        return nextDay;
     }
 
 }
