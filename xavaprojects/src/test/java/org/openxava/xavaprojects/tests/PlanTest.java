@@ -79,8 +79,8 @@ public class PlanTest extends ModuleTestBase {
 		
 		// Calculate working day dates
 		LocalDate today = LocalDate.now();
-		LocalDate lastWorkingDay = getPreviousWorkingDay(today);
-		LocalDate secondLastWorkingDay = getPreviousWorkingDay(lastWorkingDay);
+		LocalDate nextWorkingDay = getNextWorkingDay(today);
+		LocalDate secondNextWorkingDay = getNextWorkingDay(nextWorkingDay);
 		LocalDate otherDate = LocalDate.of(2025, 3, 15);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
@@ -93,19 +93,19 @@ public class PlanTest extends ModuleTestBase {
 		execute("Collection.save");
 		assertNoErrors();
 		
-		// Add issue for last working day (yesterday)
+		// Add issue for next working day (tomorrow)
 		execute("Collection.new", "viewObject=xava_view_issues");
-		setValue("title", "Issue for yesterday");
+		setValue("title", "Issue for tomorrow");
 		setValue("type.id", "4028808d7eea19fe017eea61bec90024"); // Bug
-		setValue("plannedFor", lastWorkingDay.format(formatter));
+		setValue("plannedFor", nextWorkingDay.format(formatter));
 		execute("Collection.save");
 		assertNoErrors();
 		
-		// Add issue for second last working day (day before yesterday)
+		// Add issue for second next working day (day after tomorrow)
 		execute("Collection.new", "viewObject=xava_view_issues");
-		setValue("title", "Issue for day before yesterday");
+		setValue("title", "Issue for day after tomorrow");
 		setValue("type.id", "4028808d7eea19fe017eea61bec90024"); // Bug
-		setValue("plannedFor", secondLastWorkingDay.format(formatter));
+		setValue("plannedFor", secondNextWorkingDay.format(formatter));
 		execute("Collection.save");
 		assertNoErrors();
 		
@@ -126,8 +126,8 @@ public class PlanTest extends ModuleTestBase {
 		// Format dates as they appear in the HTML (M/d/yyyy format for English locale)
 		DateTimeFormatter htmlFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 		String todayFormatted = today.format(htmlFormatter);
-		String yesterdayFormatted = lastWorkingDay.format(htmlFormatter);
-		String dayBeforeYesterdayFormatted = secondLastWorkingDay.format(htmlFormatter);
+		String tomorrowFormatted = nextWorkingDay.format(htmlFormatter);
+		String dayAfterTomorrowFormatted = secondNextWorkingDay.format(htmlFormatter);
 		String otherDateFormatted = otherDate.format(htmlFormatter);
 		
 		// Verify today's date has the 'deadline-today' class
@@ -135,21 +135,21 @@ public class PlanTest extends ModuleTestBase {
 			html.contains("<span class=\"deadline-today\">" + todayFormatted + "</span>") || 
 			html.contains("<span class='deadline-today'>" + todayFormatted + "</span>"));
 		
-		// Verify yesterday's date has the 'deadline-yesterday' class
-		assertTrue("Yesterday's date (" + yesterdayFormatted + ") should have 'deadline-yesterday' class", 
-			html.contains("<span class=\"deadline-yesterday\">" + yesterdayFormatted + "</span>") || 
-			html.contains("<span class='deadline-yesterday'>" + yesterdayFormatted + "</span>"));
+		// Verify tomorrow's date has the 'deadline-tomorrow' class
+		assertTrue("Tomorrow's date (" + tomorrowFormatted + ") should have 'deadline-tomorrow' class", 
+			html.contains("<span class=\"deadline-tomorrow\">" + tomorrowFormatted + "</span>") || 
+			html.contains("<span class='deadline-tomorrow'>" + tomorrowFormatted + "</span>"));
 		
-		// Verify day before yesterday's date has the 'deadline-day-before-yesterday' class
-		assertTrue("Day before yesterday's date (" + dayBeforeYesterdayFormatted + ") should have 'deadline-day-before-yesterday' class", 
-			html.contains("<span class=\"deadline-day-before-yesterday\">" + dayBeforeYesterdayFormatted + "</span>") || 
-			html.contains("<span class='deadline-day-before-yesterday'>" + dayBeforeYesterdayFormatted + "</span>"));
+		// Verify day after tomorrow's date has the 'deadline-day-after-tomorrow' class
+		assertTrue("Day after tomorrow's date (" + dayAfterTomorrowFormatted + ") should have 'deadline-day-after-tomorrow' class", 
+			html.contains("<span class=\"deadline-day-after-tomorrow\">" + dayAfterTomorrowFormatted + "</span>") || 
+			html.contains("<span class='deadline-day-after-tomorrow'>" + dayAfterTomorrowFormatted + "</span>"));
 		
 		// Verify other date has no special class (no span wrapper)
 		assertFalse("Other date (" + otherDateFormatted + ") should not have any deadline class", 
 			html.contains("<span class=\"deadline-today\">" + otherDateFormatted + "</span>") ||
-			html.contains("<span class=\"deadline-yesterday\">" + otherDateFormatted + "</span>") ||
-			html.contains("<span class=\"deadline-day-before-yesterday\">" + otherDateFormatted + "</span>"));
+			html.contains("<span class=\"deadline-tomorrow\">" + otherDateFormatted + "</span>") ||
+			html.contains("<span class=\"deadline-day-after-tomorrow\">" + otherDateFormatted + "</span>"));
 
 		// Clean up: remove all issues
 		checkAllCollection("issues");
@@ -158,13 +158,13 @@ public class PlanTest extends ModuleTestBase {
 		assertCollectionRowCount("issues", 0);
 	}
 	
-	private LocalDate getPreviousWorkingDay(LocalDate date) {
-		LocalDate previousDay = date.minusDays(1);
-		while (previousDay.getDayOfWeek() == DayOfWeek.SATURDAY || 
-			   previousDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
-			previousDay = previousDay.minusDays(1);
+	private LocalDate getNextWorkingDay(LocalDate date) {
+		LocalDate nextDay = date.plusDays(1);
+		while (nextDay.getDayOfWeek() == DayOfWeek.SATURDAY || 
+			   nextDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
+			nextDay = nextDay.plusDays(1);
 		}
-		return previousDay;
+		return nextDay;
 	}
 
 }

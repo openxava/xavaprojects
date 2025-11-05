@@ -1,6 +1,7 @@
 Change Log for XavaProjects
 ===========================
 
+- Fix: Deadline marker for plannedFor in issue list activated for yesterday instead of tomorrow.
 - Fix: Navigating between plans with issues with no plannedFor date shows errors to the user.
 
 XavaProjects 2025.10 (2025-10-20)

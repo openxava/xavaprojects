@@ -93,11 +93,11 @@ Put here your own style
 	font-weight: bold;
 }
 
-.deadline-yesterday {
+.deadline-tomorrow {
 	color: orange;
 	font-weight: bold;
 }
 
-.deadline-day-before-yesterday {
+.deadline-day-after-tomorrow {
 	color: orange;
 }
