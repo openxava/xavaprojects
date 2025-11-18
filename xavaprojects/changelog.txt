@@ -1,6 +1,9 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2025.11 (2025-11-18)
+---------------------------------
+- OpenXava upgraded to OpenXava 7.6.2.
 - Fix: Deadline marker for plannedFor in issue list activated for yesterday instead of tomorrow.
 - Fix: Navigating between plans with issues with no plannedFor date shows errors to the user.
 
