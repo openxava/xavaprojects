@@ -30,7 +30,6 @@ XavaProjects 2025.05bis (2025-5-26)
 - Eclipse configuration files removed from GitHub code, still works with Eclipse importing as Maven project.
 - Fix: Email reminder does not work for a schema different from the default one (like from an organization).
 
-
 XavaProjects 2025.05 (2025-5-5)
 -------------------------------
 - OpenXava upgraded to OpenXava 7.5.1.
