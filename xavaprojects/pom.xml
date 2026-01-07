@@ -4,7 +4,7 @@
 
 	<groupId>org.openxava</groupId>
 	<artifactId>xavaprojects</artifactId>
-	<version>2025.12-SNAPSHOT</version>
+	<version>2026.01-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
