@@ -1,6 +1,12 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2026.03 (2026-3-10)
+---------------------------------
+- OpenXava upgraded to OpenXava 7.7.
+- AI Chat functionality added.
+- Compiled with Java 17.
+
 XavaProjects 2025.12 (2025-12-12)
 ---------------------------------
 - OpenXava upgraded to OpenXava 7.6.3.
