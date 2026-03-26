@@ -56,8 +56,8 @@ public class IssueTest extends ModuleTestBase {
 			
 		String [][] plans = {
 			{ "", "" },	
-			{ "4028808d7eea19fe017eea5b5534001e", "Javi 2019.10" },
-			{ "4028808d7eea19fe017eea5b675b001f", "Javi 2019.11" }
+			{ "4028808d7eea19fe017eea5b675b001f", "Javi 2019.11" },
+			{ "4028808d7eea19fe017eea5b5534001e", "Javi 2019.10" }
 		};
 		assertValidValues("assignedTo.id", plans);
 		setValue("assignedTo.id", "4028808d7eea19fe017eea5b675b001f"); // 2019.11 
