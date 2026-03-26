@@ -1,6 +1,8 @@
 Change Log for XavaProjects
 ===========================
 
+- 'Assigned to' combo (Plan) in Issue ordered descending by period.
+
 XavaProjects 2026.03 (2026-3-10)
 ---------------------------------
 - OpenXava upgraded to OpenXava 7.7.

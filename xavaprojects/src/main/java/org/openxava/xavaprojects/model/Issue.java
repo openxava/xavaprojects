@@ -120,7 +120,7 @@ public class Issue extends Identifiable {
 	Version version;
 	
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
-	@DescriptionsList(descriptionProperties="worker.name, period.name")
+	@DescriptionsList(descriptionProperties="worker.name, period.name", order = "${period.name} desc, ${worker.name} asc")
 	Plan assignedTo; 
 	
 	@DescriptionsList
