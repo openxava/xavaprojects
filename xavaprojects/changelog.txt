@@ -1,6 +1,10 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2026.05 (2026-5-11)
+--------------------------------
+- OpenXava upgraded to OpenXava 7.7.2.
+
 XavaProjects 2026.04 (2026-4-14)
 ---------------------------------
 - OpenXava upgraded to OpenXava 7.7.1.
