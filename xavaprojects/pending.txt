@@ -1,0 +1,6 @@
+Pending upgrading to 8.0 (tmr)
+------------------------------
+- Añadir exclusión de quartz en arquetipos.
+- Modificar doc de Project Templates para incluir Quartz. Verificar que se soporta (con changelog).
+- Mirar otras cosas del chat con la IA, sobre las exclusiones de tld en application.properties por ejemplo.
+- Mezclar con master en openxava.

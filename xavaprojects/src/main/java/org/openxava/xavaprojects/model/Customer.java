@@ -1,6 +1,6 @@
 package org.openxava.xavaprojects.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import lombok.*;
 

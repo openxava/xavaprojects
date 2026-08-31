@@ -4,11 +4,11 @@
 
 	<groupId>org.openxava</groupId>
 	<artifactId>xavaprojects</artifactId>
-	<version>2026.06</version>
+	<version>2026.08-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
-		<openxava.version>7.7.3</openxava.version>
+		<openxava.version>8.0-SNAPSHOT</openxava.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- OpenXava applications work nicely with Java 1.8, 11 and 17 -->
 		<maven.compiler.source>17</maven.compiler.source>
@@ -24,12 +24,6 @@
 			<version>${openxava.version}</version>
 		</dependency>
 
-		<!-- AI Chat functionality (requires Java 17) -->
-		<dependency>
-			<groupId>org.openxava</groupId>
-			<artifactId>openxava-7.7-chat-jdk17</artifactId>
-			<version>${openxava.version}</version>
-		</dependency>
 		
 		<dependency>
 			<groupId>org.openxava</groupId>
@@ -49,6 +43,12 @@
 		    <groupId>org.quartz-scheduler</groupId>
 		    <artifactId>quartz</artifactId>
 		    <version>2.3.2</version>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.slf4j</groupId>
+		            <artifactId>slf4j-api</artifactId>
+		        </exclusion>
+		    </exclusions>
 		</dependency>
 		
 	    <!-- last version supported for java 8 -->
@@ -175,7 +175,6 @@
 						WEB-INF/lib/neko-htmlunit-*.jar,
 						WEB-INF/lib/pdfbox-*.jar,
 						WEB-INF/lib/serializer-*.jar,
-						WEB-INF/lib/tomcat-*.jar,
 						WEB-INF/lib/websocket-*.jar,
 						WEB-INF/lib/xalan-*.jar,
 						WEB-INF/lib/xercesImpl-*.jar,
@@ -188,6 +187,21 @@
 				<version>3.2.5</version>
 				<configuration>
 					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>4.1.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>org.openxava.xavaprojects.XavaprojectsApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
