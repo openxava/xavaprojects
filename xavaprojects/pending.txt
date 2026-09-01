@@ -1,3 +1,5 @@
 Pending upgrading to 8.0 (tmr)
 ------------------------------
-- Mezclar cambios en openxava en master.
+- TMR QUEDÉ POR AQUÍ: ACABÉ DE CREAR MERCADONA SIN "UPDATE"
+- ¿Pruebas automáticas?
+- Mezclar cambios en xavapro/openxava en master.

@@ -26,7 +26,9 @@
     	<class>com.openxava.naviox.model.LDAPConfiguration</class>
         <properties>
         	<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<!-- tmr
             <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
+            -->
             <property name="hibernate.default_catalog" value="XavaProjects"/>
             <property name="hibernate.jdbc.use_streams_for_binary" value="true"/>
         </properties>
