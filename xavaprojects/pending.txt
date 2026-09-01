@@ -1,4 +1,3 @@
 Pending upgrading to 8.0 (tmr)
 ------------------------------
-- Mirar otras cosas del chat con la IA, sobre las exclusiones de tld en application.properties por ejemplo.
-- Mezclar con master en openxava.
+- Mezclar cambios en openxava en master.
