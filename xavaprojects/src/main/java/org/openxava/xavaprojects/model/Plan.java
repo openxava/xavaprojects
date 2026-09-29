@@ -2,7 +2,7 @@ package org.openxava.xavaprojects.model;
 
 import java.util.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import org.openxava.annotations.*;
 import org.openxava.model.*;

@@ -3,7 +3,7 @@ package org.openxava.xavaprojects.site;
 import java.io.*;
 import java.util.*;
 
-import javax.servlet.http.*;
+import jakarta.servlet.http.*;
 
 import org.apache.commons.logging.*;
 import org.openxava.util.*;
