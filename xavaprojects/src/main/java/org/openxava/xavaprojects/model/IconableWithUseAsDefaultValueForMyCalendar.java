@@ -20,7 +20,8 @@ public class IconableWithUseAsDefaultValueForMyCalendar extends Iconable {
 			
 	protected static Object findTheDefaultOne(String entity, String property) {
 		List status = XPersistence.getManager()
-			.createQuery("from " + entity +  " where " + property + " = true")
+			.createQuery("from " + entity +  " e where e." + property + " = :value")
+			.setParameter("value", true)
 			.getResultList();
 		if (status.size() == 1) return status.get(0);
 		return null;

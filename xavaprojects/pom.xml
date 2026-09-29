@@ -8,9 +8,9 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<openxava.version>8.0-SNAPSHOT</openxava.version>
+		<openxava.version>8.0</openxava.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- OpenXava applications work nicely with Java 1.8, 11 and 17 -->
+		<!-- OpenXava applications require Java 17 or higher -->
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
@@ -137,6 +137,16 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.12.0</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
@@ -206,5 +216,27 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- Enable annotation processing from classpath (Lombok via openxava); required since JDK 25.
+	     -proc:full only exists since JDK 23, so it lives in this profile to keep JDK 17 builds working. -->
+	<profiles>
+		<profile>
+			<id>jdk23-annotation-processing</id>
+			<activation>
+				<jdk>[23,)</jdk>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<proc>full</proc>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

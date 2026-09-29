@@ -1,6 +1,15 @@
 Change Log for XavaProjects
 ===========================
 
+XavaProjects 2026.08 (pending)
+-------------------------------
+- OpenXava upgraded to OpenXava 8.0.
+- Application now runs with Spring Boot (mvn spring-boot:run) instead of the AppServer launcher.
+- Database configuration moved from context.xml to application.properties.
+- persistence.xml upgraded to Jakarta Persistence 3.2 (Hibernate 7.4).
+- Logging level configured in application.properties instead of xava.properties.
+- Theme set to light.css; theme chooser offers Auto / Light / Dark.
+
 XavaProjects 2026.06 (2026-6-8)
 -------------------------------
 - OpenXava upgraded to OpenXava 7.7.3.
