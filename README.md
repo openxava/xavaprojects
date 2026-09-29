@@ -31,38 +31,31 @@ Then in the same pom.xml uncomment the next dependency:
 	</dependency>		
 
 
-## Build the project
-From command line prompt inside xavaprojects folder type:
-
-	mvn clean package -Dmaven.test.skip
-
 ## Configure database
 You need to have installed and running a MySQL database. If not, go to [MySQL site](https://www.mysql.com/) and download and install it.
-Edit the *xavaprojects/src/main/webapp/META-INF/context.xml* file to put the correct user name and password for your MySQL database:
+Edit the *xavaprojects/src/main/resources/application.properties* file to put the correct user name and password for your MySQL database:
 
-	<Resource name="jdbc/xavaprojectsDS" auth="Container" type="javax.sql.DataSource"
-		maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-		username="YOUR USERNAME HERE" 
-		password="YOUR PASSWORD HERE" 
-		driverClassName="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306?serverTimezone=GMT%2B1"/>
+	spring.datasource.username=YOUR USERNAME HERE
+	spring.datasource.password=YOUR PASSWORD HERE
+	spring.datasource.url=jdbc:mysql://localhost:3306/XavaProjects?serverTimezone=GMT%2B1
+	spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-Fill the *username* and *password* attributes.
+Fill the *spring.datasource.username* and *spring.datasource.password* properties.
 
 If you want the email reminders to be remembered when the application is restarted, you have to create the Quartz tables using the following scripts:
 https://github.com/quartz-scheduler/quartz/tree/main/quartz/src/main/resources/org/quartz/impl/jdbcjobstore
 
 ## Run XavaProjects
-To run XavaProjects in Windows:
+From command line prompt inside xavaprojects folder type:
 
-	java -cp "target/xavaprojects/WEB-INF/classes;target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
+	mvn spring-boot:run
 
-To run XavaProjects in Linux or Mac:
-	
-	java -cp "target/xavaprojects/WEB-INF/classes:target/xavaprojects/WEB-INF/lib/*" org.openxava.xavaprojects.run.xavaprojects
+Then go to http://localhost:8080/xavaprojects with your browser.
+Also you should be able to run it from Eclipse, IntelliJ, NetBeans, Visual Studio Code or any other IDE with Maven support, executing the main() method of org.openxava.xavaprojects.XavaprojectsApplication.
 
-The difference is the separator ; or :
-Also you should be able to use it from Eclipse, IntelliJ, NetBeans, Visual Studio Code or any other IDE with Maven support.	
+To produce a deployable WAR for an external servlet container:
+
+	mvn clean package -Dmaven.test.skip
 
 ## Any problem?
 Put a question in the [OpenXava public forum](https://sourceforge.net/p/openxava/discussion/419690/).
